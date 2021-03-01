@@ -1,4 +1,4 @@
-package study;
+package study.jvm;
 
 /**
  * @ClassName 类的加载顺序

@@ -136,7 +136,11 @@ public class SuiShouTest {
 
     @Test
     public void test7() {
-        System.out.println(DateUtil.gainBigOrSmall("2021-02-03 00:00:00"));
+
+        String time = DateUtil.getNewFormatDateString(new Date());
+
+
+        System.out.println(!DateUtil.gainBigOrSmall("2021-02-17 00:00:00"));
     }
 
     @Test
@@ -154,6 +158,11 @@ public class SuiShouTest {
 
         int c = (int) (Math.random() * (9999 - 1000 + 1)) + 1000;
         System.out.println(c);
+        UUID uuid = UUID.randomUUID();
+        System.out.println(uuid);
+
+        String s = "YQC" + DateUtil.getDateNoTime().substring(2, 8)+ a;
+        System.out.println(s);
     }
 
     @Test

@@ -289,6 +289,13 @@
             <scope>compile</scope>
         </dependency>
 
+        <!--验证码 -->
+        <dependency>
+            <groupId>com.github.penggle</groupId>
+            <artifactId>kaptcha</artifactId>
+            <version>2.3.2</version>
+        </dependency>
+
     </dependencies>
 
     <!--springboot 使用spring.profiles.active 区分不同环境下配置文件-->

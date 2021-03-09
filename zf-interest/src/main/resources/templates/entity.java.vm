@@ -24,16 +24,16 @@ import lombok.experimental.Accessors;
 #if(${entityLombokModel})
 @Data
   #if(${superEntityClass})
-@EqualsAndHashCode(callSuper = true)
+##@EqualsAndHashCode(callSuper = true)
   #else
-@EqualsAndHashCode(callSuper = false)
+##@EqualsAndHashCode(callSuper = false)
   #end
   #if(${chainModel})
-@Accessors(chain = true)
+##@Accessors(chain = true)
   #end
 #end
 #if(${table.convert})
-@TableName("${table.name}")
+##@TableName("${table.name}")
 #end
 #if(${swagger2})
 @ApiModel(value="${entity}对象", description="$!{table.comment}")
@@ -67,11 +67,11 @@ public class ${entity} implements Serializable {
 #if(${field.keyFlag})
 ## 主键
   #if(${field.keyIdentityFlag})
-    @TableId(value = "${field.annotationColumnName}", type = IdType.AUTO)
+##    @TableId(value = "${field.annotationColumnName}", type = IdType.AUTO)
   #elseif(!$null.isNull(${idType}) && "$!idType" != "")
-    @TableId(value = "${field.annotationColumnName}", type = IdType.${idType})
+##    @TableId(value = "${field.annotationColumnName}", type = IdType.${idType})
   #elseif(${field.convert})
-    @TableId("${field.annotationColumnName}")
+##    @TableId("${field.annotationColumnName}")
   #end
 ## 普通字段
 #elseif(${field.fill})

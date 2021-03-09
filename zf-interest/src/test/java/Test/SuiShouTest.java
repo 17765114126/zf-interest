@@ -136,9 +136,7 @@ public class SuiShouTest {
 
     @Test
     public void test7() {
-
         String time = DateUtil.getNewFormatDateString(new Date());
-
 
         System.out.println(!DateUtil.gainBigOrSmall("2021-02-17 00:00:00"));
     }
@@ -408,9 +406,15 @@ public class SuiShouTest {
         System.out.println(Runtime.getRuntime().availableProcessors());
     }
 
-    public static void main(String[] args) {
-        for (String arg : args) {
-            System.out.println(arg);
+
+    @Test
+    public void Test26() {
+        String xsPrice = "123,";
+        System.out.println(xsPrice.substring(0, xsPrice.length() - 1));
+
+
+        for (int i = 0; i < 4; i++) {
+            System.out.println(i);
         }
     }
 

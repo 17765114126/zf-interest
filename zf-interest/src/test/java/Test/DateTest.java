@@ -1,6 +1,9 @@
 package Test;
 
 import com.example.springboot.utils.DateUtil;
+import org.junit.Test;
+
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -35,8 +38,31 @@ public class DateTest {
             System.out.println(flag1);
         }
 
+
     }
 
+    @Test
+    public void Test() {
+        Date date = new Date();
+        System.out.println();
+        System.out.println(DateUtil.getDateToStr(DateUtil.addDays(date, 15)));
+
+        Date dateTimeYYYYMMDD = DateUtil.getDateTimeYYYYMMDD();
+        System.out.println(dateTimeYYYYMMDD);
+        System.out.println(DateUtil.getDateToStr(DateUtil.getDateTimeYYYYMMDD()));
+
+
+        int compareTo = dateTimeYYYYMMDD.compareTo(new Date());
+        System.out.println(compareTo);
+
+        int compareTo2 = new Date().compareTo(dateTimeYYYYMMDD);
+        System.out.println(compareTo2);
+
+        System.out.println(DateUtil.bigOrSmall(dateTimeYYYYMMDD, new Date()));
+        System.out.println(DateUtil.bigOrSmall(new Date(),dateTimeYYYYMMDD));
+
+        System.out.println(DateUtil.getDateToStr(DateUtil.getDay(new Date(), 16)));
+    }
 
 
 }

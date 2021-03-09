@@ -141,6 +141,21 @@ public class DateUtil {
     }
 
     /**
+     * 获取系统日期的后15天日期，返回Date 剔除时间
+     *
+     * @return
+     */
+    public static Date getDateTimeYYYYMMDD() {
+        DateFormat dateFormat = new SimpleDateFormat(DEFAULT_DATE);
+        try {
+            return dateFormat.parse(dateFormat.format(getFutureDay(15)));
+        } catch (ParseException e) {
+            log.error("getBeforeDateNoTime error.", e);
+        }
+        return null;
+    }
+
+    /**
      * 根据日期字符串返回date(无时间)
      *
      * @param dateStr 日期字符串. 无时间
@@ -1033,6 +1048,18 @@ public class DateUtil {
         return parseDateNewFormat(dateString);
     }*/
 
+    /**
+     * @return 两个时间比较大小
+     *
+     */
+    public static Boolean bigOrSmall(Date beginDate,Date endDate) {
+        int compareTo = beginDate.compareTo(endDate);
+        if (compareTo == 1){
+            return true;
+        }
+        return false;
+    }
+
     public static Date parseDateNewFormat(String sDate) {
         DateFormat dateFormat = new SimpleDateFormat(DEFAULT_TIME);
         Date d = null;
@@ -1065,12 +1092,27 @@ public class DateUtil {
     }
 
     public static void main(String[] args) {
-
-        log.info("data:[{}]", getFutureDay(-7));
-        log.info("data:[{}]", getDateNoTime(getFutureDay(-7)));
+        System.out.println(getDay(new Date(), 10));
     }
 
+    /**
+     * 获取传入时间之后（之前）的日期
+     * @param days data 时间
+     * @param days 天数，可以为负数
+     * @return 指定日期格式的日期增加指定天数的日期
+     */
+    public static Date getDay(Date data ,int days) {
+        try {
+            DateFormat dateFormat = new SimpleDateFormat(DEFAULT_DATE);
 
+            Calendar calendar = GregorianCalendar.getInstance();
+            calendar.setTime(data);
+            calendar.add(Calendar.DAY_OF_MONTH, days);
+            return dateFormat.parse(dateFormat.format(calendar.getTime()));
+        } catch (Exception e) {
+            return null;
+        }
+    }
 
     /**
      * 判断时间是否在时间段内

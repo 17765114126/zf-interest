@@ -19,11 +19,11 @@ import com.google.code.kaptcha.Producer;
 /**
  * 图片验证码（支持算术形式）
  *
- * @author ruoyi
+ * @author zhaofu
  */
 @Controller
 @RequestMapping("/captcha")
-public class SysCaptchaController{
+public class SysCaptchaController {
     @Resource(name = "captchaProducer")
     private Producer captchaProducer;
 

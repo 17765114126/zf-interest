@@ -56,7 +56,7 @@ public class GeneratorCodeUtil {
         System.out.println("--------------------开始自动生成相关的类----------------------");
         System.out.println("args = " + new File("").getAbsolutePath() + "/src/main/java/");
 
-        generateByTables(MODULE_NAME, "tbl_league_coupon_use_log");
+        generateByTables(MODULE_NAME, "tbl_yq_invite_reward");
         System.out.println("--------------------------生成成功------------------------");
     }
 

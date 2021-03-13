@@ -41,7 +41,7 @@ public class WatermarkFile {
         String srcUrl = "https://oss.dorago.cn/cms/2021/3/c111615366642612.jpg";
         //阿里云添加水印方法
 //        srcUrl += "?x-oss-process=image/resize,w_700,h_700/watermark,type_d3F5LXplbmhlaQ,size_30,text_5py15ouJ5bmz5Y-w6JCl5Lia5omn54Wn5L-h5oGv5YWs56S65LiT55So,color_FFFFFF,size_15,shadow_10,rotate_299,fill_1,t_50,g_se,x_10,y_10";
-        URL url1 = new URL(srcUrl);
+        URL url1 = new URL(srcUrl.replaceAll("\r|\n", ""));
         URLConnection uc = url1.openConnection();
         InputStream input = uc.getInputStream();
 

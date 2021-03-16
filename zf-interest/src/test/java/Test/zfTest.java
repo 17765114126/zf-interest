@@ -18,7 +18,6 @@ import java.util.Random;
 public class zfTest {
     @Test
     public void test() {
-
         int ceil = (int) Math.ceil(26 / 20) + 1;
         List<Object> objects = new ArrayList<>();
 
@@ -35,7 +34,6 @@ public class zfTest {
             int x = 3;
             System.out.println("====================");
         }
-
     }
 
     //生成随机数字
@@ -46,7 +44,6 @@ public class zfTest {
         System.out.println(random);
         return prefix + time + random;
     }
-
 
     public static String aesEncrypt() {
         String key = "zhaofu";
@@ -61,7 +58,6 @@ public class zfTest {
 
     public static String aesDecrypt(String token) {
         String AESToken = AESEncryptUtil.aesDecrypt(token, aesEncrypt());
-
         return AESToken;
     }
 

@@ -49,6 +49,7 @@ public class SuiShouTest {
     @Test
     public void test2() {
         Person person = new Person();
+        person.setName("21");
         person.setSex(null);
 
         System.out.println(person.getSex());
@@ -56,8 +57,10 @@ public class SuiShouTest {
             System.out.println("1");
         }
         //将返回对象数据转换
-        String s = person.toString();
-        String s1 = JSON.toJSONString(s);
+//        String s = person.toString();
+        System.out.println(JSON.toJSONString(person));
+
+
     }
 
     @Test
@@ -136,18 +139,8 @@ public class SuiShouTest {
         return map;
     }
 
-    @Test
-    public void test6() {
-     String number = new StringBuilder().append("PS").append(DateUtil.getDateNoTime().substring(2, 6)).append(StringUtil.getRandomCode(5, true, false)).toString();
-     System.out.println(number);
-    }
 
-    @Test
-    public void test7() {
-        String time = DateUtil.getNewFormatDateString(new Date());
 
-        System.out.println(!DateUtil.gainBigOrSmall("2021-02-17 00:00:00"));
-    }
 
     @Test
     public void Test8() {
@@ -326,13 +319,6 @@ public class SuiShouTest {
         System.out.println(ssd);
     }
 
-    @Test
-    public void Test20() throws Throwable {
-        System.out.println(SpringUtils.testEnv());
-        throw new Exception("dcj");
-    }
-
-
     private static ThreadPoolExecutor executor = new ThreadPoolExecutor(100, Integer.MAX_VALUE, 60L, TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>());
 
     @Test
@@ -389,14 +375,24 @@ public class SuiShouTest {
     public void Test23() {
         //获取当前系统时间与1970年01月01日00:00点之间的毫秒差值
         long timeMillis = System.currentTimeMillis();
-
         String s = System.getProperty("s");
-
         //用来运行JVM中的垃圾回收器，完成内存中垃圾的清除。
         System.gc();
-
         //用来结束正在运行的Java程序。参数传入一个数字即可。通常传入0记为正常状态，其他为异常状态
         System.exit(0);
+    }
+
+    @Test
+    public void Test20() throws Throwable {
+        System.out.println(SpringUtils.testEnv());
+        throw new Exception("dcj");
+    }
+
+    @Test
+    public void Test25() {
+        //获取cpu核数
+        //cpu密集型，IO密集型
+        System.out.println(Runtime.getRuntime().availableProcessors());
     }
 
     @Test
@@ -408,23 +404,12 @@ public class SuiShouTest {
     }
 
     @Test
-    public void Test25() {
-        //获取cpu核数
-        //cpu密集型，IO密集型
-        System.out.println(Runtime.getRuntime().availableProcessors());
-    }
-
-
-    @Test
     public void Test26() {
         String xsPrice = "123,";
         System.out.println(xsPrice.substring(0, xsPrice.length() - 1));
-
-
         for (int i = 0; i < 4; i++) {
             System.out.println(i);
         }
     }
-
 
 }

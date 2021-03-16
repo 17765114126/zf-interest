@@ -20,10 +20,6 @@ public class Result<T> {
      */
     private T model;
 
-    /**
-     * 总记录数 分页用
-     */
-//    private int total;
     public Result() {
     }
 

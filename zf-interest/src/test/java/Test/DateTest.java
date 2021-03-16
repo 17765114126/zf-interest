@@ -62,7 +62,15 @@ public class DateTest {
         System.out.println(DateUtil.bigOrSmall(new Date(),dateTimeYYYYMMDD));
 
         System.out.println(DateUtil.getDateToStr(DateUtil.getDay(new Date(), 16)));
+        System.out.println("------------------------------------------");
+        System.out.println(new Date());
+        System.out.println(DateUtil.getTimeToStr(new Date()));
     }
 
+    @Test
+    public void test2() {
+        String time = DateUtil.getNewFormatDateString(new Date());
 
+        System.out.println(!DateUtil.gainBigOrSmall("2021-02-17 00:00:00"));
+    }
 }

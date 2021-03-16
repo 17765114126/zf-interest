@@ -2,7 +2,7 @@ package com.example.springboot.model.sys;
 
 import com.example.springboot.model.entity.CmsUser;
 import com.example.springboot.utils.CopyUtil;
-import com.example.springboot.utils.DateConstants;
+import com.example.springboot.utils.DateUtil;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,7 +26,7 @@ public class CmsUserVo {
     private String roleIds;
     private String roleNames;
     private Integer status;
-    @JsonFormat(pattern = DateConstants.DATE_TIME_FORMAT, timezone = "GMT+8")
+    @JsonFormat(pattern = DateUtil.DEFAULT_TIME, timezone = "GMT+8")
     private Date createTime;
     private Integer invalid;
 

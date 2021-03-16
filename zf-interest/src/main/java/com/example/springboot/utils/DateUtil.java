@@ -40,6 +40,9 @@ public class DateUtil {
 
     public final static String DEFAULT_SEQ_DATE_TIME = "yyyyMMddHHmm";
 
+    public static final String DATE_TIME_FORMAT_T = "yyyy-MM-dd'T'HH:mm:ss";
+
+
     /**
      * 一个月的天数
      */

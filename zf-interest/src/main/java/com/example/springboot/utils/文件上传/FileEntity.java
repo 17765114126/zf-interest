@@ -1,5 +1,7 @@
 package com.example.springboot.utils.文件上传;
 
+import lombok.Data;
+
 import java.sql.Timestamp;
 
 /**
@@ -9,6 +11,7 @@ import java.sql.Timestamp;
  * @Date 2019/7/23
  * @Version V1.0
  **/
+@Data
 public class FileEntity {
     private long fileId;
 
@@ -48,59 +51,4 @@ public class FileEntity {
 
     private Timestamp uploadTime;
 
-    public long getFileId() {
-        return fileId;
-    }
-
-    public void setFileId(long fileId) {
-        this.fileId = fileId;
-    }
-
-    public String getTitleOrig() {
-        return titleOrig;
-    }
-
-    public void setTitleOrig(String titleOrig) {
-        this.titleOrig = titleOrig;
-    }
-
-    public String getTitleAlter() {
-        return titleAlter;
-    }
-
-    public void setTitleAlter(String titleAlter) {
-        this.titleAlter = titleAlter;
-    }
-
-    public String getSize() {
-        return size;
-    }
-
-    public void setSize(String size) {
-        this.size = size;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getPath() {
-        return path;
-    }
-
-    public void setPath(String path) {
-        this.path = path;
-    }
-
-    public Timestamp getUploadTime() {
-        return uploadTime;
-    }
-
-    public void setUploadTime(Timestamp uploadTime) {
-        this.uploadTime = uploadTime;
-    }
 }

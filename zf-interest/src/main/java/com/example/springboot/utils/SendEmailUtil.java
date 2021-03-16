@@ -136,4 +136,5 @@ public class SendEmailUtil {
             logger.error("发送嵌入静态资源的邮件时发生异常！", e);
         }
     }
+
 }

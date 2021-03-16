@@ -1,4 +1,4 @@
-package com.example.springboot.utils;
+package com.example.springboot.model.enums;
 
 
 public interface IntegerPool {

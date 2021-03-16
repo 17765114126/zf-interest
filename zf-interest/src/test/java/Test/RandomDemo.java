@@ -1,5 +1,7 @@
 package Test;
 
+import com.example.springboot.utils.DateUtil;
+import com.example.springboot.utils.StringUtil;
 import org.junit.Test;
 
 import java.util.Random;
@@ -120,6 +122,18 @@ public class RandomDemo {
         int n5 = Math.abs(r.nextInt() % 18) - 3;
         System.out.println("n4:"+n4);
         System.out.println("n5:"+n5);
+    }
+
+
+    @Test
+    public void Demo9(){
+        System.out.println(new Random().nextInt(9999));
+    }
+
+    @Test
+    public void test6() {
+        String number = new StringBuilder().append("PS").append(DateUtil.getDateNoTime().substring(2, 6)).append(StringUtil.getRandomCode(5, true, false)).toString();
+        System.out.println(number);
     }
 
 }

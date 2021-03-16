@@ -17,7 +17,7 @@ public class GsonSingle {
     }
 
     private static class dateGson {
-        private static final Gson GSON = new GsonBuilder().setDateFormat(DateConstants.DATE_TIME_FORMAT_T).create();
+        private static final Gson GSON = new GsonBuilder().setDateFormat(DateUtil.DATE_TIME_FORMAT_T).create();
     }
 
     public static Gson getGson() {

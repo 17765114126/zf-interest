@@ -3,7 +3,6 @@ package Test;
 import com.alibaba.fastjson.JSON;
 import com.example.springboot.config.Shiro.security.SpringUtils;
 import com.example.springboot.model.Person;
-import com.example.springboot.model.Student;
 import com.example.springboot.model.User;
 import com.example.springboot.utils.DateUtil;
 import com.example.springboot.utils.MathUtil;
@@ -11,15 +10,8 @@ import com.example.springboot.utils.StringUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.junit.Test;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.math.BigDecimal;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.*;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -411,5 +403,8 @@ public class SuiShouTest {
             System.out.println(i);
         }
     }
+    @Test
+    public void Test27() {
 
+    }
 }

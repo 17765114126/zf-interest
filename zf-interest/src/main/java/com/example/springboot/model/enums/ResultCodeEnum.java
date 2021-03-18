@@ -1,8 +1,7 @@
-package com.example.springboot.utils;
+package com.example.springboot.model.enums;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
+import com.example.springboot.model.form.BizException;
+
 import java.util.Map;
 
 public enum ResultCodeEnum {

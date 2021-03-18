@@ -1,6 +1,6 @@
 package com.example.springboot.utils.文件上传;
 
-import com.example.springboot.utils.Result;
+import com.example.springboot.model.form.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;

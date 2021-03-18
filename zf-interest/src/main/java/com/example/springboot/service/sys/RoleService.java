@@ -2,7 +2,7 @@ package com.example.springboot.service.sys;
 
 
 import com.example.springboot.model.entity.CmsRole;
-import com.example.springboot.utils.Result;
+import com.example.springboot.model.form.Result;
 
 import java.util.List;
 import java.util.Map;

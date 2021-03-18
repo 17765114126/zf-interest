@@ -9,9 +9,9 @@ import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.example.springboot.utils.Result;
-import com.example.springboot.model.form.Paging;
-import com.example.springboot.utils.PageUtil;
+##import com.example.springboot.model.form.Result;
+##import com.example.springboot.model.form.Paging;
+##import com.example.springboot.model.form.PageUtil;
 
 /**
  * @$!{table.comment}
@@ -37,25 +37,21 @@ public class $!{table.serviceImplName} extends $!{superServiceImplClass}<$!{tabl
 
         Page<$!{entity}> page = PageUtil.toPage(ipage);
         return Result.buildSuccess(PageUtil.convert(page, e -> {
-//            VO vo = new VO();
-              //主表复制元素
-//            CopyUtil.copyObject(e, vo);
+//      VO vo = CopyUtil.copyObject(byId, VO.class);
             return e;
         }));
     }
 
     @Override
     public Result addInfo($!{entity} req) {
-        boolean flag = save(req);
-        if (flag) {
-            return Result.buildSuccess();
+        //主表复制元素
+//      VO vo = CopyUtil.copyObject(byId, VO.class);
+        boolean flag;
+        if (req.getId() != null) {
+            flag = updateById(req);
+        } else {
+            flag = save(req);
         }
-        return Result.buildFail();
-    }
-
-    @Override
-    public Result updateInfo($!{entity} req) {
-        boolean flag = updateById(req);
         if (flag) {
             return Result.buildSuccess();
         }
@@ -69,11 +65,10 @@ public class $!{table.serviceImplName} extends $!{superServiceImplClass}<$!{tabl
 
     @Override
     public Result deleteInfos(String ids) {
-        boolean flag = update(new UpdateWrapper<$!{entity}>().lambda()
+        if (update(new UpdateWrapper<$!{entity}>().lambda()
                 .set($!{entity}::getInvalid, 1)
                 .inSql($!{entity}::getId, ids)
-        );
-        if (flag) {
+        )) {
             return Result.buildSuccess();
         }
         return Result.buildFail();

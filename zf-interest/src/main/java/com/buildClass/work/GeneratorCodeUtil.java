@@ -23,21 +23,21 @@ public class GeneratorCodeUtil {
     /**
      * 请自定义自己的db url
      */
-//    private static final String DB_URL = "jdbc:mysql://rm-8vb13nmd5388n09m6wo.mysql.zhangbei.rds.aliyuncs.com:3306/welibrary?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8";
-    private static final String DB_URL = "jdbc:mysql://rm-bp14f94yt54bl7l54o.mysql.rds.aliyuncs.com:3306/db_yiqian?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8";
+    private static final String DB_URL = "jdbc:mysql://rm-8vb13nmd5388n09m6wo.mysql.zhangbei.rds.aliyuncs.com:3306/welibrary?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8";
+//    private static final String DB_URL = "jdbc:mysql://rm-bp14f94yt54bl7l54o.mysql.rds.aliyuncs.com:3306/db_yiqian?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8";
 
     /**
      * 请自定义自己的username
      */
-//    private static final String USERNAME = "zhaofu";
-    private static final String USERNAME = "db_yiqian";
+    private static final String USERNAME = "zhaofu";
+//    private static final String USERNAME = "db_yiqian";
 
 
     /**
      * 请自定义自己的password
      */
-//    private static final String PASSWORD = "2MiaoMiao";
-    private static final String PASSWORD = "xRh1rcRrgaTgm1j6";
+    private static final String PASSWORD = "2MiaoMiao";
+//    private static final String PASSWORD = "xRh1rcRrgaTgm1j6";
 
 
     private static final String DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
@@ -56,7 +56,7 @@ public class GeneratorCodeUtil {
         System.out.println("--------------------开始自动生成相关的类----------------------");
         System.out.println("args = " + new File("").getAbsolutePath() + "/src/main/java/");
 
-        generateByTables(MODULE_NAME, "tbl_yq_invite_reward");
+        generateByTables(MODULE_NAME, "bl_comment","bl_contents","bl_mall_region","bl_material","bl_metas","bl_sms_log");
         System.out.println("--------------------------生成成功------------------------");
     }
 
@@ -141,7 +141,7 @@ public class GeneratorCodeUtil {
                 // 设置要映射的表名
                 .setInclude(tableNames)
                 //表名前缀
-                .setTablePrefix("tbl_");
+                .setTablePrefix("bl_");
         return strategyConfig;
     }
 

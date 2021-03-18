@@ -7,7 +7,7 @@ import com.example.springboot.model.entity.*;
 import com.example.springboot.model.sys.ModelAndButtonVo;
 import com.example.springboot.service.sys.PermissionListService;
 import com.example.springboot.service.sys.RoleService;
-import com.example.springboot.utils.Result;
+import com.example.springboot.model.form.Result;
 import com.example.springboot.utils.StringUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;

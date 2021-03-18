@@ -1,5 +1,6 @@
-package com.example.springboot.utils;
+package com.example.springboot.model.form;
 
+import com.example.springboot.model.enums.ResultCodeEnum;
 import lombok.Data;
 
 @Data
@@ -19,6 +20,11 @@ public class Result<T> {
      * 业务数据
      */
     private T model;
+
+    /**
+     * 总记录数 分页用
+     */
+    private int total;
 
     public Result() {
     }

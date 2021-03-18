@@ -1,4 +1,4 @@
-package com.example.springboot.utils;
+package com.example.springboot.model.form;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;

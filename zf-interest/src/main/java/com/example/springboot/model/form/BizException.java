@@ -1,10 +1,11 @@
-package com.example.springboot.config.Shiro.exception;
+package com.example.springboot.model.form;
 
+import com.example.springboot.model.enums.ResultCodeEnum;
 
-import com.example.springboot.utils.ResultCodeEnum;
 /**
- * @author chen
- * @create 2020-12-01
+ * @Date: 2019/8/27
+ * @Author: zhaofu
+ * @Description: TODO
  **/
 public class BizException extends RuntimeException {
 

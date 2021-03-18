@@ -7,9 +7,9 @@ import com.example.springboot.model.sys.SysUser;
 import com.example.springboot.service.sys.CmsUserService;
 import com.example.springboot.service.sys.UserPwdService;
 import com.example.springboot.utils.Assert;
-import com.example.springboot.utils.PageUtil;
-import com.example.springboot.utils.Result;
-import com.example.springboot.utils.ResultCodeEnum;
+import com.example.springboot.model.form.PageUtil;
+import com.example.springboot.model.form.Result;
+import com.example.springboot.model.enums.ResultCodeEnum;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Service;
 

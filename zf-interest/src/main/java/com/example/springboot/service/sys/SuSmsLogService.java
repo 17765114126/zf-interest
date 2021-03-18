@@ -6,8 +6,8 @@ import com.example.springboot.mapper.SuSmsLogMapper;
 import com.example.springboot.model.entity.CmsUser;
 import com.example.springboot.model.entity.SmsLog;
 import com.example.springboot.model.enums.CmsUserStatusEnum;
-import com.example.springboot.utils.Result;
-import com.example.springboot.utils.ResultCodeEnum;
+import com.example.springboot.model.form.Result;
+import com.example.springboot.model.enums.ResultCodeEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 

@@ -9,7 +9,7 @@ import com.example.springboot.model.sys.MenuVO;
 import com.example.springboot.model.sys.MetaVO;
 import com.example.springboot.model.sys.SysPermission;
 import com.example.springboot.service.sys.SysUserService;
-import com.example.springboot.utils.Result;
+import com.example.springboot.model.form.Result;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.MapUtils;
 import org.springframework.web.bind.annotation.RequestMapping;

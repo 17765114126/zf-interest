@@ -56,7 +56,7 @@ public class GeneratorCodeUtil {
         System.out.println("--------------------开始自动生成相关的类----------------------");
         System.out.println("args = " + new File("").getAbsolutePath() + "/src/main/java/");
 
-        generateByTables(MODULE_NAME, "bl_comment","bl_contents","bl_mall_region","bl_material","bl_metas","bl_sms_log");
+        generateByTables(MODULE_NAME, "bl_contents");
         System.out.println("--------------------------生成成功------------------------");
     }
 

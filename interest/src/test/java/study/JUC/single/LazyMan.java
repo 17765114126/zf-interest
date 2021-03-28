@@ -1,7 +1,5 @@
 package study.JUC.single;
 
-import com.sun.corba.se.impl.orbutil.CorbaResourceUtil;
-
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 

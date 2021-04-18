@@ -3,7 +3,9 @@ package com.example.springboot;
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.springboot.config.LazyConfig;
+import com.example.springboot.mapper.WallHavenMapper;
 import com.example.springboot.model.User;
+import com.example.springboot.model.entity.WallHaven;
 import com.example.springboot.model.req.sys.CmsUserReq;
 import com.example.springboot.model.sys.CmsUserVo;
 import com.example.springboot.service.sys.CmsUserService;
@@ -72,4 +74,14 @@ public class SpringbootApplicationTests {
         Page<CmsUserVo> page = cmsUserService.getPage(cmsUserReq);
         System.out.println(JSON.toJSONString(page));
     }
+    @Resource
+    WallHavenMapper wallHavenMapper;
+
+    @Test
+    public void Test2(){
+        WallHaven wallHaven = new WallHaven();
+        wallHaven.setImgUrl("sdcsdv");
+        wallHavenMapper.insert(wallHaven);
+    }
+
 }

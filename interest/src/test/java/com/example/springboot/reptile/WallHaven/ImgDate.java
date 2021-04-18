@@ -1,12 +1,20 @@
-package com.example.springboot.reptile.Jsoup;
+package com.example.springboot.reptile.WallHaven;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.example.springboot.mapper.WallHavenMapper;
+import com.example.springboot.model.entity.WallHaven;
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.annotation.Resource;
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -14,35 +22,88 @@ import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
-
+@SpringBootTest
+@RunWith(SpringRunner.class)
 public class ImgDate {
-    /**
-     * 准备抓取的目标地址，%E4%BA%92%E8%81%94%E7%BD%91 为utf-8格式的 互联网
-     */
-    private static String url = "https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&rsv_idx=1&tn=baidu&wd=互联网";
+    @Resource
+    WallHavenMapper wallHavenMapper;
 
-    public static void main(String[] args) throws Exception {
+    int start = 24;//每页多少条
+    int total = 0;//记录数
+    int end = 130;//总共130条页
+
+    @Test
+    public void Test(){
+
+//        downImages("E:\\wallHaven","https://w.wallhaven.cc/full/pk/wallhaven-pk92ve.png");
+
+        /**
+         * 准备抓取的目标地址，https://wallhaven.cc
+         */
+        String url = "https://wallhaven.cc/toplist?page=";
+        for (int i = 11; i < end; i++) {
+            try {
+                getImages(url+i);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            System.out.println("正在爬取中---正在抓取第:" + i + "页数据");
+            if (i == end){
+                System.out.println("已经爬取到底了");
+            }
+        }
+
+    }
+
+
+    public void getImages(String url) throws Exception {
         //链接到目标地址
         Connection connect = Jsoup.connect(url);
         //设置useragent,设置超时时间，并以get请求方式请求服务器
         Document document = connect.userAgent("Mozilla/4.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)").timeout(6000).ignoreContentType(true).get();
         Thread.sleep(1000);
         //获取指定标签的数据
-        Element elementById = document.getElementById("content_left");
+        Element elementById = document.getElementById("thumbs");
         //输出文本数据
-        //System.out.println(elementById.text());
+//        System.out.println(elementById.text());
         //输出html数据
-        //System.out.println(elementById.html());
+//        System.out.println(elementById.html());
 
         //获取所有图片链接
-        Elements imgtag = document.getElementsByTag("img");
-        List<String> imgurlList = new ArrayList<String>();
+        Elements imgtag = elementById.getElementsByTag("a");
+        List<String> imgurlList = new ArrayList<>();
         for (int i = 0; i < imgtag.size(); i++) {
-            if (StringUtils.isNotEmpty(imgtag.get(i).attr("src"))&&imgtag.get(i).attr("src").startsWith("http")) {
-                System.out.println(imgtag.get(i).attr("src"));
+            if (StringUtils.isNotEmpty(imgtag.get(i).attr("href"))&&imgtag.get(i).attr("href").startsWith("http")) {
+                insertImages(imgtag.get(i).attr("href"));
             }
         }
     }
+    public void insertImages(String img) throws Exception {
+        //链接到目标地址
+        Connection connect = Jsoup.connect(img);
+        //设置useragent,设置超时时间，并以get请求方式请求服务器
+        Document document = connect.userAgent("Mozilla/4.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)").timeout(6000).ignoreContentType(true).get();
+        Thread.sleep(1000);
+        //获取指定标签的数据
+        Element elementById = document.getElementById("wallpaper");
+        //获取所有图片链接
+        Elements imgtag = elementById.getElementsByTag("img");
+        for (int i = 0; i < imgtag.size(); i++) {
+            if (StringUtils.isNotEmpty(imgtag.get(i).attr("src"))&&imgtag.get(i).attr("src").startsWith("http")) {
+                WallHaven selectOne = wallHavenMapper.selectOne(new LambdaQueryWrapper<WallHaven>()
+                        .eq(WallHaven::getImgUrl,imgtag.get(i).attr("src")));
+                if (selectOne != null){
+                    continue;
+                }
+                WallHaven wallHaven = new WallHaven();
+                wallHaven.setImgUrl(imgtag.get(i).attr("src"));
+                wallHavenMapper.insert(wallHaven);
+                System.out.println("正在爬取中---共抓取:" + total++ + "条数据");
+            }
+        }
+    }
+
+
 
 
     /**

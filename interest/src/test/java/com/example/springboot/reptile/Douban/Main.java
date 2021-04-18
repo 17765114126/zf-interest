@@ -15,17 +15,17 @@ import java.util.List;
 public class Main {
     public static  void  main(String [] args) {
 
-        String resource = "mybatis-config.xml"; //定义配置文件路径
-        InputStream inputStream = null;
-        try {
-            inputStream = Resources.getResourceAsStream(resource);//读取配置文件
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        String resource = "mybatis-config.xml"; //定义配置文件路径
+//        InputStream inputStream = null;
+//        try {
+//            inputStream = Resources.getResourceAsStream(resource);//读取配置文件
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
-        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);//注册mybatis 工厂
+//        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);//注册mybatis 工厂
 
-        SqlSession sqlSession = sqlSessionFactory.openSession();//得到连接对象
+//        SqlSession sqlSession = sqlSessionFactory.openSession();//得到连接对象
 
 //        MovieMapper movieMapper = sqlSession.getMapper(MovieMapper.class);//从mybatis中得到dao对象
 
@@ -40,16 +40,17 @@ public class Main {
                 JSONObject dayLine = new GetJson().getHttpJson(address, 1);
 
                 System.out.println("start:" + start);
-                JSONArray json = dayLine.getJSONArray("data");
+                JSONArray json = dayLine.getJSONArray("weatherInfo");
                 List<Movie> list = JSON.parseArray(json.toString(), Movie.class);
 
                 if (start <= end){
                     System.out.println("已经爬取到底了");
-                    sqlSession.close();
+//                    sqlSession.close();
                 }
                 for (Movie movie : list) {
+                    System.out.println(movie);
 //                    movieMapper.insert(movie);
-                    sqlSession.commit();
+//                    sqlSession.commit();
                 }
                 total += list.size();
                 System.out.println("正在爬取中---共抓取:" + total + "条数据");

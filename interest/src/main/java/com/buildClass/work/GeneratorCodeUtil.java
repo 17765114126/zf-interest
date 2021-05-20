@@ -23,22 +23,26 @@ public class GeneratorCodeUtil {
     /**
      * 请自定义自己的db url
      */
-//    private static final String DB_URL = "jdbc:mysql://localhost:3306/welibrary?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8";
-//    private static final String DB_URL = "jdbc:mysql://rm-bp14f94yt54bl7l54o.mysql.rds.aliyuncs.com:3306/db_yiqian?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8";
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/zhaofu?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8";
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/welibrary?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8";
+//    private static final String DB_URL = "jdbc:mysql://rm-bp14f94yt54bl7l54o.mysql.rds.aliyuncs.com:3306/db_new_mall_template?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8";
+//    private static final String DB_URL = "jdbc:mysql://localhost:3306/zhaofu?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8";
+
+//    private static final String DB_URL = "jdbc:mysql://rm-bp14f94yt54bl7l54o.mysql.rds.aliyuncs.com:3306/db_dora_syj?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8";
 
     /**
      * 请自定义自己的username
      */
     private static final String USERNAME = "root";
-//    private static final String USERNAME = "db_yiqian";
+//    private static final String USERNAME = "db_template";
+//    private static final String USERNAME = "dorabox_dba";
 
 
     /**
      * 请自定义自己的password
      */
-    private static final String PASSWORD = "123456";
-//    private static final String PASSWORD = "xRh1rcRrgaTgm1j6";
+    private static final String PASSWORD = "";
+//    private static final String PASSWORD = "wUuKOKAuNK!9%5w1$";
+//    private static final String PASSWORD = "dora123456!@#$%^";
 
 
     private static final String DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
@@ -56,8 +60,7 @@ public class GeneratorCodeUtil {
     public static void main(String[] args) throws IOException {
         System.out.println("--------------------开始自动生成相关的类----------------------");
         System.out.println("args = " + new File("").getAbsolutePath() + "/src/main/java/");
-
-        generateByTables(MODULE_NAME, "tbl_wall_haven");
+        generateByTables(MODULE_NAME, "tbl_rebate_product_imgs");
         System.out.println("--------------------------生成成功------------------------");
     }
 

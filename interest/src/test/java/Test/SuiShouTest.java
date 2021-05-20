@@ -132,8 +132,6 @@ public class SuiShouTest {
     }
 
 
-
-
     @Test
     public void Test8() {
         String expressNumber = "  1213    3134  12  ";
@@ -152,7 +150,7 @@ public class SuiShouTest {
         UUID uuid = UUID.randomUUID();
         System.out.println(uuid);
 
-        String s = "YQC" + DateUtil.getDateNoTime().substring(2, 8)+ a;
+        String s = "YQC" + DateUtil.getDateNoTime().substring(2, 8) + a;
         System.out.println(s);
     }
 
@@ -403,8 +401,13 @@ public class SuiShouTest {
             System.out.println(i);
         }
     }
+
+
     @Test
     public void Test27() {
-
+        Integer i=2;
+        Integer x=2;
+        System.out.println(i != x);
+        System.out.println(i != 2);
     }
 }

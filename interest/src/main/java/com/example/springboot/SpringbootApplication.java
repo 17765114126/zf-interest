@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableAsync;
 
 @SpringBootApplication
-@MapperScan("com.example.springboot.mapper")
+@MapperScan({"com.example.springboot.mapper"})//可以填多个
 @ServletComponentScan("com.example.springboot.controller")
 @EnableAsync//开启异步注解功能
 //@EnableScheduling//开启定时功能

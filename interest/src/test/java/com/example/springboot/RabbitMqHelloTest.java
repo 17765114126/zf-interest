@@ -1,8 +1,8 @@
 package com.example.springboot;
 
-import com.example.springboot.controller.RabbitMQ.主题模式.MsgSender;
-import com.example.springboot.controller.RabbitMQ.普通模式.HelloSender;
-import com.example.springboot.controller.RabbitMQ.订阅模式.MsgSenderFanout;
+import com.example.springboot.controller.RabbitMQ.ThemeMode.MsgSender;
+import com.example.springboot.controller.RabbitMQ.NormalMode.HelloSender;
+import com.example.springboot.controller.RabbitMQ.SubscriptionModel.MsgSenderFanout;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ public class RabbitMqHelloTest {
     /**
     * @Date: 2019/10/22
     * @Author: zhaofu
-    * @Description: 普通模式
+    * @Description: NormalMode
     **/
     @Test
     public void hello() {
@@ -34,7 +34,7 @@ public class RabbitMqHelloTest {
     /**
      * @Date: 2019/10/22
      * @Author: zhaofu
-     * @Description: Work模式
+     * @Description: Work
      **/
     @Test
     public void oneToMany() throws Exception {
@@ -46,7 +46,7 @@ public class RabbitMqHelloTest {
     /**
      * @Date: 2019/10/22
      * @Author: zhaofu
-     * @Description: 主题模式
+     * @Description: ThemeMode
      **/
     @Autowired
     private MsgSender msgSender;
@@ -63,7 +63,7 @@ public class RabbitMqHelloTest {
     /**
      * @Date: 2019/10/22
      * @Author: zhaofu
-     * @Description: 订阅模式
+     * @Description: SubscriptionModel
      **/
     @Autowired
     private MsgSenderFanout msgSenderFanout;

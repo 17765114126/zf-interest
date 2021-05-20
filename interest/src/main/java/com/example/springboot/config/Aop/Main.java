@@ -1,8 +1,8 @@
 package com.example.springboot.config.Aop;
 
-import com.example.springboot.config.事务.StudentDAO;
-import com.example.springboot.config.事务.StudentJDBCTemplate;
-import com.example.springboot.config.事务.StudentMarks;
+import com.example.springboot.config.Transaction.StudentDAO;
+import com.example.springboot.config.Transaction.StudentJDBCTemplate;
+import com.example.springboot.config.Transaction.StudentMarks;
 import com.example.springboot.model.Student;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 

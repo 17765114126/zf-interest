@@ -2,7 +2,7 @@ package study.java8特性;
 /**
  *编者注：Java 8已经公布有一段时间了，种种迹象表明Java 8是一个有重大改变的发行版。
  * 目录结构
- * 介绍
+ * introduce
  * Java语言的新特性
  * 2.1 Lambdas表达式与Functional接口
  * 2.2 接口的默认与静态方法

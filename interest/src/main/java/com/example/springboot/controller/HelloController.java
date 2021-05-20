@@ -1,13 +1,12 @@
 package com.example.springboot.controller;
 
-import com.example.springboot.config.自定义注解.MyLog;
+import com.example.springboot.config.CustomAnnotation.MyLog;
 import com.example.springboot.model.Student;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @ClassName HelloController

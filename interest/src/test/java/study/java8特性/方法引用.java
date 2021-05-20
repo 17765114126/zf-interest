@@ -13,26 +13,24 @@ import java.util.function.Supplier;
  **/
 public class 方法引用 {
     /**
-     *
      * 1.概述
-     *
+     * <p>
      * 某些lambda表达式里面仅仅是调用了一个已存在的方法，在这种情况下
-     *
+     * <p>
      * 直接通过方法名称引用方法的形式可读性更高一些，这种形式就是方法引用
-     *
+     * <p>
      * 方法引用是一种更简洁易懂的lambda 表达式替换
-     *
+     * <p>
      * 其唯一用途就是支持Lambda的简写
-     *
+     * <p>
      * 函数接口中抽象方法的参数列表，必须与方法引用方法的参数列表保持一致
-     *
+     * <p>
      * 方法引用中::后只是方法名，不能加();
-     *
+     * <p>
      * forEach()也是jdk8的新特性
-     *
+     * <p>
      * 比如：list.forEach((s) -> System.out.println(s));---list.forEach(Syetem.out::println);
-     *
-     * */
+     */
     public static void main(String[] args) {
         System.out.println("Test()------");
         Test();
@@ -44,9 +42,9 @@ public class 方法引用 {
 
     /**
      * 2.类静态方法引用
-     *
+     * <p>
      * 求绝对值，使用Function实现
-     * */
+     */
     public static void Test() {
         // 调用
         long l1 = testAbs(-10L, (s) -> Math.abs(s));
@@ -55,20 +53,21 @@ public class 方法引用 {
         System.out.println(l1);
         System.out.println(l2);
     }
+
     public static long testAbs(long s, Function<Long, Long> fun) {
         Long l = fun.apply(s);
         return l;
     }
 
     /**
-     *3.实例方法引用
-     *
+     * 3.实例方法引用
+     * <p>
      * 循环集合中元素，使用forEach方法
-     *
+     * <p>
      * (s) -> System.out.println(s)的类型是Consumer类型
-     *
+     * <p>
      * 其accept接受参数和println一致
-     * */
+     */
 
     public static void Test1() {
         // 创建集合
@@ -85,16 +84,16 @@ public class 方法引用 {
         list.forEach((s) -> System.out.println(s));
         list.forEach(System.out::println);
     }
-/**
- * 4.构造方法引用
- *
- * 在引用构造器的时候，构造器参数列表要与接口中抽象方法的参数列表一致
- *
- * 格式为 类名::new
- *
- * */
+
+    /**
+     * 4.构造方法引用
+     * <p>
+     * 在引用构造器的时候，构造器参数列表要与接口中抽象方法的参数列表一致
+     * <p>
+     * 格式为 类名::new
+     */
     public static void Test2() {
-        getString(String :: new);
+        getString(String::new);
     }
 
     public static void getString(Supplier<String> su) {

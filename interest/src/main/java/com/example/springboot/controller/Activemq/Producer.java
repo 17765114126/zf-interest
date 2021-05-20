@@ -50,7 +50,7 @@ public class Producer{
 
 
     /**
-     * 订阅模式（非持久订阅）
+     * SubscriptionModel（非持久订阅）
      *
      * 先运行消费者，在运行生产者，消费者才能接受到信息，否则生产者发布信息时若没有在监听的消费者则会将信息丢弃，这样消费者是接收不到信息的。
      * 同时运行多个消费者，在运行生产者，消费者将获取生产者发布的所有消息
@@ -65,7 +65,7 @@ public class Producer{
         createConnection.start();
 
         Session createSession = createConnection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-        //发布/订阅模式
+        //发布/SubscriptionModel
         Topic createTopic = createSession.createTopic(topicName);
 
         MessageProducer createProducer = createSession.createProducer(createTopic);
@@ -79,7 +79,7 @@ public class Producer{
     }*/
 
     /**
-     * 订阅模式（持久订阅）
+     * SubscriptionModel（持久订阅）
      *
      * */
     public static void main(String[] args) throws JMSException {
@@ -91,7 +91,7 @@ public class Producer{
         createConnection.start();
 
         Session createSession = createConnection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-        //发布/订阅模式
+        //发布/SubscriptionModel
         Topic createTopic = createSession.createTopic(topicName);
 
         MessageProducer createProducer = createSession.createProducer(createTopic);

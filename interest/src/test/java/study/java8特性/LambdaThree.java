@@ -13,7 +13,7 @@ import java.util.function.Supplier;
 public class LambdaThree {
 
 /**Java 8新特性终极指南
- * 1.介绍
+ * 1.introduce
  * 毫无疑问，Java 8发行版是自Java 5（发行于2004，已经过了相当一段时间了）以来最具革命性的版本。
  * Java 8 为Java语言、编译器、类库、开发工具与JVM（Java虚拟机）带来了大量新特性。在这篇教程中，我们将一一探索这些变化，并用真实的例子说明它们适用的场景。
  * 这篇教程由以下几部分组成，它们分别涉及到Java平台某一特定方面的内容：

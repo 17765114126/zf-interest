@@ -26,9 +26,9 @@ public class 编写过滤器 {
 
 //MIME-类型链过滤器。
 
-//Tokenizing 过滤器。
+//Tokenizing Filter。
 
-//转换 XML 内容的 XSL/T 过滤器。
+//转换 XML 内容的 XSL/T Filter。
 
 
 //过滤器在部署描述符文件 web.xml 中被部署，然后被映射到 servlet 名称或你的应用程序的部署描述符中的 URL 模式。

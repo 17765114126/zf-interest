@@ -42,6 +42,9 @@ public enum ResultCodeEnum {
     UPLOAD_PICTURE_SIZE_ERROR(1033, "图片超过1M无法上传!"),
     NO_JUMP_URL_ERROR(1034, "跳转输入不能为空!"),
     NO_GOODS_ERROR(1035, "查不到对应商品信息!"),
+    FILE_FORMAT(1045, "仅支持上传PDF格式文件"),
+    PICTURE_TYPE_ERROR(1037, "图片格式只支持 jpg/png/gif"),
+    UPLOAD_VIDEO_SIZE_ERROR(1040, "视频大小不得超过50M!"),
     CMS_ORDER_NOT_FOUND(3001, "订单不存在!");
 
     private static Map<Integer, ResultCodeEnum> lookup;

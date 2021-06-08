@@ -47,7 +47,7 @@ public class Exce {
             pressKeyWithCtrl(robot, KeyEvent.VK_SPACE);
 
             //模拟随机按下100个字母，输入汉字
-            for (int i = 0; i < 100; i++) {
+            for (int i = 0; i < 1000; i++) {
                 pressKey(robot, (int) (Math.random() * 25) + 'A');
                 pressKey(robot, KeyEvent.VK_SPACE);
             }

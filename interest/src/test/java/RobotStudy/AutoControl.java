@@ -1,4 +1,6 @@
 package RobotStudy;
+import org.junit.Test;
+
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
@@ -12,7 +14,8 @@ import java.awt.event.KeyEvent;
  * 并运行
  */
 public class AutoControl {
-    public static void main(String[] args) throws AWTException {
+    @Test
+    public void test() throws AWTException {
         Robot robot = new Robot();
         robot.delay(5000);
         //先模拟输入主方法

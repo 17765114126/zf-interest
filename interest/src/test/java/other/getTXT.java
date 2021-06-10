@@ -1,4 +1,4 @@
-package Test;
+package other;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.io.*;
 
 /**
- * @ClassName getTXT
+ * @ClassName getTXT其他
  * @Author zhaofu
  * @Date 2020/3/9
  * @Version V1.0

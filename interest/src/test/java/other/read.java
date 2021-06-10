@@ -1,4 +1,4 @@
-package Test;
+package other;
 
 import java.io.IOException;
 

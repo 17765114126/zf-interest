@@ -1,4 +1,4 @@
-package Test;
+package other;
 
 import org.junit.Test;
 import org.omg.SendingContext.RunTime;

@@ -1,4 +1,4 @@
-package Test;
+package other;
 
 /**
  * @projectName（项目名称）: project_name

@@ -89,7 +89,7 @@ public class SystemClass {
         Runtime runtime = Runtime.getRuntime();
         System.out.println("Java虚拟机中的空闲内存量:"+runtime.freeMemory());
         System.out.println("Java 虚拟机试图使用的最大内存量:"+ runtime.maxMemory());
-        System.out.println("返回 Java 虚拟机中的内存总量:"+ runtime.totalMemory());
+        System.out.println("Java 虚拟机中的内存总量:"+ runtime.totalMemory());
 
         String str="";
         for(int i = 0;i<20000;i++){

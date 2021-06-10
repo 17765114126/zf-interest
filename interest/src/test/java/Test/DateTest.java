@@ -38,7 +38,6 @@ public class DateTest {
             System.out.println(flag1);
         }
 
-
     }
 
     @Test
@@ -57,6 +56,7 @@ public class DateTest {
 
         int compareTo2 = new Date().compareTo(dateTimeYYYYMMDD);
         System.out.println(compareTo2);
+        System.out.println("------------------------------------------");
 
         System.out.println(DateUtil.bigOrSmall(dateTimeYYYYMMDD, new Date()));
         System.out.println(DateUtil.bigOrSmall(new Date(),dateTimeYYYYMMDD));
@@ -71,6 +71,25 @@ public class DateTest {
     public void test2() {
         String time = DateUtil.getNewFormatDateString(new Date());
 
-        System.out.println(!DateUtil.gainBigOrSmall("2021-02-17 00:00:00"));
+        System.out.println(DateUtil.gainBigOrSmall("2020-07-30 00:00:00"));
+
+
+        //判断当前时间，是否在起始时间和结束时间之间，可以精确到秒
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// 设置日期格式
+        Date now = null;
+        Date beginTime = null;
+        Date endTime = null;
+        try {
+            now = df.parse(df.format(new Date()));
+            beginTime = df.parse("2020-07-30 00:00:00");
+
+            endTime = df.parse("2020-08-09 00:00:00");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+                                            // 上个时间   现在时间
+        System.out.println(DateUtil.bigOrSmall(endTime, beginTime));
+
     }
 }

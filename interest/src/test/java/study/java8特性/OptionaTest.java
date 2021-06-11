@@ -1,5 +1,11 @@
 package study.java8特性;
 
+import com.alibaba.fastjson.JSON;
+import com.example.springboot.model.Student;
+import com.example.springboot.model.User;
+import com.example.springboot.model.entity.MallRegion;
+import org.junit.Test;
+
 import java.util.Optional;
 
 /**
@@ -26,7 +32,7 @@ public class OptionaTest {
 
         Optional<String> fullName = Optional.ofNullable(null);
         System.out.println("Full Name is set? " + fullName.isPresent());
-            System.out.println("Full Name: " + fullName.orElseGet(() -> "[none]"));
+        System.out.println("Full Name: " + fullName.orElseGet(() -> "[none]"));
         System.out.println(fullName.map(s -> "Hey " + s + "!").orElse("Hey Stranger!"));
 
         /**
@@ -40,4 +46,115 @@ public class OptionaTest {
         System.out.println("First Name: " + firstName.orElseGet(() -> "[none]"));
         System.out.println(firstName.map(s -> "Hey " + s + "!").orElse("Hey Stranger!"));
     }
+
+    @Test
+    public void test() {
+        String x = "1";
+        String y = null;
+
+        System.out.println(Optional.ofNullable(x).get());
+        System.out.println(Optional.ofNullable(y));
+
+        System.out.println(Optional.ofNullable(y).orElse("aszx"));
+
+
+        // orElse和orElseGet的用法如下所示，
+        // 都是在构造函数传入的value值为null时，进行调用的。
+        // 相当于value值为null时，给予一个默认值:
+        Student student = new Student();
+        student.setName("zhangsan");
+
+        System.out.println("------------");
+        Student x1 = Optional.ofNullable(student).orElse(student);
+        System.out.println(JSON.toJSONString(x1));
+
+        System.out.println("------------");
+        Student x2 = Optional.ofNullable(student).orElseGet(() -> student);
+        System.out.println(JSON.toJSONString(x2));
+    }
+
+
+    /**
+     * 实例
+     */
+
+    @Test
+    public void test1() throws Exception {
+        User user = new User();
+        System.out.println(getCity1(user));
+        System.out.println(getCity(user));
+    }
+
+    //以前
+    public String getCity(User user) throws Exception {
+        if (user != null) {
+            if (user.getAddress() != null) {
+                MallRegion address = user.getAddress();
+                if (address.getName() != null) {
+                    return address.getName();
+                }
+            }
+        }
+        throw new Exception("取值错误");
+    }
+
+    //java8
+    public String getCity1(User user) throws Exception {
+        return Optional.ofNullable(user)
+                .map(u -> u.getAddress())
+                .map(a -> a.getName())
+                .orElseThrow(() -> new Exception("取指错误"));
+    }
+
+    @Test
+    public void test2() throws Exception {
+        User user = null;
+        //以前
+        if (user != null) {
+            getCity(user);
+        }
+        //java8
+        Optional.ofNullable(user)
+                .ifPresent(u -> {
+                    try {
+                        getCity(u);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                });
+    }
+
+    @Test
+    public void test3() {
+        User user = null;
+        System.out.println(getUser(user));
+        System.out.println(getUser1(user));
+    }
+
+    //以前
+    public User getUser(User user) {
+        if (user != null) {
+            String name = user.getUserName();
+            if ("zhangsan".equals(name)) {
+                return user;
+            }
+        } else {
+            user = new User();
+            user.setUserName("zhangsan");
+            return user;
+        }
+        return user;
+    }
+
+    //java8
+    public User getUser1(User user) {
+        return Optional.ofNullable(user)
+                .filter(u -> "zhangsan".equals(u.getUserName()))
+                .orElseGet(() -> {
+                    User user1 = new User();
+                    user1.setUserName("zhangsan");
+                    return user1;
+                });
+    }
+
 }

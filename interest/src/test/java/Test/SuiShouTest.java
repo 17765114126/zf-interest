@@ -2,9 +2,7 @@ package Test;
 
 import com.alibaba.fastjson.JSON;
 import com.example.springboot.config.Shiro.security.SpringUtils;
-import com.example.springboot.model.Person;
 import com.example.springboot.model.User;
-import com.example.springboot.utils.DateUtil;
 import com.example.springboot.utils.MathUtil;
 import com.example.springboot.utils.StringUtil;
 import org.apache.commons.lang3.StringUtils;
@@ -26,33 +24,12 @@ import java.util.regex.Pattern;
  * @Date 2020/3/3
  * @Version V1.0
  **/
-//@RunWith(SpringRunner.class)
 public class SuiShouTest {
     @Test
-    public void test1() {
-        String x = "1";
-        String y = null;
-        Optional<String> x1 = Optional.ofNullable(x);
-        System.out.println(x1);
-        Optional<String> y1 = Optional.ofNullable(y);
-        System.out.println(y1.toString());
-    }
-
-    @Test
-    public void test2() {
-        Person person = new Person();
-        person.setName("21");
-        person.setSex(null);
-
-        System.out.println(person.getSex());
-        if (person.getSex() == null) {
-            System.out.println("1");
-        }
-        //将返回对象数据转换
-//        String s = person.toString();
-        System.out.println(JSON.toJSONString(person));
-
-
+    public void tese1() {
+        Map<String, String> map = new HashMap(2);
+        map.put("applyJson", "521");
+        System.out.println(map);
     }
 
     @Test
@@ -71,30 +48,35 @@ public class SuiShouTest {
 
     @Test
     public void test4() {
-        String string = "广东省汕头市澄海区盐鸿镇国道324线春天湖工业区鸿一路段树业毛织";
-        int length = string.length();
-        if (length > 40) {
-            System.out.println("大于四十");
-        } else {
-            System.out.println("小于40");
-        }
-
         String str = "1234567.txt";
+        //返回此字符串中第一次出现 指定子字符串的索引。
         if (str.indexOf(".tx") != -1) {
             System.out.println("包含该字符串");
         } else {
             System.out.println("不包含该字符串");
         }
+
+        //替换字符
+        String expressNumber = "  1213    3134  12  ";
+        System.out.println(expressNumber.replaceAll(" ", ""));
+
+        //字符串处理
+        String[] split = "16666666666,17765114126".split(",");
+        String string = "";
+        for (String s : split) {
+            string += "\"" + s + "\"" + ",";
+        }
+        String str1 = "[" + string.substring(0, string.length() - 1) + "]";
+        System.out.println(str1);
     }
 
     @Test
     public void test5() {
 //        List objects = new ArrayList(10);
 //        List list = Collections.synchronizedList(new ArrayList(10));
-//
+
 //        Map map = new HashMap(16);
 //        map.put("1",1);
-
         System.out.println(Math.ceil(9.1));
         yqhGetPrice(100.6);
     }
@@ -131,29 +113,9 @@ public class SuiShouTest {
         return map;
     }
 
-
-    @Test
-    public void Test8() {
-        String expressNumber = "  1213    3134  12  ";
-        String s = expressNumber.replaceAll(" ", "");
-        System.out.println(expressNumber);
-        System.out.println(s);
-    }
-
-    @Test
-    public void Test9() {
-        int a = (int) (Math.random() * (9999 - 1000 + 1)) + 1000;//产生1000-9999的随机数
-        System.out.println(a);
-
-        int c = (int) (Math.random() * (9999 - 1000 + 1)) + 1000;
-        System.out.println(c);
-        UUID uuid = UUID.randomUUID();
-        System.out.println(uuid);
-
-        String s = "YQC" + DateUtil.getDateNoTime().substring(2, 8) + a;
-        System.out.println(s);
-    }
-
+    /**
+     * 手机号正则表达式
+     */
     @Test
     public void Test10() {
         boolean matches = "19165114126".matches("^((13[0-9])|(14[0,1,4-9])|(15[0-3,5-9])|(16[2,5,6,7])|(17[0-8])|(18[0-9])|(19[0-3,5-9]))\\d{8}$");
@@ -206,18 +168,6 @@ public class SuiShouTest {
     }
 
     @Test
-    public void Test14() {
-        //"[\"1883\", \"17765114126\"]"
-        String[] split = "16666666666,17765114126".split(",");
-        String string = "";
-        for (String s : split) {
-            string += "\"" + s + "\"" + ",";
-        }
-        String str = "[" + string.substring(0, string.length() - 1) + "]";
-        System.out.println(str);
-    }
-
-    @Test
     public void Test15() {
         Long q = 456456L;
         Long w = 456456L;
@@ -226,11 +176,23 @@ public class SuiShouTest {
         System.out.println(q != w);
         System.out.println(!q.equals(w));
         System.out.println("--------------------------");
+
         String str = "[\"16666666666\",\"17765114126\"]";
         boolean equals = str.equals("");
         System.out.println(equals);
-        int i = str.hashCode();
-        System.out.println(i);
+        int x = str.hashCode();
+        System.out.println(x);
+
+        String[] split = new String[]{"17765114126", "18203655200"};
+
+        String[] sp = new String[split.length];
+        for (int i = 0; i < split.length; i++) {
+            sp[i] = split[i] + "1";
+        }
+        User user = new User();
+        user.setUserName("548");
+        System.out.println(user.getUserName());
+
     }
 
     @Test
@@ -251,7 +213,6 @@ public class SuiShouTest {
 
     @Test
     public void Test17() {
-
         System.out.println(StringUtils.isAnyEmpty("", "bar"));
         System.out.println(StringUtils.isAnyBlank(" ", "bar"));
 
@@ -268,19 +229,6 @@ public class SuiShouTest {
         System.out.println(JSON.toJSONString(StringUtils.split("a:b:c", ':')));
     }
 
-
-    @Test
-    public void Test18() {
-        String[] split = new String[]{"17765114126", "18203655200"};
-
-        String[] sp = new String[split.length];
-        for (int i = 0; i < split.length; i++) {
-            sp[i] = split[i] + "1";
-        }
-        User user = new User();
-        user.setUserName("548");
-        System.out.println(user.getUserName());
-    }
 
     @Test
     public void Test19() {
@@ -343,6 +291,9 @@ public class SuiShouTest {
         }
     }
 
+    /**
+     * 判断是否数字与字母
+     */
     @Test
     public void Test22() {
         HashMap<String, String> map = new HashMap<>();
@@ -362,29 +313,14 @@ public class SuiShouTest {
     }
 
     @Test
-    public void Test23() {
-        //获取当前系统时间与1970年01月01日00:00点之间的毫秒差值
-        long timeMillis = System.currentTimeMillis();
-        String s = System.getProperty("s");
-        //用来运行JVM中的垃圾回收器，完成内存中垃圾的清除。
-        System.gc();
-        //用来结束正在运行的Java程序。参数传入一个数字即可。通常传入0记为正常状态，其他为异常状态
-        System.exit(0);
-    }
-
-    @Test
     public void Test20() throws Throwable {
         System.out.println(SpringUtils.testEnv());
         throw new Exception("dcj");
     }
 
-    @Test
-    public void Test25() {
-        //获取cpu核数
-        //cpu密集型，IO密集型
-        System.out.println(Runtime.getRuntime().availableProcessors());
-    }
-
+    /**
+     * 加密
+     */
     @Test
     public void Test24() {
         String str = "$@$tz1@@7ndq8jypnifo";
@@ -402,12 +338,4 @@ public class SuiShouTest {
         }
     }
 
-
-    @Test
-    public void Test27() {
-        Integer i=2;
-        Integer x=2;
-        System.out.println(i != x);
-        System.out.println(i != 2);
-    }
 }

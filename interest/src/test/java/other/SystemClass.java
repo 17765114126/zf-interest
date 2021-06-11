@@ -16,7 +16,7 @@ import java.io.IOException;
 public class SystemClass {
     @Test
     public void SystemTest() {
-
+        //获取当前系统时间与1970年01月01日00:00点之间的毫秒差值
         long start = System.currentTimeMillis();
         for (int i = 0; i < 100000000; i++) {
             int temp = 0;
@@ -90,6 +90,9 @@ public class SystemClass {
         System.out.println("Java虚拟机中的空闲内存量:"+runtime.freeMemory());
         System.out.println("Java 虚拟机试图使用的最大内存量:"+ runtime.maxMemory());
         System.out.println("Java 虚拟机中的内存总量:"+ runtime.totalMemory());
+
+        //获取cpu核数 cpu密集型，IO密集型
+        System.out.println(runtime.availableProcessors());
 
         String str="";
         for(int i = 0;i<20000;i++){

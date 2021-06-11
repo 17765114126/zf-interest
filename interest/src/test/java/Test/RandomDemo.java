@@ -5,6 +5,7 @@ import com.example.springboot.utils.StringUtil;
 import org.junit.Test;
 
 import java.util.Random;
+import java.util.UUID;
 
 /**
  * @ClassName RandomDemo
@@ -131,9 +132,23 @@ public class RandomDemo {
     }
 
     @Test
-    public void test6() {
+    public void test1() {
         String number = new StringBuilder().append("PS").append(DateUtil.getDateNoTime().substring(2, 6)).append(StringUtil.getRandomCode(5, true, false)).toString();
         System.out.println(number);
+    }
+
+    @Test
+    public void test2() {
+        int a = (int) (Math.random() * (9999 - 1000 + 1)) + 1000;//产生1000-9999的随机数
+        System.out.println(a);
+
+        int c = (int) (Math.random() * (9999 - 1000 + 1)) + 1000;
+        System.out.println(c);
+        UUID uuid = UUID.randomUUID();
+        System.out.println(uuid);
+
+        String s = "YQC" + DateUtil.getDateNoTime().substring(2, 8) + a;
+        System.out.println(s);
     }
 
 }

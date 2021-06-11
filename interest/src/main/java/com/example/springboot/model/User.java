@@ -1,6 +1,7 @@
 package com.example.springboot.model;
 
 import com.example.springboot.config.annotation.Encrypt;
+import com.example.springboot.model.entity.MallRegion;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Data;
@@ -26,6 +27,7 @@ public class User {
     private Long id;
     @Encrypt
     private String userName;
+    private MallRegion address;
     @Value("note_1")
     private String note;
     //@DateTimeFormat(pattern = "yyyy-MM-dd")

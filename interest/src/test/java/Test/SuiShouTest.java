@@ -1,20 +1,16 @@
 package Test;
 
 import com.alibaba.fastjson.JSON;
-import com.example.springboot.config.Shiro.security.SpringUtils;
-import com.example.springboot.model.User;
 import com.example.springboot.utils.MathUtil;
 import com.example.springboot.utils.StringUtil;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.shiro.crypto.hash.SimpleHash;
 import org.junit.Test;
 
 import java.math.BigDecimal;
-import java.util.*;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -25,15 +21,28 @@ import java.util.regex.Pattern;
  * @Version V1.0
  **/
 public class SuiShouTest {
+
     @Test
-    public void tese1() {
-        Map<String, String> map = new HashMap(2);
-        map.put("applyJson", "521");
-        System.out.println(map);
+    public void test() {
+        int ceil = (int) Math.ceil(26 / 20) + 1;
+        System.out.println(ceil);
+
+        for (int i = 0; i < ceil; i++) {
+            for (int j = 0; j <= 20; j++) {
+                if (i == ceil - 1 && j == 26 - (i * 20)) break;
+                if (i == 1) {
+                    System.out.println(i + "---" + j);
+                } else {
+                    System.out.println(i + "---" + j);
+                }
+            }
+            int x = 3;
+            System.out.println("====================");
+        }
     }
 
     @Test
-    public void tese3() {
+    public void tese1() {
         float payMoney = 100;
         Integer num = 2;
 
@@ -47,31 +56,7 @@ public class SuiShouTest {
     }
 
     @Test
-    public void test4() {
-        String str = "1234567.txt";
-        //返回此字符串中第一次出现 指定子字符串的索引。
-        if (str.indexOf(".tx") != -1) {
-            System.out.println("包含该字符串");
-        } else {
-            System.out.println("不包含该字符串");
-        }
-
-        //替换字符
-        String expressNumber = "  1213    3134  12  ";
-        System.out.println(expressNumber.replaceAll(" ", ""));
-
-        //字符串处理
-        String[] split = "16666666666,17765114126".split(",");
-        String string = "";
-        for (String s : split) {
-            string += "\"" + s + "\"" + ",";
-        }
-        String str1 = "[" + string.substring(0, string.length() - 1) + "]";
-        System.out.println(str1);
-    }
-
-    @Test
-    public void test5() {
+    public void test2() {
 //        List objects = new ArrayList(10);
 //        List list = Collections.synchronizedList(new ArrayList(10));
 
@@ -113,23 +98,9 @@ public class SuiShouTest {
         return map;
     }
 
-    /**
-     * 手机号正则表达式
-     */
-    @Test
-    public void Test10() {
-        boolean matches = "19165114126".matches("^((13[0-9])|(14[0,1,4-9])|(15[0-3,5-9])|(16[2,5,6,7])|(17[0-8])|(18[0-9])|(19[0-3,5-9]))\\d{8}$");
-        System.out.println(matches);
-    }
 
     @Test
-    public void Test11() {
-        String mobile = null;
-        if (StringUtil.isBlank(mobile)) {
-            mobile = "2314";
-        }
-        System.out.println(mobile);
-
+    public void Test3() {
         int q = 2;
         int a = 2;
         String z = "12";
@@ -137,11 +108,10 @@ public class SuiShouTest {
         if (q == 2 && a == 2 && (z == null || z != null && (w == 28 || w == 42))) {
             System.out.println("已发货");
         }
-
     }
 
     @Test
-    public void Test12() {
+    public void Test4() {
         BigDecimal q = new BigDecimal(1.55);
         BigDecimal a = new BigDecimal(1.45);
         BigDecimal z = new BigDecimal(0.61);
@@ -159,7 +129,7 @@ public class SuiShouTest {
     }
 
     @Test
-    public void Test13() {
+    public void Test5() {
         Float mayMoney = 0F;
         List<? extends Number> numbers = Arrays.asList(99.98, 100, -26.61);
         for (Number number : numbers) {
@@ -168,35 +138,7 @@ public class SuiShouTest {
     }
 
     @Test
-    public void Test15() {
-        Long q = 456456L;
-        Long w = 456456L;
-        int i1 = q.hashCode();
-        int i2 = w.hashCode();
-        System.out.println(q != w);
-        System.out.println(!q.equals(w));
-        System.out.println("--------------------------");
-
-        String str = "[\"16666666666\",\"17765114126\"]";
-        boolean equals = str.equals("");
-        System.out.println(equals);
-        int x = str.hashCode();
-        System.out.println(x);
-
-        String[] split = new String[]{"17765114126", "18203655200"};
-
-        String[] sp = new String[split.length];
-        for (int i = 0; i < split.length; i++) {
-            sp[i] = split[i] + "1";
-        }
-        User user = new User();
-        user.setUserName("548");
-        System.out.println(user.getUserName());
-
-    }
-
-    @Test
-    public void Test16() {
+    public void Test6() {
 //        Integer stockNum = 0;
 //        stockNum = stockNum + Integer.parseInt("55.0");
 //        System.out.println(DateUtil.getNewFormatDateString(new Date()));
@@ -212,7 +154,82 @@ public class SuiShouTest {
     }
 
     @Test
-    public void Test17() {
+    public void Test7() {
+        BigDecimal c = BigDecimal.valueOf(3.55);
+        Integer g = 2;
+        BigDecimal bignum2 = new BigDecimal(g);
+        BigDecimal multiply = c.multiply(bignum2);
+
+        Float xx = 200001.11f;
+        Float yy = 200000.08f;
+        Float tt = xx - yy;
+
+        BigDecimal b1 = new BigDecimal(Float.toString(xx));
+        BigDecimal b2 = new BigDecimal(Float.toString(yy));
+        float ss = b1.subtract(b2).floatValue();
+        System.out.println("tttttt-----" + tt);
+        System.out.println("ssss----" + ss);
+
+        BigDecimal ssd = new BigDecimal(Float.toString(xx));
+        System.out.println(ssd);
+    }
+
+
+    @Test
+    public void test8() {
+        String str = "1234567.txt";
+        //返回此字符串中第一次出现 指定子字符串的索引。
+        if (str.indexOf(".tx") != -1) {
+            System.out.println("包含该字符串");
+        } else {
+            System.out.println("不包含该字符串");
+        }
+
+        //替换字符
+        String expressNumber = "  1213    3134  12  ";
+        System.out.println(expressNumber.replaceAll(" ", ""));
+
+        //字符串处理
+        String[] split = "16666666666,17765114126".split(",");
+        String string = "";
+        for (String s : split) {
+            string += "\"" + s + "\"" + ",";
+        }
+        String str1 = "[" + string.substring(0, string.length() - 1) + "]";
+        System.out.println(str1);
+    }
+
+    @Test
+    public void Test9() {
+        Long a = 456456L;
+        Long b = 456456L;
+        int i1 = a.hashCode();
+        int i2 = b.hashCode();
+        System.out.println("hashCode:" + i1 + "-------" + i2);
+        System.out.println(a != b);// =：对比内存中的地址是否相同
+        System.out.println(!a.equals(b));// equals：对比字符串是否相同
+        System.out.println("--------------------------");
+
+        String str = "[\"16666666666\",\"17765114126\"]";
+        System.out.println(str.hashCode());
+
+        String[] split = new String[]{"17765114126", "18203655200"};
+        String[] sp = new String[split.length];
+        for (int i = 0; i < split.length; i++) {
+            sp[i] = split[i] + "1";
+            System.out.println(sp[i]);
+        }
+
+        System.out.println("--------------------------");
+
+        String str1 = "123456789,";
+        if (StringUtils.isNotBlank(str1) && str1.substring(str1.length() - 1).equals(",")) {
+            System.out.println(str1.substring(0, str1.length() - 1));
+        }
+    }
+
+    @Test
+    public void Test10() {
         System.out.println(StringUtils.isAnyEmpty("", "bar"));
         System.out.println(StringUtils.isAnyBlank(" ", "bar"));
 
@@ -230,72 +247,11 @@ public class SuiShouTest {
     }
 
 
-    @Test
-    public void Test19() {
-        BigDecimal c = BigDecimal.valueOf(3.55);
-        Integer g = 2;
-        BigDecimal bignum2 = new BigDecimal(g);
-        BigDecimal multiply = c.multiply(bignum2);
-
-        Float xx = 200001.11f;
-        Float yy = 200000.08f;
-        Float tt = xx - yy;
-
-        BigDecimal b1 = new BigDecimal(Float.toString(xx));
-        BigDecimal b2 = new BigDecimal(Float.toString(yy));
-        float ss = b1.subtract(b2).floatValue();
-        System.out.println("tttttt-----" + tt);
-        System.out.println("ssss----" + ss);
-
-        String str = "123456789,";
-        if (StringUtils.isNotBlank(str) && str.substring(str.length() - 1).equals(",")) {
-            String substring = str.substring(0, str.length() - 1);
-            System.out.println(substring);
-        }
-        System.out.println(str);
-        BigDecimal ssd = new BigDecimal(Float.toString(xx));
-        System.out.println(ssd);
-    }
-
-    private static ThreadPoolExecutor executor = new ThreadPoolExecutor(100, Integer.MAX_VALUE, 60L, TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>());
-
-    @Test
-    public void Test21() {
-        try {
-            List<String> records = new ArrayList<>();
-            for (int i = 0; i < 10000; i++) {
-                records.add("xiancheng :" + i);
-            }
-            CountDownLatch latch = new CountDownLatch(records.size());
-            for (String record : records) {
-                executor.execute(() -> {
-                    try {
-                        if (record.equals("xiancheng :5")) {
-                            System.out.println("sleep--------");
-                            Thread.sleep(2000);
-                        }
-                        System.out.println(record);
-                        return;
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    } finally {
-                        latch.countDown();
-                    }
-                });
-            }
-            latch.await();
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
     /**
      * 判断是否数字与字母
      */
     @Test
-    public void Test22() {
+    public void Test11() {
         HashMap<String, String> map = new HashMap<>();
         System.out.println(StringUtil.isBlank(map.get("ds")));
 
@@ -310,32 +266,6 @@ public class SuiShouTest {
         String regex = "^[a-z0-9A-Z]+$";
         Matcher m = Pattern.compile(regex).matcher(str);
         return m.matches();
-    }
-
-    @Test
-    public void Test20() throws Throwable {
-        System.out.println(SpringUtils.testEnv());
-        throw new Exception("dcj");
-    }
-
-    /**
-     * 加密
-     */
-    @Test
-    public void Test24() {
-        String str = "$@$tz1@@7ndq8jypnifo";
-        String salt = "C86nfc";
-        SimpleHash md5 = new SimpleHash("md5", str, salt, 22);
-        System.out.println(md5);
-    }
-
-    @Test
-    public void Test26() {
-        String xsPrice = "123,";
-        System.out.println(xsPrice.substring(0, xsPrice.length() - 1));
-        for (int i = 0; i < 4; i++) {
-            System.out.println(i);
-        }
     }
 
 }

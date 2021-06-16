@@ -207,8 +207,6 @@ public class FileUtil {
     }
 
 
-
-
     /**
      * 判断文件大小
      *
@@ -218,7 +216,7 @@ public class FileUtil {
      * @return
      */
     public static boolean checkFileSize(Long len, int size, String unit) {
-//        long len = file.length();
+//        long len = multipartFile.getSize();//上传文件的大小, 单位为字节.
         double fileSize = 0;
         if ("B".equals(unit.toUpperCase())) {
             fileSize = (double) len;
@@ -234,4 +232,5 @@ public class FileUtil {
         }
         return true;
     }
+
 }

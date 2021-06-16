@@ -727,7 +727,7 @@ public class DateUtil {
     }
 
     /**
-     * 判断当前时间，是否在起始时间和结束时间之间，可以精确到秒
+     * 判断当前时间，是否在起始时间和结束时间之间，可以精确到秒(不校验等于)
      *
      * @param startDate 起始时间
      * @param endDate   结束时间
@@ -739,6 +739,21 @@ public class DateUtil {
         }
         return fixDate.before(endDate) && fixDate.after(startDate);
     }
+
+    /**
+     * 判断当前时间，是否在起始时间和结束时间之间，可以精确到秒（校验等于）
+     *
+     * @param startDate 起始时间
+     * @param endDate   结束时间
+     * @return
+     */
+    public static boolean betweenStartAndEndDateTow(Date fixDate, Date startDate, Date endDate) {
+        if (null == fixDate) {
+            fixDate = getDate();
+        }
+        return !fixDate.before(startDate) && !fixDate.after(endDate);
+    }
+
 
     /**
      * 获取指定日期是周几

@@ -268,4 +268,36 @@ public class SuiShouTest {
         return m.matches();
     }
 
+    @Test
+    public void Test12() {
+        BigDecimal bigDecimal = new BigDecimal(10.11);
+        System.out.println(bigDecimal.negate());
+        System.out.println(new BigDecimal(-3).negate());
+        System.out.println(new BigDecimal(0).negate());
+    }
+
+    @Test
+    public void Test13() throws InterruptedException {
+        System.out.println("213");
+//        Thread.sleep(3000);
+
+        for (int i = 1; i < 10; i++) {
+            for (int j = 1; j < i; j++) {
+                System.out.print(j + "*" + i + "=" + j * i + "\t");
+            }
+            System.out.println();
+        }
+
+//        for(int i = 1;i < 10;i ++){
+//            for(int j = 1; j <= i;j ++){
+//                if(j == i){
+//                    System.out.println(j +" * " + i + "="+ (j * i) + " ");
+//                }else{
+//                    System.out.print(j +" * " + i + "="+ (j * i) + " ");
+//                }
+//            }
+//        }
+
+    }
+
 }

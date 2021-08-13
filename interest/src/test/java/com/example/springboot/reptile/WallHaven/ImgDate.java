@@ -30,7 +30,7 @@ public class ImgDate {
 
     int start = 24;//每页多少条
     int total = 0;//记录数
-    int end = 130;//总共130条页
+    int end = 128;//总共126条页
 
     @Test
     public void Test(){

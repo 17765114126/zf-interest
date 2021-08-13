@@ -7,6 +7,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -151,6 +152,14 @@ public class SuiShouTest {
         Float i = 6.71F;
         Integer i1 = 2;
         System.out.println(MathUtil.mul(i, i1));
+
+        /**
+         * 四舍五入截取为小数点两位
+         * */
+        Float z = 6.718888F;
+        DecimalFormat df = new DecimalFormat("#.00");
+        System.out.println(df.format(z - 2));
+
     }
 
     @Test
@@ -226,6 +235,8 @@ public class SuiShouTest {
         if (StringUtils.isNotBlank(str1) && str1.substring(str1.length() - 1).equals(",")) {
             System.out.println(str1.substring(0, str1.length() - 1));
         }
+        Integer i=1;
+        System.out.println(i.toString().equals("1"));
     }
 
     @Test
@@ -298,6 +309,24 @@ public class SuiShouTest {
 //            }
 //        }
 
+    }
+
+
+    @Test
+    public void Test14() {
+                String Str = new String("Welcome to Yiibai.com");
+
+//        System.out.println(StringUtil.startsWithIgnoreCase(Str, "select"));
+//        System.out.println(StringUtil.containsIgnoreCase(Str, "delect"));
+        System.out.println(!StringUtil.containsIgnoreCase(Str, "{0}"));
+        System.out.print("Return Value :" );
+                System.out.println(Str.startsWith("Welcome") );
+
+                System.out.print("Return Value :" );
+                System.out.println(Str.startsWith("Tutorials") );
+
+                System.out.print("Return Value :" );
+                System.out.println(Str.startsWith("Yiibai", 11) );
     }
 
 }

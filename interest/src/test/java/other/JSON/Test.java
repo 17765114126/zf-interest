@@ -1,4 +1,4 @@
-package study.JSON;
+package other.JSON;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;

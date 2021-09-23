@@ -28,14 +28,15 @@ public class GeneratorCodeUtil {
 //    private static final String DB_URL = "jdbc:mysql://localhost:3306/zhaofu?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8";
 
 //    private static final String DB_URL = "jdbc:mysql://rm-bp14f94yt54bl7l54o.mysql.rds.aliyuncs.com:3306/db_dora_syj?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8";
-    private static final String DB_URL = "jdbc:mysql://rm-bp14f94yt54bl7l54o.mysql.rds.aliyuncs.com:3306/db_yimai?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8";
+//    private static final String DB_URL = "jdbc:mysql://rm-bp14f94yt54bl7l54o.mysql.rds.aliyuncs.com:3306/db_yimai?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8";
+    private static final String DB_URL = "jdbc:mysql://zeekrlife-dev-public.mysql.rds.aliyuncs.com:3306/zeekrlife_mp_order?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8";
 
     /**
      * 请自定义自己的username
      */
 //    private static final String USERNAME = "root";
 //    private static final String USERNAME = "db_template";
-    private static final String USERNAME = "dorabox_dba";
+    private static final String USERNAME = "zeekrlife";
 
 
     /**
@@ -43,7 +44,7 @@ public class GeneratorCodeUtil {
      */
 //    private static final String PASSWORD = "";
 //    private static final String PASSWORD = "wUuKOKAuNK!9%5w1$";
-    private static final String PASSWORD = "dora123456!@#$%^";
+    private static final String PASSWORD = "Zeekrlife#dev";
 
 
     private static final String DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
@@ -61,7 +62,7 @@ public class GeneratorCodeUtil {
     public static void main(String[] args) throws IOException {
         System.out.println("--------------------开始自动生成相关的类----------------------");
         System.out.println("args = " + new File("").getAbsolutePath() + "/src/main/java/");
-        generateByTables(MODULE_NAME, "tbl_business_supplier_zq_money_log","tbl_business_supplier_zq_money_detail");
+        generateByTables(MODULE_NAME, "biz_order_pay");
 
         System.out.println("--------------------------生成成功------------------------");
     }
@@ -147,7 +148,7 @@ public class GeneratorCodeUtil {
                 // 设置要映射的表名
                 .setInclude(tableNames)
                 //表名前缀
-                .setTablePrefix("tbl_");
+                .setTablePrefix();
         return strategyConfig;
     }
 

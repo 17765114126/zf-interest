@@ -1,19 +1,21 @@
 package Test;
 
 import com.alibaba.fastjson.JSON;
+import com.example.springboot.model.Student;
+import com.example.springboot.model.User;
+import com.example.springboot.utils.DateUtil;
 import com.example.springboot.utils.MathUtil;
 import com.example.springboot.utils.StringUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.DecimalFormat;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 /**
  * @ClassName SuiShouTest
@@ -140,6 +142,21 @@ public class SuiShouTest {
 
     @Test
     public void Test6() {
+        //BigDecimal本身提供了加减乘除的方法
+        //
+        //加法 add()函数
+        //减法subtract()函数
+        //乘法multipy()函数
+        //除法divide()函数
+        //绝对值abs()函数
+
+        //BigDecima类型相加
+        BigDecimal s = BigDecimal.valueOf(2.01);
+        BigDecimal x = BigDecimal.valueOf(3.12);
+        System.out.println(s.add(x));
+        System.out.println(s.add(x).setScale(2, BigDecimal.ROUND_HALF_UP));
+        System.out.println("---------------------");
+
 //        Integer stockNum = 0;
 //        stockNum = stockNum + Integer.parseInt("55.0");
 //        System.out.println(DateUtil.getNewFormatDateString(new Date()));
@@ -235,7 +252,7 @@ public class SuiShouTest {
         if (StringUtils.isNotBlank(str1) && str1.substring(str1.length() - 1).equals(",")) {
             System.out.println(str1.substring(0, str1.length() - 1));
         }
-        Integer i=1;
+        Integer i = 1;
         System.out.println(i.toString().equals("1"));
     }
 
@@ -285,6 +302,10 @@ public class SuiShouTest {
         System.out.println(bigDecimal.negate());
         System.out.println(new BigDecimal(-3).negate());
         System.out.println(new BigDecimal(0).negate());
+
+
+        System.out.println(bigDecimal == new BigDecimal("0"));
+
     }
 
     @Test
@@ -314,19 +335,43 @@ public class SuiShouTest {
 
     @Test
     public void Test14() {
-                String Str = new String("Welcome to Yiibai.com");
+        String Str = new String("Welcome to Yiibai.com");
 
 //        System.out.println(StringUtil.startsWithIgnoreCase(Str, "select"));
 //        System.out.println(StringUtil.containsIgnoreCase(Str, "delect"));
+        //字符串是否包含字符
         System.out.println(!StringUtil.containsIgnoreCase(Str, "{0}"));
-        System.out.print("Return Value :" );
-                System.out.println(Str.startsWith("Welcome") );
+        System.out.print("Return Value :");
+        System.out.println(Str.startsWith("Welcome"));
 
-                System.out.print("Return Value :" );
-                System.out.println(Str.startsWith("Tutorials") );
+        System.out.print("Return Value :");
+        System.out.println(Str.startsWith("Tutorials"));
 
-                System.out.print("Return Value :" );
-                System.out.println(Str.startsWith("Yiibai", 11) );
+        System.out.print("Return Value :");
+        System.out.println(Str.startsWith("Yiibai", 11));
+
+
+        User user = new User();
+        user.setId(1L);
+        user.setDate(DateUtil.getDateNoTime("2021-09-18 11:15:35"));
+
+        User user1 = new User();
+        user1.setId(2L);
+        user1.setDate(DateUtil.getDate());
+
+        User user2 = new User();
+        user2.setId(3L);
+        user2.setDate(DateUtil.getDateNoTime("2021-09-22 15:56:41"));
+
+        List<User> arrayList = new ArrayList();
+        arrayList.add(user);
+        arrayList.add(user1);
+        arrayList.add(user2);
+
+        //按时间排序
+        List<User> collect = arrayList.stream().sorted(Comparator.comparing(User::getDate).reversed()).collect(Collectors.toList());
+
+        System.out.println(JSON.toJSONString(collect));
     }
 
 }

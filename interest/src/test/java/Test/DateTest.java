@@ -3,6 +3,7 @@ package Test;
 import com.example.springboot.utils.DateUtil;
 import org.junit.Test;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -18,7 +19,7 @@ public class DateTest {
         //判断当前时间，是否在起始时间和结束时间之间，可以精确到秒
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// 设置日期格式
         try {
-            Date now = df.parse("2020-07-29 10:00:00");
+            Date now = df.parse("2020-07-29 00:00:00");
             Date beginTime = df.parse("2020-07-30 00:00:00");
             Date endTime = df.parse("2021-08-09 00:00:00");
             Boolean flag = DateUtil.belongCalendar(now, beginTime, endTime);
@@ -28,15 +29,37 @@ public class DateTest {
             Boolean flag1 = DateUtil.betweenStartAndEndDateTow(now, beginTime, endTime);
             System.out.println("---------------");
             System.out.println(flag1);
+            System.out.println("---------------");
+            boolean in = cn.hutool.core.date.DateUtil.isIn(now, beginTime, endTime);
+            System.out.println(in);
 
 
             boolean inDate = isInDate(now,"09:00:00", "18:00:00");
             System.out.println(inDate);
 
+
+            Date date = parseTime("2021-08-09 00:00:00");
+            System.out.println(date);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+    }
+
+    public static Date parseTime(String date) {
+        return parseTime(date, "yyyy-MM-dd HH:mm:ss");
+    }
+
+    public static Date parseTime(String date, String format) {
+        if (date == null) {
+            return null;
+        } else {
+            try {
+                return (new SimpleDateFormat(format)).parse(date);
+            } catch (ParseException var3) {
+                throw new RuntimeException(var3);
+            }
+        }
     }
     /**
      * 判断时间是否在时间段内
@@ -53,7 +76,7 @@ public class DateTest {
                                    String strDateEnd) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String strDate = sdf.format(date);
-        // 截取当前时间时分秒
+        // 截取入参时间时分秒
         int strDateH = Integer.parseInt(strDate.substring(11, 13));
         int strDateM = Integer.parseInt(strDate.substring(14, 16));
         int strDateS = Integer.parseInt(strDate.substring(17, 19));

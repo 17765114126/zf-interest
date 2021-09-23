@@ -4,13 +4,14 @@ import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 /**
  * @Date: 2019/9/26
  * @Author: zhaofu
  * @Description: 学生类
  **/
-
+@Data
 public class Student implements Serializable {
     private static final long serialVersionUID = 3577522325645247161L;
     //    @Value("昴")
@@ -25,6 +26,8 @@ public class Student implements Serializable {
     }
     private Integer age;
     private String name;
+    private BigDecimal money;
+    private BigDecimal oldMoney;
 
     public void setAge(Integer age) {
         this.age = age;

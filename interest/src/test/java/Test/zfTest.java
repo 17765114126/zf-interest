@@ -1,7 +1,11 @@
 package Test;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.example.springboot.config.Shiro.security.SpringUtils;
+import com.example.springboot.model.Student;
 import com.example.springboot.utils.AESEncryptUtil;
+import com.example.springboot.utils.HttpClientUtil;
 import com.example.springboot.utils.Md5Util;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.junit.Test;
@@ -101,6 +105,16 @@ public class zfTest {
         return str;
     }
 
-
+    /**
+     * 远程服务调用
+     */
+    @Test
+    public void Test3() {
+        Student student = new Student();
+        student.setAge(1);
+        student.setName("fdsc");
+        String dataJson = HttpClientUtil.sendPostByJson("http://localhost:7001/a", JSON.toJSONString(student), 3);
+        System.out.println(dataJson);
+    }
 
 }

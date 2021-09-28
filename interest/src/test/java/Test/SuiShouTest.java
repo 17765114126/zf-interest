@@ -298,13 +298,14 @@ public class SuiShouTest {
 
     @Test
     public void Test12() {
-        BigDecimal bigDecimal = new BigDecimal(10.11);
+        BigDecimal bigDecimal = new BigDecimal(0);
         System.out.println(bigDecimal.negate());
         System.out.println(new BigDecimal(-3).negate());
         System.out.println(new BigDecimal(0).negate());
 
 
-        System.out.println(bigDecimal == new BigDecimal("0"));
+        System.out.println(bigDecimal != new BigDecimal(0));
+        System.out.println(!bigDecimal .equals(new BigDecimal(0)));
 
     }
 

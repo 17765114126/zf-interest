@@ -68,7 +68,7 @@ public class LinkedHashMapTest {
  * of the entry if the value is replaced.  The {@code putAll} method generates one
  * entry access for each mapping in the specified map, in the order that
  * key-value mappings are provided by the specified map's entry set iterator.
- * <i>No other methods generate entry accesses.</i>  In particular, operations
+ * <i>No cache methods generate entry accesses.</i>  In particular, operations
  * on collection-views do <i>not</i> affect the order of iteration of the
  * backing map.
  *

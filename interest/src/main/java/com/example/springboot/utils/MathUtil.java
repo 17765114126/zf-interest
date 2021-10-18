@@ -410,4 +410,18 @@ public class MathUtil { //默认除法运算精度
 
     }
 
+
+    /**
+     * 检查BigDecimal是否为整数值
+     */
+    public static boolean isIntegerValue(BigDecimal bd) {
+        boolean ret;
+        try {
+            bd.toBigIntegerExact();
+            ret = true;
+        } catch (ArithmeticException ex) {
+            ret = false;
+        }
+        return ret;
+    }
 }

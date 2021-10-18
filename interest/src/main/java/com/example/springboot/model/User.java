@@ -30,7 +30,6 @@ public class User {
     private Long id;
 
     @Null(message = "必须为null")
-    @NotBlank(message = "不能为null")
     private Integer test1;
 
     @AssertTrue(message = "必须为true")
@@ -55,10 +54,11 @@ public class User {
     @Past(message = "必须为过去日期")
     @Future(message = "必须为将来日期")
     private Date test6;
+
+//    @Pattern(regexp = "^(1[3-9]\\d{9}$)", message = "请输入11位有效手机号")
+    @NotBlank(message = "不能为null")
     @Email(message = "邮箱格式错误")
     private String email;
-    @Pattern(regexp = "^(1[3-9]\\d{9}$)", message = "请输入11位有效手机号")
-    private Integer phone;
 
 
     @Encrypt//自定义加密

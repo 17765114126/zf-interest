@@ -176,7 +176,7 @@ HashMap 中有四个构造方法，它们分别如下：
 ```java
     // 默认构造函数。
     public HashMap() {
-        this.loadFactor = DEFAULT_LOAD_FACTOR; // all   other fields defaulted
+        this.loadFactor = DEFAULT_LOAD_FACTOR; cache
      }
      
      // 包含另一个“Map”的构造函数

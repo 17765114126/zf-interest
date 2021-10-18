@@ -1,4 +1,4 @@
-package com.example.springboot.utils.文件上传;
+package com.example.springboot.utils.文件;
 
 import lombok.Data;
 

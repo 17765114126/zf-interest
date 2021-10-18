@@ -3,7 +3,7 @@ package com.example.springboot.controller.Redis;
 import com.alibaba.fastjson.JSON;
 import com.example.springboot.model.Student;
 import com.example.springboot.model.entity.CmsUser;
-import com.example.springboot.service.other.RedisCacheUserService;
+import com.example.springboot.service.cache.RedisCacheUserService;
 import com.example.springboot.model.form.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestMapping;

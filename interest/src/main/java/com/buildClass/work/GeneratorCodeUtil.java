@@ -62,7 +62,7 @@ public class GeneratorCodeUtil {
     public static void main(String[] args) throws IOException {
         System.out.println("--------------------开始自动生成相关的类----------------------");
         System.out.println("args = " + new File("").getAbsolutePath() + "/src/main/java/");
-        generateByTables(MODULE_NAME, "biz_order_pay");
+        generateByTables(MODULE_NAME, "biz_order_all_update_log");
 
         System.out.println("--------------------------生成成功------------------------");
     }

@@ -285,7 +285,7 @@ public class 无阻塞算法 {
 //
 //            if(modSubmitted){
 //                 //complete modification via a series of compare-and-swap operations.
-//                //note: other threads may assist in completing the compare-and-swap
+//                //note: cache threads may assist in completing the compare-and-swap
 //                // operations, so some CAS may fail
 //                modified = true;
 //            }

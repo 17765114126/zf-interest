@@ -18,14 +18,14 @@ public class 死锁 {
 //        objID = id;
 //    }
 //
-//    public synchronized void checkOther(Deadlock other) {
+//    public synchronized void checkOther(Deadlock cache) {
 //        print("entering checkOther()");
 //        try { Thread.sleep(2000); }
 //        catch ( InterruptedException x ) { }
-//        print("in checkOther() - about to " + "invoke 'other.action()'");
+//        print("in checkOther() - about to " + "invoke 'cache.action()'");
 //
 //        //调用other对象的action方法，由于该方法是同步方法，因此会试图获取other对象的对象锁
-//        other.action();
+//        cache.action();
 //        print("leaving checkOther()");
 //    }
 //
@@ -92,7 +92,7 @@ public class 死锁 {
 //}
 //运行结果如下：
     //https://wiki.jikexueyuan.com/project/java-concurrency/images/deadlock.jpg
-//从结果中可以看出，在执行到 other.action() 时，由于两个线程都在试图获取对方的锁，但对方都没有释放自己的锁，因而便产生了死锁，在主线程中试图中断两个线程，但都无果。
+//从结果中可以看出，在执行到 cache.action() 时，由于两个线程都在试图获取对方的锁，但对方都没有释放自己的锁，因而便产生了死锁，在主线程中试图中断两个线程，但都无果。
 //
 //大部分代码并不容易产生死锁，死锁可能在代码中隐藏相当长的时间，等待不常见的条件地发生，但即使是很小的概率，一旦发生，便可能造成毁灭性的破坏。避免死锁是一件困难的事，遵循以下原则有助于规避死锁：
 //

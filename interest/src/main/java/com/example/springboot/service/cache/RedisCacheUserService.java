@@ -1,4 +1,4 @@
-package com.example.springboot.service.other;
+package com.example.springboot.service.cache;
 
 /**
  * @ClassName RedisCacheUserService

@@ -1,4 +1,4 @@
-package com.example.springboot.utils.文件上传;
+package com.example.springboot.utils.文件;
 
 import com.example.springboot.model.form.Result;
 import lombok.extern.slf4j.Slf4j;

@@ -236,7 +236,7 @@ public class ThreadLocalExample implements Runnable{
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        //formatter pattern is changed here by thread, but it won't reflect to other threads
+        cache
         formatter.set(new SimpleDateFormat());
 
         System.out.println("Thread Name= "+Thread.currentThread().getName()+" formatter = "+formatter.get().toPattern());

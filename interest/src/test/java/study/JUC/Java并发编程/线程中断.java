@@ -35,7 +35,7 @@ public class 线程中断 {
 //        }catch(InterruptedException e){
 //            e.printStackTrace();
 //        }
-//        System.out.println("in main() - interrupting other thread");
+//        System.out.println("in main() - interrupting cache thread");
 //        //中断线程t
 //        t.interrupt();
 //        System.out.println("in main() - leaving");

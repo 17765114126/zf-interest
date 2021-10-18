@@ -298,16 +298,20 @@ public class SuiShouTest {
 
     @Test
     public void Test12() {
-        BigDecimal bigDecimal = new BigDecimal(0);
-        System.out.println(bigDecimal.negate());
-        System.out.println(new BigDecimal(-3).negate());
-        System.out.println(new BigDecimal(0).negate());
+        BigDecimal bigDecimal = new BigDecimal(10);
+//        System.out.println(bigDecimal.negate());
+//        System.out.println(new BigDecimal(-3).negate());
+//        System.out.println(new BigDecimal(0).negate());
+//        System.out.println(bigDecimal != new BigDecimal(0));
+//        System.out.println(!bigDecimal .equals(new BigDecimal(0)));
 
-
-        System.out.println(bigDecimal != new BigDecimal(0));
-        System.out.println(!bigDecimal .equals(new BigDecimal(0)));
+        BigDecimal b = new BigDecimal(0.02);
+        BigDecimal rate = new BigDecimal(100);
+        System.out.println(b.divide(rate).add(bigDecimal));
+        System.out.println(MathUtil.isIntegerValue(b));
 
     }
+
 
     @Test
     public void Test13() throws InterruptedException {

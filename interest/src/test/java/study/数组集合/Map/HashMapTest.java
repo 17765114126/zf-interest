@@ -285,7 +285,7 @@ public class HashMapTest {
      * (16) and the default load factor (0.75).
      */
     public HashMapTest() {
-        this.loadFactor = DEFAULT_LOAD_FACTOR; // all other fields defaulted
+        this.loadFactor = DEFAULT_LOAD_FACTOR; // all cache fields defaulted
     }
 
     /**

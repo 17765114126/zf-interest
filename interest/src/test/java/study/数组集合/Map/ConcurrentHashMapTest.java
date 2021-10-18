@@ -60,7 +60,7 @@ public class ConcurrentHashMapTest {
  * -----》一些关于统计的方法，最好在单线程环境下使用，不然它只满足监控或估算的目的，在项目中（多环境下）使用它是无法准确返回的
  * Bear in mind that the results of aggregate status methods including
  * {@code size}, {@code isEmpty}, and {@code containsValue} are typically
- * useful only when a map is not undergoing concurrent updates in other threads.
+ * useful only when a map is not undergoing concurrent updates in cache threads.
  * Otherwise the results of these methods reflect transient states
  * that may be adequate for monitoring or estimation purposes, but not
  * for program control.
@@ -75,7 +75,7 @@ public class ConcurrentHashMapTest {
  * to a 0.75 load factor threshold for resizing). There may be much
  * variance around this average as mappings are added and removed, but
  * overall, this maintains a commonly accepted time/space tradeoff for
- * hash tables.  However, resizing this or any other kind of hash
+ * hash tables.  However, resizing this or any cache kind of hash
  * table may be a relatively slow operation. When possible, it is a
  * good idea to provide a size estimate as an optional {@code
  * initialCapacity} constructor argument. An additional optional
@@ -117,7 +117,7 @@ public class ConcurrentHashMapTest {
  * <p>ConcurrentHashMaps support a set of sequential and parallel bulk
  * operations that, unlike most {@link Stream} methods, are designed
  * to be safely, and often sensibly, applied even with maps that are
- * being concurrently updated by other threads; for example, when
+ * being concurrently updated by cache threads; for example, when
  * computing a snapshot summary of the values in a shared registry.
  * There are three kinds of operation, each with four forms, accepting
  * functions with Keys, Values, Entries, and (Key, Value) arguments
@@ -125,7 +125,7 @@ public class ConcurrentHashMapTest {
  * are not ordered in any particular way, and may be processed in
  * different orders in different parallel executions, the correctness
  * of supplied functions should not depend on any ordering, or on any
- * other objects or values that may transiently change while
+ * cache objects or values that may transiently change while
  * computation is in progress; and except for forEach actions, should
  * ideally be side-effect-free. Bulk operations on {@link java.util.Map.Entry}
  * objects do not support method {@code setValue}.

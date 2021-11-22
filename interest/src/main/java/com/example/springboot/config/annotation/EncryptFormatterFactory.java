@@ -1,6 +1,6 @@
 package com.example.springboot.config.annotation;
 
-import com.example.springboot.utils.Md5Util;
+import com.example.springboot.utils.sign.Md5Util;
 import org.springframework.format.AnnotationFormatterFactory;
 import org.springframework.format.Formatter;
 import org.springframework.format.Parser;

@@ -153,7 +153,7 @@ public class SuiShouTest {
         //BigDecima类型相加
         BigDecimal s = BigDecimal.valueOf(2.01);
         BigDecimal x = BigDecimal.valueOf(3.12);
-        System.out.println(s.add(x));
+        System.out.println(s.subtract(x));
         System.out.println(s.add(x).setScale(2, BigDecimal.ROUND_HALF_UP));
         System.out.println("---------------------");
 
@@ -298,17 +298,26 @@ public class SuiShouTest {
 
     @Test
     public void Test12() {
-        BigDecimal bigDecimal = new BigDecimal(10);
+        BigDecimal bigDecimal = new BigDecimal(5.00);
 //        System.out.println(bigDecimal.negate());
 //        System.out.println(new BigDecimal(-3).negate());
 //        System.out.println(new BigDecimal(0).negate());
 //        System.out.println(bigDecimal != new BigDecimal(0));
 //        System.out.println(!bigDecimal .equals(new BigDecimal(0)));
+        BigDecimal b = new BigDecimal(1.05);
 
-        BigDecimal b = new BigDecimal(0.02);
+        System.out.println("------"+bigDecimal.subtract(b));
+
+        int i = bigDecimal.compareTo(b);
+        boolean equals = bigDecimal.equals(BigDecimal.ZERO);
+
+
         BigDecimal rate = new BigDecimal(100);
         System.out.println(b.divide(rate).add(bigDecimal));
         System.out.println(MathUtil.isIntegerValue(b));
+
+
+
 
     }
 
@@ -340,20 +349,20 @@ public class SuiShouTest {
 
     @Test
     public void Test14() {
-        String Str = new String("Welcome to Yiibai.com");
+//        String Str = new String("Welcome to Yiibai.com");
 
 //        System.out.println(StringUtil.startsWithIgnoreCase(Str, "select"));
 //        System.out.println(StringUtil.containsIgnoreCase(Str, "delect"));
         //字符串是否包含字符
-        System.out.println(!StringUtil.containsIgnoreCase(Str, "{0}"));
-        System.out.print("Return Value :");
-        System.out.println(Str.startsWith("Welcome"));
-
-        System.out.print("Return Value :");
-        System.out.println(Str.startsWith("Tutorials"));
-
-        System.out.print("Return Value :");
-        System.out.println(Str.startsWith("Yiibai", 11));
+//        System.out.println(!StringUtil.containsIgnoreCase(Str, "{0}"));
+//        System.out.print("Return Value :");
+//        System.out.println(Str.startsWith("Welcome"));
+//
+//        System.out.print("Return Value :");
+//        System.out.println(Str.startsWith("Tutorials"));
+//
+//        System.out.print("Return Value :");
+//        System.out.println(Str.startsWith("Yiibai", 11));
 
 
         User user = new User();
@@ -368,15 +377,38 @@ public class SuiShouTest {
         user2.setId(3L);
         user2.setDate(DateUtil.getDateNoTime("2021-09-22 15:56:41"));
 
+
+        User user3 = new User();
+        user3.setId(4L);
+        user3.setDate(DateUtil.getDateNoTime("2021-09-22 15:57:41"));
+
         List<User> arrayList = new ArrayList();
         arrayList.add(user);
         arrayList.add(user1);
         arrayList.add(user2);
+        arrayList.add(1,user3);
+
+
+        System.out.println(JSON.toJSONString(arrayList));
+
 
         //按时间排序
-        List<User> collect = arrayList.stream().sorted(Comparator.comparing(User::getDate).reversed()).collect(Collectors.toList());
+//        List<User> collect = arrayList.stream().sorted(Comparator.comparing(User::getDate).reversed()).collect(Collectors.toList());
 
-        System.out.println(JSON.toJSONString(collect));
+//        System.out.println(JSON.toJSONString(collect));
     }
 
+    @Test
+    public void Test15() {
+        String sql = "select id from order WHERE id = 2";
+        String[] names = sql.split("[whereWHERE]");
+
+        System.out.println(names[names.length-1]);
+    }
+
+    @Test
+    public void Test16(){
+        String trim = " acs".trim();
+        System.out.println(trim);
+    }
 }

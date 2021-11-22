@@ -1,5 +1,6 @@
 package com.example.springboot.utils;
 
+import com.example.springboot.model.constant.HttpConstant;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.HttpPost;

@@ -1,21 +1,18 @@
 package Test;
 
 import com.alibaba.fastjson.JSON;
-import com.example.springboot.model.Student;
 import com.example.springboot.model.User;
-import com.example.springboot.utils.DateUtil;
-import com.example.springboot.utils.MathUtil;
-import com.example.springboot.utils.StringUtil;
+import com.example.springboot.utils.date.DateUtil;
+import com.example.springboot.utils.number.MathUtil;
+import com.example.springboot.utils.string.StringUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 /**
  * @ClassName SuiShouTest

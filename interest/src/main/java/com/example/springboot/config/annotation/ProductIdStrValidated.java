@@ -3,7 +3,7 @@ package com.example.springboot.config.annotation;
 import org.jsoup.helper.StringUtil;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
-import static com.example.springboot.utils.StringUtil.isNumeric;
+import static com.example.springboot.utils.string.StringUtil.isNumeric;
 
 /**
  * @ClassName: ProductIdStrValidated

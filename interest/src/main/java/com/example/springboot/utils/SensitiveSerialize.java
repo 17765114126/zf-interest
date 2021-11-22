@@ -2,6 +2,7 @@ package com.example.springboot.utils;
 
 import com.example.springboot.config.annotation.Sensitive;
 import com.example.springboot.model.enums.SensitiveTypeEnum;
+import com.example.springboot.utils.string.DesensitizedUtils;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.BeanProperty;
 import com.fasterxml.jackson.databind.JsonMappingException;

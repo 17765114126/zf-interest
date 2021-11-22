@@ -2,7 +2,7 @@ package com.example.springboot.model.sys;
 
 import com.example.springboot.model.entity.CmsUser;
 import com.example.springboot.utils.CopyUtil;
-import com.example.springboot.utils.DateUtil;
+import com.example.springboot.utils.date.DateUtil;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;

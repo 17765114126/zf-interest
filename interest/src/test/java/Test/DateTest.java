@@ -1,6 +1,6 @@
 package Test;
 
-import com.example.springboot.utils.DateUtil;
+import com.example.springboot.utils.date.DateUtil;
 import org.junit.Test;
 
 import java.text.ParseException;

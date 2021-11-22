@@ -1,6 +1,6 @@
 package com.example.springboot.utils.sign;
 
-import com.example.springboot.utils.AygOpenApiException;
+import com.example.springboot.exception.AygOpenApiException;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;

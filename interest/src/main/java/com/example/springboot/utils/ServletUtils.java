@@ -1,7 +1,8 @@
 package com.example.springboot.utils;
 
 import com.example.springboot.model.constant.Constants;
-import com.example.springboot.utils.text.Convert;
+import com.example.springboot.utils.string.StringUtils;
+import com.example.springboot.utils.support.Convert;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;

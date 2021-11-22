@@ -5,7 +5,7 @@ import com.aliyun.oss.OSSClient;
 import com.aliyun.oss.OSSException;
 import com.aliyun.oss.ServiceException;
 import com.aliyun.oss.model.*;
-import com.example.springboot.utils.DateUtil;
+import com.example.springboot.utils.date.DateUtil;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;

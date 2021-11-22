@@ -1,6 +1,6 @@
 package com.example.springboot.utils.IP;
 
-import com.example.springboot.utils.StringUtils;
+import com.example.springboot.utils.string.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.net.InetAddress;

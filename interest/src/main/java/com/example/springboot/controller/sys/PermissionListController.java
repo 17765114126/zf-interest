@@ -8,7 +8,7 @@ import com.example.springboot.model.sys.ModelAndButtonVo;
 import com.example.springboot.model.sys.PermissionListVo;
 import com.example.springboot.service.sys.PermissionListService;
 import com.example.springboot.model.form.Result;
-import com.example.springboot.utils.StringUtil;
+import com.example.springboot.utils.string.StringUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;

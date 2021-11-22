@@ -75,19 +75,16 @@ public class ListUtils {
             throw new IllegalArgumentException(String.format("Cannot instantiate an object of %s.", tClass));
         }
     }
+
     /**
-
      * 循环截取某页列表进行分页
-
-     * @param dataList 分页数据
-
-     * @param pageSize  页面大小
-
-     * @param currentPage   当前页面
-
+     *
+     * @param dataList    分页数据
+     * @param pageSize    页面大小
+     * @param currentPage 当前页面
      */
 
-    public static List<String> page(List<String> dataList, int pageSize,int currentPage) {
+    public static List<String> page(List<String> dataList, int pageSize, int currentPage) {
 
         List<String> currentPageList = new ArrayList<>();
 

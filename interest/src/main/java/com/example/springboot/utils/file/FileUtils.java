@@ -1,6 +1,6 @@
 package com.example.springboot.utils.file;
 
-import com.example.springboot.utils.StringUtils;
+import com.example.springboot.utils.string.StringUtils;
 import org.apache.commons.lang3.ArrayUtils;
 
 import javax.servlet.http.HttpServletRequest;

@@ -1,8 +1,8 @@
 package com.example.springboot.Validation;
 
 import com.example.springboot.model.User;
-import com.example.springboot.utils.Validator.CommonReturnConstants;
-import com.example.springboot.utils.Validator.ValidationException;
+import com.example.springboot.model.constant.CommonReturnConstants;
+import com.example.springboot.exception.ValidationException;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
@@ -37,7 +37,7 @@ public class ValidatorUtils {
      */
     public static void validateEntity(Object object, Class<?>... groups) {
         Set<ConstraintViolation<Object>> validateResult = validator.validate(object, groups);
-        com.example.springboot.utils.Validator.ValidationException validationException = new ValidationException(
+        ValidationException validationException = new ValidationException(
             CommonReturnConstants.INVALID_JSON);
         if (!validateResult.isEmpty()) {
             for (ConstraintViolation violation : validateResult) {

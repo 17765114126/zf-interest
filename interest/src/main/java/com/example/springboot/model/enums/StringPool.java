@@ -67,7 +67,7 @@ public interface StringPool {
     String HASH_LEFT_BRACE = "#{";
     String CRLF = "\r\n";
     String LINE = " --- ";
-
+    String EMPTY_JSON 		= "{}";
     String HTML_NBSP = "&nbsp;";
     String HTML_AMP = "&amp";
     String HTML_QUOTE = "&quot;";
@@ -85,4 +85,14 @@ public interface StringPool {
     String SSLKEY = "key";
     String SSLPEM = "pem";
     String SHFILE = ".sh";
+    String UTF_8			= "UTF-8";
+    String GBK				= "GBK";
+    String ISO_8859_1 		= "ISO-8859-1";
+    char U_A				= 'A';
+    char L_A				= 'a';
+    char U_Z				= 'Z';
+    char L_Z				= 'z';
+    String GET				= "GET";
+    String POST				= "POST";
+
 }

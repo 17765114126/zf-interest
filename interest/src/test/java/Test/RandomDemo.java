@@ -1,7 +1,7 @@
 package Test;
 
-import com.example.springboot.utils.DateUtil;
-import com.example.springboot.utils.StringUtil;
+import com.example.springboot.utils.date.DateUtil;
+import com.example.springboot.utils.string.StringUtil;
 import org.junit.Test;
 
 import java.util.Random;

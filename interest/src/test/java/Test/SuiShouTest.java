@@ -8,11 +8,14 @@ import com.example.springboot.utils.string.StringUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
+import javax.naming.*;
+import java.io.File;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 /**
  * @ClassName SuiShouTest
@@ -383,16 +386,16 @@ public class SuiShouTest {
         arrayList.add(user);
         arrayList.add(user1);
         arrayList.add(user2);
-        arrayList.add(1,user3);
-
+//        arrayList.add(1,user3);
 
         System.out.println(JSON.toJSONString(arrayList));
 
-
         //按时间排序
-//        List<User> collect = arrayList.stream().sorted(Comparator.comparing(User::getDate).reversed()).collect(Collectors.toList());
+        List<User> collect = arrayList.stream().sorted(Comparator.comparing(User::getDate).reversed()).collect(Collectors.toList());
+        //过滤
+        List<User> collect1 = arrayList.stream().filter(s -> s.getId() == 1L).collect(Collectors.toList());
 
-//        System.out.println(JSON.toJSONString(collect));
+        System.out.println(JSON.toJSONString(collect1));
     }
 
     @Test
@@ -405,7 +408,29 @@ public class SuiShouTest {
 
     @Test
     public void Test16(){
-        String trim = " acs".trim();
+        String trim = " AS1221acs".trim();
         System.out.println(trim);
+        System.out.println(trim.toUpperCase());
     }
+
+
+    @Test
+    public void Test17(){
+        System.out.println(formatNumber(new BigDecimal("60.00")));
+    }
+
+    public Integer formatNumber(BigDecimal bigDecimal) {
+//        String priceStr = CURRENCY_FORMAT.format(bigDecimal).substring(1);
+        String priceStr = String.valueOf(bigDecimal);
+        if (StringUtils.isBlank(priceStr)){
+            return 0;
+        }
+        int i = priceStr.indexOf(".");
+        String substring = priceStr.substring(0, i);
+        Integer integer = Integer.valueOf(substring);
+        return integer;
+    }
+
+
+
 }

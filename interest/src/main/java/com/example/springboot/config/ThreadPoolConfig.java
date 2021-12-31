@@ -1,6 +1,7 @@
 package com.example.springboot.config;
 
 import com.example.springboot.utils.ThreadPoolUtils;
+import io.lettuce.core.dynamic.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
@@ -17,13 +18,13 @@ import java.util.concurrent.TimeUnit;
 public class ThreadPoolConfig implements CommandLineRunner {
 
 //    @Value("${threadPoolExecutor.corePoolSize:15}")
-    private Integer corePoolSize;
+    private Integer corePoolSize = 5;
 
 //    @Value("${threadPoolExecutor.maximumPoolSize:30}")
-    private Integer maximumPoolSize;
+    private Integer maximumPoolSize = 10;
 
 //    @Value("${threadPoolExecutor.keepAliveTime:30}")
-    private Integer keepAliveTime;
+    private Integer keepAliveTime = 1;
 
 
     @Override

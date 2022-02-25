@@ -1,12 +1,16 @@
 package Test;
 
+import cn.hutool.json.JSONArray;
+import cn.hutool.json.JSONUtil;
 import com.alibaba.fastjson.JSON;
 import com.example.springboot.model.User;
 import com.example.springboot.utils.date.DateUtil;
 import com.example.springboot.utils.number.MathUtil;
 import com.example.springboot.utils.string.StringUtil;
+import com.google.gson.Gson;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
+
 
 import javax.naming.*;
 import java.io.File;
@@ -178,7 +182,40 @@ public class SuiShouTest {
         System.out.println(df.format(z - 2));
 
     }
+    public static void main(String[] args) {
+        BigDecimal rate = new BigDecimal(100);
 
+        BigDecimal ExecutoryPay = new BigDecimal("291500.00");
+        BigDecimal AdvancePayment = new BigDecimal("0.01");
+
+        //支付中心 待付金额
+        BigDecimal nonPayAmount = new BigDecimal("29149999");
+        BigDecimal nonPayAmount1 = new BigDecimal("29149999.00");
+
+        boolean b = nonPayAmount.compareTo(nonPayAmount1) == 0;
+        System.out.println(b);
+
+
+        BigDecimal subtract = ExecutoryPay.subtract(AdvancePayment).multiply(rate);
+
+        System.out.println(subtract);
+        if (!subtract.equals(nonPayAmount)) {
+            System.out.println("---------sdvv-------");
+
+        }
+
+
+
+        nonPayAmount = nonPayAmount.divide(rate).add(AdvancePayment);
+        //发飞书消息
+        if (!ExecutoryPay.equals(nonPayAmount)) {
+
+            System.out.println("----------------");
+        }
+
+//        String rPWH3KF85BdDZQTn = signResult("rPWH3KF85BdDZQTn");
+//        System.out.println(rPWH3KF85BdDZQTn);
+    }
     @Test
     public void Test7() {
         BigDecimal c = BigDecimal.valueOf(3.55);
@@ -396,6 +433,23 @@ public class SuiShouTest {
         List<User> collect1 = arrayList.stream().filter(s -> s.getId() == 1L).collect(Collectors.toList());
 
         System.out.println(JSON.toJSONString(collect1));
+
+
+        List list = new ArrayList<>();
+
+        Map map = new HashMap<>();
+        map.put("id","1");
+        map.put("name","2");
+
+        list.add(map);
+
+        Map map1 = new HashMap<>();
+
+        map1.put("id",3L);
+        map1.put("name","acs");
+        list.add(map1);
+        System.out.println(JSON.toJSONString(list));
+
     }
 
     @Test
@@ -411,6 +465,16 @@ public class SuiShouTest {
         String trim = " AS1221acs".trim();
         System.out.println(trim);
         System.out.println(trim.toUpperCase());
+
+        if (!Arrays.asList("070102","070103","080102","080103","090102","090103","150102","150103").contains("9")){
+            System.out.println("---------------------");
+        }
+
+        String str = null;
+        if (Objects.isNull(str) && !"000".equals("000")) {
+            System.out.println("-------cdscscsd");
+        }
+
     }
 
 
@@ -431,6 +495,30 @@ public class SuiShouTest {
         return integer;
     }
 
+    @Test
+    public void Test18() {
+
+        BigDecimal nonPayAmount = new BigDecimal(0);
+        BigDecimal LoanAmt = new BigDecimal(0.01);
+
+        //判断BigDecimal类型是否为0
+        System.out.println(LoanAmt.compareTo(nonPayAmount) == 0);
+
+
+        if (nonPayAmount.compareTo(new BigDecimal(0.00)) == 0){
+            System.out.println("---------ssss-----");
+        }
+
+        System.out.println(LoanAmt);
+
+        Set<Long> longs = new HashSet<>();
+        longs.add(1L);
+        longs.add(2L);
+        if (longs.contains(1L)) {
+            System.out.println("--------------");
+        }
+
+    }
 
 
 }

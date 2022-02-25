@@ -10,6 +10,7 @@ import com.example.springboot.model.req.sys.CmsUserReq;
 import com.example.springboot.model.sys.CmsUserVo;
 import com.example.springboot.service.sys.CmsUserService;
 import com.example.springboot.utils.EnvUtils;
+import com.example.springboot.utils.FeiShuMsgUtils;
 import com.example.springboot.utils.SendEmailUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -82,6 +83,17 @@ public class SpringbootApplicationTests {
         WallHaven wallHaven = new WallHaven();
         wallHaven.setImgUrl("sdcsdv");
         wallHavenMapper.insert(wallHaven);
+    }
+
+    @Autowired
+    private FeiShuMsgUtils feiShuMsgUtils;
+
+    /**
+     * 飞书机器人
+     * */
+    @Test
+    public void Test3(){
+        feiShuMsgUtils.sendDingMsg("金额报警测试");
     }
 
 }

@@ -29,7 +29,7 @@ public class GeneratorCodeUtil {
 
 //    private static final String DB_URL = "jdbc:mysql://rm-bp14f94yt54bl7l54o.mysql.rds.aliyuncs.com:3306/db_dora_syj?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8";
 //    private static final String DB_URL = "jdbc:mysql://rm-bp14f94yt54bl7l54o.mysql.rds.aliyuncs.com:3306/db_yimai?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8";
-    private static final String DB_URL = "jdbc:mysql://zeekrlife-dev-public.mysql.rds.aliyuncs.com:3306/zeekrlife_mp_order?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8";
+    private static final String DB_URL = "jdbc:mysql://zeekrlfie-dev-rds-public.mysql.rds.aliyuncs.com:3306/zeekrlife_mp_pay?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8";
 
     /**
      * 请自定义自己的username
@@ -62,7 +62,7 @@ public class GeneratorCodeUtil {
     public static void main(String[] args) throws IOException {
         System.out.println("--------------------开始自动生成相关的类----------------------");
         System.out.println("args = " + new File("").getAbsolutePath() + "/src/main/java/");
-        generateByTables(MODULE_NAME, "nfc_card");
+        generateByTables(MODULE_NAME, "pay_order_details");
 
         System.out.println("--------------------------生成成功------------------------");
     }

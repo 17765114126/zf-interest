@@ -4,6 +4,7 @@ package com.example.springboot.utils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -35,6 +36,9 @@ public class FeiShuRobotUtils {
     public void send(String ddrobotUrl, Map<String, Object> items){
         try {
             restTemplate.postForEntity(ddrobotUrl,items,String.class);
+
+
+            ResponseEntity<String> forEntity = restTemplate.getForEntity(ddrobotUrl, String.class);
         } catch (Exception e) {
 //            log.error("send dingding error:{}", ExUtils.getEDetail(e));
         }

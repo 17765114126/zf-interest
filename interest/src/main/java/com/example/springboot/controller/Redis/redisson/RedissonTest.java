@@ -31,15 +31,17 @@ public class RedissonTest {
         List<User> arrayList = data();
         for (User user4 : arrayList) {
             RLock lock = redisson.getLock("lock" + user4.getId());
-            try {
-                //加锁与超时时间
-                lock.lock(15, TimeUnit.SECONDS);
-            } catch (Exception e) {
-                log.info("error:{}",e.getMessage());
-            } finally {
-                //若锁被当前线程持有，才释放锁,否则释放锁回报错
-                if(lock.isLocked() && lock.isHeldByCurrentThread()) {
-                    lock.unlock();
+            if (!lock.isLocked()) {
+                try {
+                    //加锁与超时时间
+                    lock.lock(15, TimeUnit.SECONDS);
+                } catch (Exception e) {
+                    log.info("error:{}", e.getMessage());
+                } finally {
+                    //若锁被当前线程持有，才释放锁,否则释放锁回报错
+                    if (lock.isLocked() && lock.isHeldByCurrentThread()) {
+                        lock.unlock();
+                    }
                 }
             }
         }

@@ -4,6 +4,7 @@ import cn.hutool.json.JSONArray;
 import cn.hutool.json.JSONUtil;
 import com.alibaba.fastjson.JSON;
 import com.example.springboot.model.User;
+import com.example.springboot.utils.ID.SnowIdUtils;
 import com.example.springboot.utils.date.DateUtil;
 import com.example.springboot.utils.number.MathUtil;
 import com.example.springboot.utils.string.StringUtil;
@@ -148,6 +149,11 @@ public class SuiShouTest {
     public void Test6() {
         //BigDecimal本身提供了加减乘除的方法
         //
+
+        //BigDecima类型相加
+        BigDecimal  e = BigDecimal.valueOf(0);
+        BigDecimal ex = BigDecimal.valueOf(0.01);
+        System.out.println(e.add(ex));
         //加法 add()函数
         //减法subtract()函数
         //乘法multipy()函数
@@ -480,6 +486,21 @@ public class SuiShouTest {
 
     @Test
     public void Test17(){
+        ArrayList<Object> objects = new ArrayList<>();
+        objects.add("123");
+        System.out.println(objects.isEmpty());
+
+
+        if (DateUtil.getDateNoTime("2021-06-16 00:00:00").compareTo(cn.hutool.core.date.DateUtil.parseDate("2022-01-01 00:00:00"))<0){
+//            return ResultBean.success(null);
+            System.out.println("111-------------");
+        }else {
+            //日期赋值
+            System.out.println("222-------------");
+//            date = bizOrder.getPayDepositTime();
+        }
+
+
         System.out.println(formatNumber(new BigDecimal("60.00")));
     }
 
@@ -495,11 +516,51 @@ public class SuiShouTest {
         return integer;
     }
 
+
+
+
+
+
     @Test
     public void Test18() {
 
-        BigDecimal nonPayAmount = new BigDecimal(0);
+
+        BigDecimal nonPayAmount = new BigDecimal(0.01);
+        //成功支付金额
         BigDecimal LoanAmt = new BigDecimal(0.01);
+
+        //定金
+        BigDecimal amonut = new BigDecimal(5000.00);
+
+        if (!(LoanAmt.compareTo(amonut) == -1 && nonPayAmount.compareTo(amonut) > -1)) {
+            Boolean isUpdateStatus = false;
+        }
+//        if (!(succeedPay.compareTo(amonut) == -1 && notifyResult.getCallBackPaymentResult().getHasPayAmount().compareTo(amonut) > -1)) {
+
+        //前提为a、b均不能为null
+        if(nonPayAmount.compareTo(LoanAmt) == -1){
+            System.out.println("a小于b");
+        }
+
+        if(nonPayAmount.compareTo(LoanAmt) == 0){
+            System.out.println("a等于b");
+        }
+
+        if(nonPayAmount.compareTo(LoanAmt) == 1){
+            System.out.println("a大于b");
+        }
+
+        if(nonPayAmount.compareTo(LoanAmt) > -1){
+            System.out.println("a大于等于b");
+        }
+
+        if(nonPayAmount.compareTo(LoanAmt) < 1){
+            System.out.println("a小于等于b");
+        }
+
+
+
+
 
         //判断BigDecimal类型是否为0
         System.out.println(LoanAmt.compareTo(nonPayAmount) == 0);
@@ -520,5 +581,12 @@ public class SuiShouTest {
 
     }
 
+    @Test
+    public void Test19(){
+        long snowID = SnowIdUtils.uniqueLong();
+        System.out.println(snowID);
 
+        long snowID1 = SnowIdUtils.uniqueLong();
+        System.out.println(snowID1);
+    }
 }

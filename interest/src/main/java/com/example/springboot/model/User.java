@@ -1,5 +1,6 @@
 package com.example.springboot.model;
 
+import com.baomidou.mybatisplus.annotation.Version;
 import com.example.springboot.config.annotation.Encrypt;
 import com.example.springboot.model.entity.MallRegion;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -71,5 +72,13 @@ public class User {
     private Date date;
     @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)//字段为null此字段不反回
     private String invalid;
+
+
+    /**
+     * mybatis 乐观锁   
+     * 加一个注解 @Version
+     * */
+    @Version
+    private Integer version=0;
 
 }

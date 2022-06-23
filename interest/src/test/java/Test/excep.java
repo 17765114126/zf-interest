@@ -28,32 +28,10 @@ public class excep {
      */
 //    public static void main(String[] args) throws IOException {
 //
-//        List<PayOrderDetailsDO> prodDTO = getmportExcel("D:\\excel\\补定金.xlsx");
+//        List<ImportExcelDTO> prodDTO = getmportExcel("D:\\excel\\待支付.xlsx");
 //
-//        for (PayOrderDetailsDO importExcelDTO : prodDTO) {
-//
-//            if (Objects.isNull(importExcelDTO.getPayRetMsg())){
-//                importExcelDTO.setPayRetMsg("");
-//            }
-//            if (Objects.isNull(importExcelDTO.getAccountNo())){
-//                importExcelDTO.setAccountNo("");
-//            }
-//            if (Objects.isNull(importExcelDTO.getOutPayId())){
-//                importExcelDTO.setOutPayId("");
-//            }
-//            if (Objects.isNull(importExcelDTO.getPayCreateTime())){
-//                importExcelDTO.setPayCreateTime("");
-//            }
-//            if (Objects.isNull(importExcelDTO.getPayTime())){
-//                importExcelDTO.setPayTime("");
-//            }
-////            String s = "UPDATE zeekrlife_mp_order.biz_order SET paid_amt = "+importExcelDTO.getPay() +",refund_time = '"+importExcelDTO.getTime()+"' WHERE id = "+importExcelDTO.getId()+";";
-//
-//            String sql = "INSERT INTO zeekrlife_mp_pay.pay_order_details(`id`, `pay_order_id`, `out_pay_id`, `biz_type`, `sub_order_type`, `account_no`, `title`, `content`, `pay_amt`, `pay_way`, `pay_product`, `pay_status`, `pay_ret_msg`, `pay_create_time`, `pay_time`, `extend_attr`, `deleted`, `created_at`, `created_by`, `updated_at`, `updated_by`, `out_pay_way`, `loan_fee`) VALUES(" + SnowIdUtils.uniqueLong() + ", "+importExcelDTO.getId()+", '"+importExcelDTO.getOutPayId()+"', '"+importExcelDTO.getBizType()+"', "+importExcelDTO.getSubOrderType()+", '"+importExcelDTO.getAccountNo()+"', '"+importExcelDTO.getTitle()+"', '"+importExcelDTO.getContent()+"', "+importExcelDTO.getPayAmt()+", "+importExcelDTO.getPayWay()+", "+importExcelDTO.getPayProduct()+", "+importExcelDTO.getPayStatus()+", '"+importExcelDTO.getPayRetMsg()+"', '"+importExcelDTO.getPayCreateTime()+"', '"+importExcelDTO.getPayTime()+"', '"+importExcelDTO.getExtendAttr()+"', "+importExcelDTO.getDeleted()+", now(), 'system', now(), 'system', 0, NULL) ;" ;
-//
-//
-//
-////            log.info(sql);
+//        for (ImportExcelDTO importExcelDTO : prodDTO) {
+//            String sql = "update zeekrlife_mp_order.biz_order_pay set pay_status = 1 where id ="+importExcelDTO.getId()+ ";";
 //            System.out.println(sql);
 //        }
 //        System.out.println("----------------------------------");
@@ -71,17 +49,16 @@ public class excep {
         List<ImportExcelDTO> prodDTO = getmportExcel("D:\\excel\\退定金.xlsx");
         for (ImportExcelDTO importExcelDTO : prodDTO) {
             long payOrderRefundId = SnowIdUtils.uniqueLong();
+            String time = "2022-06-23 10:00:00";
             String sql = "update zeekrlife_mp_order.biz_order \n" +
                     "set \n" +
                     "paid_amt = 0.00,\n" +
                     "advance_payment = 0.00,\n" +
                     "client_order_status = 5 ,\n" +
                     "unsubscribe_status = 7,\n" +
-                    "refund_create_time = '2022-04-13 09:00:15',\n" +
-                    "refund_time = '2022-04-13 09:00:15'\n" +
+                    "refund_create_time = '"+time+"',\n" +
+                    "refund_time = '"+time+"'\n" +
                     "where id = "+importExcelDTO.getId()+" AND biz_order_no = '"+importExcelDTO.getBizOrderNo()+"';\n" +
-
-
 
                     "\n" +
                     "INSERT INTO zeekrlife_mp_pay.pay_order_refund\n" +
@@ -95,12 +72,11 @@ public class excep {
                     "VALUES \n" +
                     "("+payOrderRefundId+", "+importExcelDTO.getAccountId()+",\n" +
                     " "+importExcelDTO.getPoId()+", "+importExcelDTO.getId()+", "+importExcelDTO.getBizOrderPayId()+", \n" +
-                    " 'K51985001scdscscsc70556C', \n" +
+                    " '', \n" +
                     " '"+importExcelDTO.getOutPayId()+"', \n" +
                     " "+importExcelDTO.getSubOrderType()+", "+importExcelDTO.getPayAmt()+", "+importExcelDTO.getPayAmt()+", \n" +
                     " 3, "+importExcelDTO.getPayWay()+", \n" +
-                    " '2022-04-13 09:00:15', '2022-04-13 09:00:15', '', '', NULL, '', '"+importExcelDTO.getBizOrderNo()+"', 0, now(), '', now(), '', '"+importExcelDTO.getBizType()+"', NULL);\n" +
-
+                    " '"+time+"', '"+time+"', '', '', NULL, '', '"+importExcelDTO.getBizOrderNo()+"', 0, now(), '', now(), '', '"+importExcelDTO.getBizType()+"', NULL);\n" +
 
                     "\n" +
                     "INSERT INTO zeekrlife_mp_pay.pay_order_refund_details \n" +
@@ -111,10 +87,10 @@ public class excep {
                     "`refund_create_time`, `refund_time`, `refund_reason`, `other_reason`, `refund_expire_time`, `fail_msg`, `extend_attr`, `deleted`, `created_at`, `created_by`, `updated_at`, `updated_by`, `biz_type`, `refund_integral`) \n" +
                     "VALUES \n" +
                     "("+SnowIdUtils.uniqueLong()+", "+payOrderRefundId+", "+importExcelDTO.getPodId()+", \n" +
-                    "'1513539csdcsdvs577055346688', \n" +
+                    "'', \n" +
                     "'"+importExcelDTO.getPodOpId()+"', " +
                     ""+importExcelDTO.getSubOrderType()+", "+importExcelDTO.getPayAmt()+", "+importExcelDTO.getPayAmt()+", 3, "+importExcelDTO.getPayWay()+", " +
-                    "'2022-04-11 16:19:43', '2022-04-11 16:27:22', '', '', NULL, '', '"+importExcelDTO.getBizOrderNo()+"', 0,  now(), '',  now(), '', '"+importExcelDTO.getBizType()+"', NULL);" ;
+                    "'"+time+"', '"+time+"', '', '', NULL, '', '"+importExcelDTO.getBizOrderNo()+"', 0,  now(), '',  now(), '', '"+importExcelDTO.getBizType()+"', NULL);" ;
             System.out.println(sql);
         }
     }

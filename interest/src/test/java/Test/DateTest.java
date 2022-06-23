@@ -19,9 +19,17 @@ public class DateTest {
         //判断当前时间，是否在起始时间和结束时间之间，可以精确到秒
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// 设置日期格式
         try {
+
             Date now = df.parse("2020-07-29 00:00:00");
             Date beginTime = df.parse("2020-07-30 00:00:00");
             Date endTime = df.parse("2021-08-09 00:00:00");
+
+            //比较大小
+            Date parse = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse("2022-06-01 00:00:00");
+            boolean b = now.compareTo(parse) == 1;
+            System.out.println(b);
+
+
             Boolean flag = DateUtil.belongCalendar(now, beginTime, endTime);
             System.out.println(flag);
             System.out.println("---------------");

@@ -4,11 +4,16 @@ import cn.hutool.json.JSONArray;
 import cn.hutool.json.JSONUtil;
 import com.alibaba.fastjson.JSON;
 import com.example.springboot.model.User;
+import com.example.springboot.utils.CollectionUtil;
 import com.example.springboot.utils.ID.SnowIdUtils;
 import com.example.springboot.utils.date.DateUtil;
 import com.example.springboot.utils.number.MathUtil;
 import com.example.springboot.utils.string.StringUtil;
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.ImmutableSortedSet;
 import com.google.gson.Gson;
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
@@ -17,6 +22,8 @@ import javax.naming.*;
 import java.io.File;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -426,20 +433,38 @@ public class SuiShouTest {
         user3.setDate(DateUtil.getDateNoTime("2021-09-22 15:57:41"));
 
         List<User> arrayList = new ArrayList();
+
+
         arrayList.add(user);
         arrayList.add(user1);
         arrayList.add(user2);
+
+        Long countPayAmt = arrayList.stream().filter(e -> e.getId()>1).map(User::getId).reduce(0L, (a, b) -> a+b);
+
+
+        System.out.println(countPayAmt);
+
+        System.out.println("-------------------------------------------------------");
+
 //        arrayList.add(1,user3);
 
         System.out.println(JSON.toJSONString(arrayList));
 
+
+        Comparator<User> reversed = Comparator.comparing(User::getTest6).reversed();
         //按时间排序
         List<User> collect = arrayList.stream().sorted(Comparator.comparing(User::getDate).reversed()).collect(Collectors.toList());
         //过滤
         List<User> collect1 = arrayList.stream().filter(s -> s.getId() == 1L).collect(Collectors.toList());
-
         System.out.println(JSON.toJSONString(collect1));
+        //相加
+        Long reduce = arrayList.stream().map(User::getId).reduce(0L, (a, b) -> a + b);
 
+        System.out.println("相加"+reduce );
+
+        //判断集合是否为空
+        boolean notEmpty = CollectionUtils.isNotEmpty(arrayList);
+        System.out.println(notEmpty);
 
         List list = new ArrayList<>();
 
@@ -524,18 +549,36 @@ public class SuiShouTest {
     @Test
     public void Test18() {
 
+        Map<String, Object> paramMap = new HashMap<>();
 
-        BigDecimal nonPayAmount = new BigDecimal(0.01);
+        String payOrderId = String.valueOf(paramMap.get("attach"));
+        System.out.println(StringUtils.isNotBlank(payOrderId));
+
+        BigDecimal q = new BigDecimal(2000.00);
+        //成功支付金额
+        BigDecimal w = new BigDecimal(100);
+
+        BigDecimal multiply = q.multiply(w);
+        System.out.println(multiply);
+
+
+
+
+        BigDecimal nonPayAmount = new BigDecimal(0);
         //成功支付金额
         BigDecimal LoanAmt = new BigDecimal(0.01);
 
         //定金
-        BigDecimal amonut = new BigDecimal(5000.00);
+        BigDecimal amonut = new BigDecimal(0.01);
 
         if (!(LoanAmt.compareTo(amonut) == -1 && nonPayAmount.compareTo(amonut) > -1)) {
             Boolean isUpdateStatus = false;
         }
 //        if (!(succeedPay.compareTo(amonut) == -1 && notifyResult.getCallBackPaymentResult().getHasPayAmount().compareTo(amonut) > -1)) {
+        if (!new BigDecimal(0.03).equals(new BigDecimal(0)) && !new BigDecimal(0.02).equals(new BigDecimal(0.02))) {
+            System.out.println("=================as1");
+        }
+
 
         //前提为a、b均不能为null
         if(nonPayAmount.compareTo(LoanAmt) == -1){
@@ -588,5 +631,67 @@ public class SuiShouTest {
 
         long snowID1 = SnowIdUtils.uniqueLong();
         System.out.println(snowID1);
+    }
+
+
+    @Test
+    public void testCotyOf(){
+        ImmutableSet<String> imSet=ImmutableSet.of("peida","jerry","harry","lisa");
+        System.out.println("imSet："+imSet);
+
+        //set直接转list
+        ImmutableList<String> imlist=ImmutableList.copyOf(imSet);
+        System.out.println("imlist："+imlist);
+
+        //list直接转SortedSet
+        ImmutableSortedSet<String> imSortSet=ImmutableSortedSet.copyOf(imSet);
+        System.out.println("imSortSet："+imSortSet);
+
+        List<String> list=new ArrayList<String>();
+        for(int i=0;i<=10;i++){
+            list.add(i+"x");
+        }
+        System.out.println("list："+list);
+
+        //截取集合部分元素
+        ImmutableList<String> imInfolist=ImmutableList.copyOf(list.subList(2, 8));
+        System.out.println("imInfolist："+imInfolist);
+
+
+    }
+
+
+    @Test
+    public void Test20(){
+
+        List<Integer> objects = new ArrayList<>();
+        objects.add(1);
+        objects.add(2);
+//        System.out.println(objects);
+        System.out.println(objects.contains(2));
+        System.out.println(objects.contains(Arrays.asList(1, 2)));
+
+        Date parse = null;
+        Date parse1 = null;
+        try {
+            parse = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse("2022-06-01 00:00:00");
+            parse1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse("2022-05-01 00:00:00");
+        } catch (ParseException var3) {
+            throw new RuntimeException(var3);
+        }
+
+        Long versionId = 2L;
+//        if ((Objects.equals(versionId.intValue(), ModelVersionEnum.WE.getCode()) || Objects.equals(versionId.intValue(), ModelVersionEnum.SUPER_WE.getCode())) && parse1.compareTo(parse) == 1) {
+//            System.out.println("--------------------");
+//        }
+    }
+
+    @Test
+    public void  Test21(){
+        String[] split = "Z001A002,Z001A003".split(",");
+        List<String> strings = Arrays.asList(split);
+        boolean qd = strings.contains("Z001A002");
+        System.out.println(qd);
+
     }
 }

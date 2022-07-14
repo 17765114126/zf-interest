@@ -57,4 +57,31 @@ public class ThreadPoolExecutorTest {
      * new ThreadPoolExecutor.DiscardPolicy() //队列满了，丢掉任务，不会抛出异常！
      * new ThreadPoolExecutor.DiscardOldestPolicy() //队列满了，尝试去和最早的竞争，也不会抛出异常！
      * */
+
+    /**
+     * 多线程demo
+     * */
+    public void  s(){
+        ExecutorService fixedThreadPool = null;
+        try {
+            fixedThreadPool = Executors.newFixedThreadPool(6);
+            for (int i = 1; i <= 9; i++) {
+                fixedThreadPool.execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            fixedThreadPool.shutdown();
+        }
+
+    }
 }

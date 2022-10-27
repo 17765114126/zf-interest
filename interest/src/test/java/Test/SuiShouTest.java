@@ -1,6 +1,7 @@
 package Test;
 
 import cn.hutool.json.JSONArray;
+import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.alibaba.fastjson.JSON;
 import com.example.springboot.model.User;
@@ -25,6 +26,7 @@ import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -497,7 +499,7 @@ public class SuiShouTest {
         System.out.println(trim);
         System.out.println(trim.toUpperCase());
 
-        if (!Arrays.asList("070102","070103","080102","080103","090102","090103","150102","150103").contains("9")){
+        if (Arrays.asList(7,8,9).contains(9)){
             System.out.println("---------------------");
         }
 
@@ -664,6 +666,25 @@ public class SuiShouTest {
     @Test
     public void Test20(){
 
+
+        boolean isWe = Objects.equals(7, 1)
+                || Objects.equals(7, 2);
+        //不为WE版的，若国补价格不同抛出
+
+        BigDecimal bigDecimal =  new BigDecimal("0");
+        BigDecimal bigDecimal1 = new BigDecimal("0.00");
+        if (!isWe && !(new BigDecimal("0").compareTo(bigDecimal1) == 0)) {
+            System.out.println("------------------------");
+
+        }
+
+
+
+        if (Arrays.asList(new BigDecimal("12600"),new BigDecimal("0"),new BigDecimal("8820")).contains(new BigDecimal("34"))){
+//            System.out.println("------------------------");
+        }
+
+
         List<Integer> objects = new ArrayList<>();
         objects.add(1);
         objects.add(2);
@@ -687,11 +708,61 @@ public class SuiShouTest {
     }
 
     @Test
-    public void  Test21(){
-        String[] split = "Z001A002,Z001A003".split(",");
-        List<String> strings = Arrays.asList(split);
-        boolean qd = strings.contains("Z001A002");
-        System.out.println(qd);
+    public void  Test21() {
+//        String[] split = "Z001A002,Z001A003".split(",");
+////        List<String> strings = Arrays.asList(split);
+////        boolean qd = strings.contains("Z001A002");
+////        System.out.println(qd);
+        boolean equals = "2".equals(null);
+        System.out.println(equals);
+//        if (new Date().compareTo(cn.hutool.core.date.DateUtil.parse("2022-09-01 00:00:00")) >= 0) {
+//            System.out.println("____________________________");
+//        }
+    }
+    @Test
+    public void  Test22(){
+
+        List<String> list = new ArrayList<String>();
+        list.add("AAA");
+        list.add("BBB");
+        list.add("BBB");
+        list.add("CCC");
+//若直接操作，会报ConcurrentModificationException异常（并发修改异常）
+//        for (String str : list) {
+//            if("BBB".equals(str)){
+//                list.remove(str);
+//            }
+//        }
+//需要添加到CopyOnWriteArrayList在处理
+        List<String> newList = new CopyOnWriteArrayList<String>();
+        newList.addAll(list);
+        for (String str : newList) {
+            if("BBB".equals(str)){
+                newList.remove(str);
+            }
+        }
+        System.out.println();
+
+
+
+//        List<Long> bizOrderIds = myOrderResultList.stream().map(s -> s.getBizOrderId()).collect(Collectors.toList());
+//        List<Integer> specialOrderType = new ArrayList<>();
+//        specialOrderType.add(SpecialOrderTypeEnum.LOSS_QUALITY_ORDER.getCode());
+//        specialOrderType.add(SpecialOrderTypeEnum.SHOU_HIDDE_ORDER.getCode());
+//        List<BizOrderSpecialDO> bizOrderSpecialDOS = bizOrderSpecialMapper.selectOrderSpecialByIdList(bizOrderIds, specialOrderType);
+//        if(CollectionUtils.isNotEmpty(bizOrderSpecialDOS)) {
+//            List<MyOrderResult> newList = myOrderResultList.stream().filter(xx ->
+//                    !bizOrderSpecialDOS.stream()
+//                            .map(xy -> xy.getBizOrderId())
+//                            .collect(Collectors.toList()).contains(xx.getBizOrderId()))
+//                    .collect(Collectors.toList());
+//            myOrderResultList = newList;
+//        }
+
 
     }
+
+
+
+
 }

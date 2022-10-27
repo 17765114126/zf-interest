@@ -52,5 +52,16 @@ public class ImportExcelDTO {
     @Excel(name = "podOpId", width = 200)
     private String podOpId;
 
+    @Excel(name = "out_refund_id", width = 200)
+    private String outRefundId;
 
+    @Excel(name = "refund_create_time", width = 200)
+    private String refundCreateTime;
+
+
+    @Excel(name = "refund_time", width = 200)
+    private String refundTime;
+
+    @Excel(name = "porId", width = 200)
+    private String porId;
 }

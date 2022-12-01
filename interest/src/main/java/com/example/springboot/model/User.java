@@ -3,6 +3,7 @@ package com.example.springboot.model;
 import com.baomidou.mybatisplus.annotation.Version;
 import com.example.springboot.config.annotation.Encrypt;
 import com.example.springboot.model.entity.MallRegion;
+import com.example.springboot.utils.ValidationGroups;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Data;
@@ -57,8 +58,8 @@ public class User {
     private Date test6;
 
 //    @Pattern(regexp = "^(1[3-9]\\d{9}$)", message = "请输入11位有效手机号")
-    @NotBlank(message = "不能为null")
-    @Email(message = "邮箱格式错误")
+    @NotBlank(message = "不能为null",groups ={ValidationGroups.Update.class})
+    @Email(message = "邮箱格式错误",groups ={ValidationGroups.Insert.class})
     private String email;
 
 

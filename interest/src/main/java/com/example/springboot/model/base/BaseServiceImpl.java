@@ -1,6 +1,5 @@
-package com.example.springboot.model.base.service;
+package com.example.springboot.model.base;
 
-import com.example.springboot.model.base.dao.BaseDao;
 import org.springframework.transaction.annotation.Transactional;
 
 public abstract class BaseServiceImpl implements BaseService{

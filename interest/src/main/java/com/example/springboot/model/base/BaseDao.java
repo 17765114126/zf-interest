@@ -1,4 +1,4 @@
-package com.example.springboot.model.base.dao;
+package com.example.springboot.model.base;
 
 
 public interface BaseDao {

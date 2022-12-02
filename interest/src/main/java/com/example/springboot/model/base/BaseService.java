@@ -1,6 +1,6 @@
-package com.example.springboot.model.base.service;
+package com.example.springboot.model.base;
 
-import com.example.springboot.model.base.dao.BaseDao;
+import com.example.springboot.model.base.BaseDao;
 
 public interface  BaseService{
 	

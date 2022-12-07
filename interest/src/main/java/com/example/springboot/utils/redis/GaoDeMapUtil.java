@@ -1,4 +1,4 @@
-package com.example.springboot.utils;
+package com.example.springboot.utils.redis;
 
 import cn.hutool.http.HttpUtil;
 import cn.hutool.json.JSONObject;

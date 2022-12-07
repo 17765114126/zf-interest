@@ -5,7 +5,7 @@
 
 package com.example.springboot.utils.support;
 
-import com.example.springboot.utils.string.Func;
+import com.example.springboot.utils.Func;
 import org.springframework.util.LinkedCaseInsensitiveMap;
 
 import java.sql.Time;

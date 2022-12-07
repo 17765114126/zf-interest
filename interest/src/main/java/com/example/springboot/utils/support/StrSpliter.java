@@ -1,7 +1,7 @@
 package com.example.springboot.utils.support;
 
 import com.example.springboot.model.enums.StringPool;
-import com.example.springboot.utils.string.Func;
+import com.example.springboot.utils.Func;
 import com.example.springboot.utils.string.StringUtil;
 import com.example.springboot.utils.string.StringUtilss;
 

@@ -96,7 +96,6 @@ public class CmsModelService {
 //            modelVo.setId(cmsModel.getId());
 //            modelVo.setPid(cmsModel.getPid());
 //            modelVo.setName(cmsModel.getName());
-
             List<CmsModelButton> cmsModelButtons = CopyUtil.copyList(models, CmsModelButton.class);
             modelVo.setCmsModels(cmsModelButtons);
             List<CmsButton> buttonsList = null;

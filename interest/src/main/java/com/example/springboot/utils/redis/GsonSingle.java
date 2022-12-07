@@ -1,4 +1,4 @@
-package com.example.springboot.utils;
+package com.example.springboot.utils.redis;
 
 import com.example.springboot.utils.date.DateUtil;
 import com.google.gson.Gson;

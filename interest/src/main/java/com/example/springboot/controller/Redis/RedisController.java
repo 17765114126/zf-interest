@@ -5,6 +5,7 @@ import com.example.springboot.model.Student;
 import com.example.springboot.model.entity.CmsUser;
 import com.example.springboot.service.cache.RedisCacheUserService;
 import com.example.springboot.model.form.Result;
+import com.example.springboot.utils.redis.RedisUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

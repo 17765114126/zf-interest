@@ -1,4 +1,4 @@
-package com.example.springboot.utils.weather;
+package com.example.springboot.utils.weather.dto;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.example.springboot.utils;
+package com.example.springboot.utils.redis;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;

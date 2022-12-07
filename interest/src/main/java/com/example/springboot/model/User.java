@@ -3,7 +3,7 @@ package com.example.springboot.model;
 import com.baomidou.mybatisplus.annotation.Version;
 import com.example.springboot.config.annotation.Encrypt;
 import com.example.springboot.model.entity.MallRegion;
-import com.example.springboot.utils.ValidationGroups;
+import com.example.springboot.model.form.ValidationGroups;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Data;

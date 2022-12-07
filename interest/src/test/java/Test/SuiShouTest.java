@@ -160,7 +160,7 @@ public class SuiShouTest {
         //
 
         //BigDecima类型相加
-        BigDecimal  e = BigDecimal.valueOf(0);
+        BigDecimal e = BigDecimal.valueOf(0);
         BigDecimal ex = BigDecimal.valueOf(0.01);
         System.out.println(e.add(ex));
         //加法 add()函数
@@ -197,6 +197,7 @@ public class SuiShouTest {
         System.out.println(df.format(z - 2));
 
     }
+
     public static void main(String[] args) {
         BigDecimal rate = new BigDecimal(100);
 
@@ -220,7 +221,6 @@ public class SuiShouTest {
         }
 
 
-
         nonPayAmount = nonPayAmount.divide(rate).add(AdvancePayment);
         //发飞书消息
         if (!ExecutoryPay.equals(nonPayAmount)) {
@@ -231,6 +231,7 @@ public class SuiShouTest {
 //        String rPWH3KF85BdDZQTn = signResult("rPWH3KF85BdDZQTn");
 //        System.out.println(rPWH3KF85BdDZQTn);
     }
+
     @Test
     public void Test7() {
         BigDecimal c = BigDecimal.valueOf(3.55);
@@ -358,7 +359,7 @@ public class SuiShouTest {
 //        System.out.println(!bigDecimal .equals(new BigDecimal(0)));
         BigDecimal b = new BigDecimal(1.05);
 
-        System.out.println("------"+bigDecimal.subtract(b));
+        System.out.println("------" + bigDecimal.subtract(b));
 
         int i = bigDecimal.compareTo(b);
         boolean equals = bigDecimal.equals(BigDecimal.ZERO);
@@ -367,8 +368,6 @@ public class SuiShouTest {
         BigDecimal rate = new BigDecimal(100);
         System.out.println(b.divide(rate).add(bigDecimal));
         System.out.println(MathUtil.isIntegerValue(b));
-
-
 
 
     }
@@ -441,7 +440,7 @@ public class SuiShouTest {
         arrayList.add(user1);
         arrayList.add(user2);
 
-        Long countPayAmt = arrayList.stream().filter(e -> e.getId()>1).map(User::getId).reduce(0L, (a, b) -> a+b);
+        Long countPayAmt = arrayList.stream().filter(e -> e.getId() > 1).map(User::getId).reduce(0L, (a, b) -> a + b);
 
 
         System.out.println(countPayAmt);
@@ -462,7 +461,7 @@ public class SuiShouTest {
         //相加
         Long reduce = arrayList.stream().map(User::getId).reduce(0L, (a, b) -> a + b);
 
-        System.out.println("相加"+reduce );
+        System.out.println("相加" + reduce);
 
         //判断集合是否为空
         boolean notEmpty = CollectionUtils.isNotEmpty(arrayList);
@@ -471,15 +470,15 @@ public class SuiShouTest {
         List list = new ArrayList<>();
 
         Map map = new HashMap<>();
-        map.put("id","1");
-        map.put("name","2");
+        map.put("id", "1");
+        map.put("name", "2");
 
         list.add(map);
 
         Map map1 = new HashMap<>();
 
-        map1.put("id",3L);
-        map1.put("name","acs");
+        map1.put("id", 3L);
+        map1.put("name", "acs");
         list.add(map1);
         System.out.println(JSON.toJSONString(list));
 
@@ -490,16 +489,16 @@ public class SuiShouTest {
         String sql = "select id from order WHERE id = 2";
         String[] names = sql.split("[whereWHERE]");
 
-        System.out.println(names[names.length-1]);
+        System.out.println(names[names.length - 1]);
     }
 
     @Test
-    public void Test16(){
+    public void Test16() {
         String trim = " AS1221acs".trim();
         System.out.println(trim);
         System.out.println(trim.toUpperCase());
 
-        if (Arrays.asList(7,8,9).contains(9)){
+        if (Arrays.asList(7, 8, 9).contains(9)) {
             System.out.println("---------------------");
         }
 
@@ -512,16 +511,16 @@ public class SuiShouTest {
 
 
     @Test
-    public void Test17(){
+    public void Test17() {
         ArrayList<Object> objects = new ArrayList<>();
         objects.add("123");
         System.out.println(objects.isEmpty());
 
 
-        if (DateUtil.getDateNoTime("2021-06-16 00:00:00").compareTo(cn.hutool.core.date.DateUtil.parseDate("2022-01-01 00:00:00"))<0){
+        if (DateUtil.getDateNoTime("2021-06-16 00:00:00").compareTo(cn.hutool.core.date.DateUtil.parseDate("2022-01-01 00:00:00")) < 0) {
 //            return ResultBean.success(null);
             System.out.println("111-------------");
-        }else {
+        } else {
             //日期赋值
             System.out.println("222-------------");
 //            date = bizOrder.getPayDepositTime();
@@ -534,7 +533,7 @@ public class SuiShouTest {
     public Integer formatNumber(BigDecimal bigDecimal) {
 //        String priceStr = CURRENCY_FORMAT.format(bigDecimal).substring(1);
         String priceStr = String.valueOf(bigDecimal);
-        if (StringUtils.isBlank(priceStr)){
+        if (StringUtils.isBlank(priceStr)) {
             return 0;
         }
         int i = priceStr.indexOf(".");
@@ -542,10 +541,6 @@ public class SuiShouTest {
         Integer integer = Integer.valueOf(substring);
         return integer;
     }
-
-
-
-
 
 
     @Test
@@ -562,8 +557,6 @@ public class SuiShouTest {
 
         BigDecimal multiply = q.multiply(w);
         System.out.println(multiply);
-
-
 
 
         BigDecimal nonPayAmount = new BigDecimal(0);
@@ -583,35 +576,32 @@ public class SuiShouTest {
 
 
         //前提为a、b均不能为null
-        if(nonPayAmount.compareTo(LoanAmt) == -1){
+        if (nonPayAmount.compareTo(LoanAmt) == -1) {
             System.out.println("a小于b");
         }
 
-        if(nonPayAmount.compareTo(LoanAmt) == 0){
+        if (nonPayAmount.compareTo(LoanAmt) == 0) {
             System.out.println("a等于b");
         }
 
-        if(nonPayAmount.compareTo(LoanAmt) == 1){
+        if (nonPayAmount.compareTo(LoanAmt) == 1) {
             System.out.println("a大于b");
         }
 
-        if(nonPayAmount.compareTo(LoanAmt) > -1){
+        if (nonPayAmount.compareTo(LoanAmt) > -1) {
             System.out.println("a大于等于b");
         }
 
-        if(nonPayAmount.compareTo(LoanAmt) < 1){
+        if (nonPayAmount.compareTo(LoanAmt) < 1) {
             System.out.println("a小于等于b");
         }
-
-
-
 
 
         //判断BigDecimal类型是否为0
         System.out.println(LoanAmt.compareTo(nonPayAmount) == 0);
 
 
-        if (nonPayAmount.compareTo(new BigDecimal(0.00)) == 0){
+        if (nonPayAmount.compareTo(new BigDecimal(0.00)) == 0) {
             System.out.println("---------ssss-----");
         }
 
@@ -627,7 +617,7 @@ public class SuiShouTest {
     }
 
     @Test
-    public void Test19(){
+    public void Test19() {
         long snowID = SnowIdUtils.uniqueLong();
         System.out.println(snowID);
 
@@ -637,41 +627,41 @@ public class SuiShouTest {
 
 
     @Test
-    public void testCotyOf(){
-        ImmutableSet<String> imSet=ImmutableSet.of("peida","jerry","harry","lisa");
-        System.out.println("imSet："+imSet);
+    public void testCotyOf() {
+        ImmutableSet<String> imSet = ImmutableSet.of("peida", "jerry", "harry", "lisa");
+        System.out.println("imSet：" + imSet);
 
         //set直接转list
-        ImmutableList<String> imlist=ImmutableList.copyOf(imSet);
-        System.out.println("imlist："+imlist);
+        ImmutableList<String> imlist = ImmutableList.copyOf(imSet);
+        System.out.println("imlist：" + imlist);
 
         //list直接转SortedSet
-        ImmutableSortedSet<String> imSortSet=ImmutableSortedSet.copyOf(imSet);
-        System.out.println("imSortSet："+imSortSet);
+        ImmutableSortedSet<String> imSortSet = ImmutableSortedSet.copyOf(imSet);
+        System.out.println("imSortSet：" + imSortSet);
 
-        List<String> list=new ArrayList<String>();
-        for(int i=0;i<=10;i++){
-            list.add(i+"x");
+        List<String> list = new ArrayList<String>();
+        for (int i = 0; i <= 10; i++) {
+            list.add(i + "x");
         }
-        System.out.println("list："+list);
+        System.out.println("list：" + list);
 
         //截取集合部分元素
-        ImmutableList<String> imInfolist=ImmutableList.copyOf(list.subList(2, 8));
-        System.out.println("imInfolist："+imInfolist);
+        ImmutableList<String> imInfolist = ImmutableList.copyOf(list.subList(2, 8));
+        System.out.println("imInfolist：" + imInfolist);
 
 
     }
 
 
     @Test
-    public void Test20(){
+    public void Test20() {
 
 
         boolean isWe = Objects.equals(7, 1)
                 || Objects.equals(7, 2);
         //不为WE版的，若国补价格不同抛出
 
-        BigDecimal bigDecimal =  new BigDecimal("0");
+        BigDecimal bigDecimal = new BigDecimal("0");
         BigDecimal bigDecimal1 = new BigDecimal("0.00");
         if (!isWe && !(new BigDecimal("0").compareTo(bigDecimal1) == 0)) {
             System.out.println("------------------------");
@@ -679,8 +669,7 @@ public class SuiShouTest {
         }
 
 
-
-        if (Arrays.asList(new BigDecimal("12600"),new BigDecimal("0"),new BigDecimal("8820")).contains(new BigDecimal("34"))){
+        if (Arrays.asList(new BigDecimal("12600"), new BigDecimal("0"), new BigDecimal("8820")).contains(new BigDecimal("34"))) {
 //            System.out.println("------------------------");
         }
 
@@ -708,7 +697,7 @@ public class SuiShouTest {
     }
 
     @Test
-    public void  Test21() {
+    public void Test21() {
 //        String[] split = "Z001A002,Z001A003".split(",");
 ////        List<String> strings = Arrays.asList(split);
 ////        boolean qd = strings.contains("Z001A002");
@@ -719,8 +708,9 @@ public class SuiShouTest {
 //            System.out.println("____________________________");
 //        }
     }
+
     @Test
-    public void  Test22(){
+    public void Test22() {
 
         List<String> list = new ArrayList<String>();
         list.add("AAA");
@@ -737,32 +727,12 @@ public class SuiShouTest {
         List<String> newList = new CopyOnWriteArrayList<String>();
         newList.addAll(list);
         for (String str : newList) {
-            if("BBB".equals(str)){
+            if ("BBB".equals(str)) {
                 newList.remove(str);
             }
         }
         System.out.println();
-
-
-
-//        List<Long> bizOrderIds = myOrderResultList.stream().map(s -> s.getBizOrderId()).collect(Collectors.toList());
-//        List<Integer> specialOrderType = new ArrayList<>();
-//        specialOrderType.add(SpecialOrderTypeEnum.LOSS_QUALITY_ORDER.getCode());
-//        specialOrderType.add(SpecialOrderTypeEnum.SHOU_HIDDE_ORDER.getCode());
-//        List<BizOrderSpecialDO> bizOrderSpecialDOS = bizOrderSpecialMapper.selectOrderSpecialByIdList(bizOrderIds, specialOrderType);
-//        if(CollectionUtils.isNotEmpty(bizOrderSpecialDOS)) {
-//            List<MyOrderResult> newList = myOrderResultList.stream().filter(xx ->
-//                    !bizOrderSpecialDOS.stream()
-//                            .map(xy -> xy.getBizOrderId())
-//                            .collect(Collectors.toList()).contains(xx.getBizOrderId()))
-//                    .collect(Collectors.toList());
-//            myOrderResultList = newList;
-//        }
-
-
     }
-
-
 
 
 }

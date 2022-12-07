@@ -1,4 +1,4 @@
-package com.example.springboot.utils.weather;
+package com.example.springboot.utils.weather.dto;
 
 import lombok.Data;
 
@@ -9,13 +9,13 @@ import lombok.Data;
  * @website http://www.json.cn/java2pojo/
  */
 @Data
-public class Forecast {
+public class Yesterday {
 
     private String date;
     private String high;
-    private String fengli;
+    private String fx;
     private String low;
-    private String fengxiang;
+    private String fl;
     private String type;
 
 }

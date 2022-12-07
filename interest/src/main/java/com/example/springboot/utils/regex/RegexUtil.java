@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.springboot.utils.string;
+package com.example.springboot.utils.regex;
 
 import org.springframework.lang.Nullable;
 

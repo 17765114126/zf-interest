@@ -1,4 +1,4 @@
-package com.example.springboot.utils;
+package com.example.springboot.utils.feishu;
 
 
 import lombok.extern.slf4j.Slf4j;

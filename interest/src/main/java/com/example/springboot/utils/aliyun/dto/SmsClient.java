@@ -1,4 +1,4 @@
-package com.example.springboot.utils.aliyun;
+package com.example.springboot.utils.aliyun.dto;
 
 import lombok.Data;
 

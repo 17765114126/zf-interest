@@ -9,7 +9,7 @@ import com.example.springboot.model.req.sys.LoginReq;
 import com.example.springboot.model.sys.SysUser;
 import com.example.springboot.model.sys.UserInfoVO;
 import com.example.springboot.service.sys.SuSmsLogService;
-import com.example.springboot.controller.Redis.RedisUtil;
+import com.example.springboot.utils.redis.RedisUtil;
 import com.example.springboot.model.form.Result;
 import com.example.springboot.model.enums.ResultCodeEnum;
 import lombok.extern.slf4j.Slf4j;

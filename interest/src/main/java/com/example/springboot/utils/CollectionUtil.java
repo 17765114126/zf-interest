@@ -41,7 +41,7 @@ public class CollectionUtil extends CollectionUtils {
         if (array == null) {
             return false;
         }
-        return Arrays.stream(array).anyMatch(x -> ObjectUtil.nullSafeEquals(x, element));
+        return Arrays.stream(array).anyMatch(x -> org.springframework.util.ObjectUtils.nullSafeEquals(x, element));
     }
 
     /**

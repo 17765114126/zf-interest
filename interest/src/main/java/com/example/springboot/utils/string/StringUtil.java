@@ -463,24 +463,6 @@ public class StringUtil extends StringUtils {
         return !hasBlank(params);
     }
 
-    /**
-     * 手机号验证
-     *
-     * @param str
-     * @return 验证通过返回true
-     */
-    public static boolean isMobile(String str) {
-        if (isBlank(str)) {
-            return false;
-        }
-        Pattern p = null;
-        Matcher m = null;
-        boolean b = false;
-        p = Pattern.compile("^[1][0-9]{10}$"); // 验证手机号
-        m = p.matcher(str);
-        b = m.matches();
-        return b;
-    }
 
     /**
      * 截取字符串后size位

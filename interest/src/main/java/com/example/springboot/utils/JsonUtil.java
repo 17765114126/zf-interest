@@ -5,7 +5,9 @@
 
 package com.example.springboot.utils;
 
-import com.example.springboot.utils.date.DateTimeUtil;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.example.springboot.utils.date.DateUtils;
 import com.example.springboot.utils.string.StringUtil;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonParser.Feature;
@@ -240,12 +242,12 @@ public class JsonUtil {
             super.configure(Feature.ALLOW_SINGLE_QUOTES, true);
             super.getDeserializationConfig().withoutFeatures(new DeserializationFeature[]{DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES});
             SimpleModule simpleModule = new SimpleModule();
-            simpleModule.addDeserializer(LocalDateTime.class, new LocalDateTimeDeserializer(DateTimeUtil.DATETIME_FORMAT));
-            simpleModule.addDeserializer(LocalDate.class, new LocalDateDeserializer(DateTimeUtil.DATE_FORMAT));
-            simpleModule.addDeserializer(LocalTime.class, new LocalTimeDeserializer(DateTimeUtil.TIME_FORMAT));
-            simpleModule.addSerializer(LocalDateTime.class, new LocalDateTimeSerializer(DateTimeUtil.DATETIME_FORMAT));
-            simpleModule.addSerializer(LocalDate.class, new LocalDateSerializer(DateTimeUtil.DATE_FORMAT));
-            simpleModule.addSerializer(LocalTime.class, new LocalTimeSerializer(DateTimeUtil.TIME_FORMAT));
+            simpleModule.addDeserializer(LocalDateTime.class, new LocalDateTimeDeserializer(DateUtils.DATETIME_FORMATTER));
+            simpleModule.addDeserializer(LocalDate.class, new LocalDateDeserializer(DateUtils.DATE_FORMATTER));
+            simpleModule.addDeserializer(LocalTime.class, new LocalTimeDeserializer(DateUtils.TIME_FORMATTER));
+            simpleModule.addSerializer(LocalDateTime.class, new LocalDateTimeSerializer(DateUtils.DATETIME_FORMATTER));
+            simpleModule.addSerializer(LocalDate.class, new LocalDateSerializer(DateUtils.DATE_FORMATTER));
+            simpleModule.addSerializer(LocalTime.class, new LocalTimeSerializer(DateUtils.TIME_FORMATTER));
             super.registerModule(simpleModule);
             super.findAndRegisterModules();
         }
@@ -265,4 +267,57 @@ public class JsonUtil {
         private JacksonHolder() {
         }
     }
+
+
+    /**
+     * 将json字符串转换成map对象
+     *
+     * @param json
+     * @return
+     */
+    public static Map<String, Object> jsonToMap(String json) {
+        JSONObject obj = JSONObject.parseObject(json);
+        return jsonToMap(obj);
+    }
+
+    /**
+     * 将JSONObject转换成map对象
+     * @return
+     */
+    public static Map<String, Object> jsonToMap(JSONObject obj) {
+        Set<?> set = obj.keySet();
+        Map<String, Object> map = new HashMap(set.size());
+        for (Object key : obj.keySet()) {
+            Object value = obj.get(key);
+            if (value instanceof JSONArray) {
+                map.put(key.toString(), jsonToList((JSONArray) value));
+            } else if (value instanceof JSONObject) {
+                map.put(key.toString(), jsonToMap((JSONObject) value));
+            } else {
+                map.put(key.toString(), obj.get(key));
+            }
+        }
+        return map;
+    }
+
+    /**
+     * 将JSONArray对象转换成list集合
+     *
+     * @param jsonArr
+     * @return
+     */
+    public static List<Object> jsonToList(JSONArray jsonArr) {
+        List<Object> list = new ArrayList<Object>();
+        for (Object obj : jsonArr) {
+            if (obj instanceof JSONArray) {
+                list.add(jsonToList((JSONArray) obj));
+            } else if (obj instanceof JSONObject) {
+                list.add(jsonToMap((JSONObject) obj));
+            } else {
+                list.add(obj);
+            }
+        }
+        return list;
+    }
+
 }

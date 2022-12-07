@@ -20,6 +20,7 @@ import cn.hutool.core.text.StrSpliter;
 import cn.hutool.core.util.ObjectUtil;
 import com.example.springboot.model.constant.RandomType;
 import com.example.springboot.model.enums.StringPool;
+import com.example.springboot.utils.Func;
 import com.example.springboot.utils.support.StrFormatter;
 import org.springframework.util.Assert;
 import org.springframework.web.util.HtmlUtils;

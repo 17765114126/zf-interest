@@ -5,6 +5,7 @@ import com.aliyun.oss.OSSException;
 import com.example.springboot.model.enums.ResultCodeEnum;
 import com.example.springboot.model.form.BizException;
 import com.example.springboot.utils.Assert;
+import com.example.springboot.utils.aliyun.dto.FilePDFDTO;
 import org.apache.commons.io.FileUtils;
 import org.springframework.web.multipart.MultipartFile;
 

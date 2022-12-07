@@ -1,6 +1,6 @@
 package com.example.springboot.config;
 
-import com.example.springboot.controller.Redis.RedisUtil;
+import com.example.springboot.utils.redis.RedisUtil;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;

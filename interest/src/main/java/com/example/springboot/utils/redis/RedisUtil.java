@@ -1,4 +1,4 @@
-package com.example.springboot.controller.Redis;
+package com.example.springboot.utils.redis;
 
 import org.springframework.data.geo.Metric;
 import org.springframework.data.geo.Point;

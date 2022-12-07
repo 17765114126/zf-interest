@@ -1,4 +1,4 @@
-package com.example.springboot.utils;
+package com.example.springboot.model.form;
 
 /**
  * Description: req实体类参数分组校验

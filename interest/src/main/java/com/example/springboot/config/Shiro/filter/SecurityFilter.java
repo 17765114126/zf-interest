@@ -41,11 +41,11 @@ public class SecurityFilter implements Filter {
 //            }
 
             if(!SecurityConstants.PATH_WHITE_LIST.contains(requri)){
-                SysUser sysUser = SecurityUtil.sysUser();
-                if(sysUser == null){
-                    response.getWriter().write(JSON.toJSONString(Result.with(ResultCodeEnum.NOT_LOGIN)));
-                    return;
-                }
+//                SysUser sysUser = SecurityUtil.sysUser();
+//                if(sysUser == null){
+//                    response.getWriter().write(JSON.toJSONString(Result.with(ResultCodeEnum.NOT_LOGIN)));
+//                    return;
+//                }
                 SysUserService sysUserService = SpringUtils.getBean("sysUserService");
                 CmsPermissionMapper cmsPermissionMapper = SpringUtils.getBean("cmsPermissionMapper");
                 int count = cmsPermissionMapper.selectCount(new QueryWrapper<CmsPermission>().lambda().eq(CmsPermission::getName,requri));
@@ -54,8 +54,8 @@ public class SecurityFilter implements Filter {
                     response.getWriter().write(JSON.toJSONString(Result.with(ResultCodeEnum.NOT_AUTH)));
                     return;
                 }
-                SysUser user = SecurityUtil.sysUser();
-                String mobile = user.getMobile();
+//                SysUser user = SecurityUtil.sysUser();
+//                String mobile = user.getMobile();
                 CmsButtonMapper cmsButtonMapper = SpringUtils.getBean("cmsButtonMapper");
                 CmsButton b = cmsButtonMapper.selectOne(new QueryWrapper<CmsButton>().lambda().eq(CmsButton::getUrl,requri));
                 String optName = "";

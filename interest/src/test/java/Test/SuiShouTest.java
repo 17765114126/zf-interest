@@ -22,9 +22,13 @@ import org.junit.Test;
 import javax.naming.*;
 import java.io.File;
 import java.math.BigDecimal;
+import java.text.Collator;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.DayOfWeek;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.regex.Matcher;
@@ -400,6 +404,9 @@ public class SuiShouTest {
 
     @Test
     public void Test14() {
+
+
+
 //        String Str = new String("Welcome to Yiibai.com");
 
 //        System.out.println(StringUtil.startsWithIgnoreCase(Str, "select"));
@@ -418,18 +425,22 @@ public class SuiShouTest {
 
         User user = new User();
         user.setId(1L);
+        user.setTest5("张1");
         user.setDate(DateUtil.getDateNoTime("2021-09-18 11:15:35"));
 
         User user1 = new User();
-        user1.setId(2L);
+        user1.setTest5("阿2");
+        user1.setId(4L);
         user1.setDate(DateUtil.getDate());
 
         User user2 = new User();
+        user2.setTest5("阿3");
         user2.setId(3L);
         user2.setDate(DateUtil.getDateNoTime("2021-09-22 15:56:41"));
 
 
         User user3 = new User();
+        user3.setTest5("丁4");
         user3.setId(4L);
         user3.setDate(DateUtil.getDateNoTime("2021-09-22 15:57:41"));
 
@@ -439,7 +450,17 @@ public class SuiShouTest {
         arrayList.add(user);
         arrayList.add(user1);
         arrayList.add(user2);
+        arrayList.add(user3);
 
+        // 首字母排序
+        arrayList.sort((o1, o2) -> {
+            Comparator<Object> com = Collator.getInstance(Locale.CHINA);
+            if (o1.getId() == o2.getId()){
+                return -1;
+            }
+            return com.compare(o1.getTest5(), o2.getTest5());
+        });
+        System.out.println("---------------------------"+JSON.toJSONString(arrayList));
         Long countPayAmt = arrayList.stream().filter(e -> e.getId() > 1).map(User::getId).reduce(0L, (a, b) -> a + b);
 
 
@@ -460,6 +481,28 @@ public class SuiShouTest {
         System.out.println(JSON.toJSONString(collect1));
         //相加
         Long reduce = arrayList.stream().map(User::getId).reduce(0L, (a, b) -> a + b);
+
+        //根据日分组
+        //, LinkedHashMap::new, Collectors.toList() 默认hashmap是无序的，传入LinkedHashMap有序
+//        Map<String, List<WlClockLogResp>> collect = wlClockLogResps.stream()
+//                .collect(Collectors.groupingBy(p -> p.getCreateTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")), LinkedHashMap::new, Collectors.toList()));
+
+        //根据周分组
+//        Map<WlClockLogResp, List<WlClockLogResp>> collect = wlClockLogResps.stream()
+//                .collect(Collectors.groupingBy(p -> p.getCreateTime().getDayOfWeek()));
+
+
+        //先筛选（filter），然后根据字段CreateTime按日分组（groupingBy）且返回日期最早（collectingAndThen）的数据
+//        Map<String, WlClockLogDTO> collect = list.stream()
+//                .filter(e -> e.getCreateTime() != null && e.getPointType() == 1)
+//                .collect(Collectors.groupingBy(p -> p.getCreateTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),
+//                        Collectors.collectingAndThen(Collectors.reducing((c1, c2) -> c1.getCreateTime().isAfter(c2.getCreateTime()) ? c1 : c2), Optional::get)));
+        //map转List
+//        List<LocalDateTime> averageDateList = collect.values()
+//                .stream().map(WlClockLogDTO::getCreateTime)
+//                .collect(Collectors.toList());
+
+
 
         System.out.println("相加" + reduce);
 
@@ -482,6 +525,42 @@ public class SuiShouTest {
         list.add(map1);
         System.out.println(JSON.toJSONString(list));
 
+    }
+
+    @Test
+    public void Test132() {
+
+        List<WlClockLog> wlClockLogs = new ArrayList<>();
+        WlClockLog wlClockLog = new WlClockLog();
+        wlClockLog.setCreateTime(LocalDateTime.now());
+        wlClockLogs.add(wlClockLog);
+
+        WlClockLog wlClockLog1 = new WlClockLog();
+        wlClockLog1.setCreateTime(LocalDateTime.now().minusDays(9));
+        wlClockLogs.add(wlClockLog1);
+
+        WlClockLog wlClockLog2 = new WlClockLog();
+        wlClockLog2.setCreateTime(LocalDateTime.now().minusDays(3));
+        wlClockLogs.add(wlClockLog2);
+
+        WlClockLog wlClockLog3 = new WlClockLog();
+        wlClockLog3.setCreateTime(LocalDateTime.now().minusDays(3));
+        wlClockLogs.add(wlClockLog3);
+
+        WlClockLog wlClockLog4 = new WlClockLog();
+        wlClockLog4.setCreateTime(LocalDateTime.now().minusDays(33));
+        wlClockLogs.add(wlClockLog4);
+
+        //7天内
+        Map<DayOfWeek, List<WlClockLog>> collect = wlClockLogs.stream()
+                .filter(e -> e.getCreateTime() != null && e.getCreateTime().isAfter(LocalDateTime.now().minusDays(7)))
+                .collect(Collectors.groupingBy(p -> p.getCreateTime().getDayOfWeek()));
+        System.out.println(collect.size());
+        //30天内
+        Map<Integer, List<WlClockLog>> collect1 = wlClockLogs.stream()
+                .filter(e -> e.getCreateTime() != null && e.getCreateTime().isAfter(LocalDateTime.now().minusDays(30)))
+                .collect(Collectors.groupingBy(p -> p.getCreateTime().getDayOfMonth()));
+        System.out.println(collect1.size());
     }
 
     @Test
@@ -734,5 +813,22 @@ public class SuiShouTest {
         System.out.println();
     }
 
+    @Test
+    public void Test23() {
+            long payOrderRefundId = SnowIdUtils.uniqueLong();
+        for (int i = 0; i < 47; i++) {
+            String str = "INSERT INTO `future_community`.`wl_childcare_bespeak`" +
+                    "(`institution_id`, `bespeak_name`, `bespeak_mobile`, `child_name`, `child_sex`, `child_age`, `status`, `reserve_time_id`, `wl_time_period_id`, `create_user_uuid`, `create_time`, `last_update_user_uuid`, `last_update_time`, `del_flag`) \n" +
+                    "VALUES \n" +
+                    "('1663384218053922816', '预约人姓名', '15268518665', '幼儿姓名', '1', '3', '1', '"+payOrderRefundId+"', '1663384218116837376', 'a08d223d4ebe491c971e50325b8fc1a7', '2023-04-03 11:23:43', 'a08d223d4ebe491c971e50325b8fc1a7', '2023-04-03 11:23:43', '0');";
+            System.out.println(str);
+            String str1 = "INSERT INTO `future_community`.`wl_venues_reserve_time` \n" +
+                    "(`id`, `institution_id`, `AM_open`, `PM_open`, `type`, `open_data`, `create_user_uuid`, `create_time`, `last_update_user_uuid`, `last_update_time`, `del_flag`) \n" +
+                    "VALUES \n" +
+                    "('"+payOrderRefundId+"', '1645310176615964672', '1', '1', '3', '2023-03-21', 'qwrwaedfzsd', '2023-04-10 14:18:09', 'qwrwaedfzsd', '2023-04-10 14:18:09', '0');";
+            System.out.println(str1);
+        }
 
+
+    }
 }

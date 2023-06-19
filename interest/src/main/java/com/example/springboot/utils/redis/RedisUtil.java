@@ -4,6 +4,7 @@ import org.springframework.data.geo.Metric;
 import org.springframework.data.geo.Point;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.core.script.DefaultRedisScript;
 import org.springframework.util.CollectionUtils;
 
 import java.util.*;
@@ -39,6 +40,56 @@ public class RedisUtil {
             return true;
         } catch (Exception e) {
             e.printStackTrace();
+            return false;
+        }
+    }
+
+
+    /**
+     * 指定缓存失效时间
+     *
+     * @param key  键
+     * @param time 时间(秒)
+     * @return
+     */
+    public boolean expire(String key, long time, TimeUnit timeUnit) {
+        try {
+            if (time > 0) {
+                redisTemplate.expire(key, time, timeUnit);
+            }
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    /**
+     * lua 脚本
+     */
+    public static final String SETNX_SCRIPT = "return redis.call('setnx',KEYS[1], ARGV[1])";
+
+    /**
+     * redis实现分布式锁
+     *
+     * @param key
+     * @return
+     */
+    public boolean setNx(String key, long time) {
+        //自定义脚本
+        DefaultRedisScript<List> script = new DefaultRedisScript<>(SETNX_SCRIPT, List.class);
+        //执行脚本,传入参数,由于value没啥用,这里随便写死的"1"
+        List<Long> rst = redisTemplate.execute(script, Collections.singletonList(key), "1");
+        //返回1,表示设置成功,拿到锁
+        if (rst.get(0) == 1) {
+            System.out.println(key + "成功拿到锁");
+            //设置过期时间
+            expire(key, time);
+            System.out.println(key + "已成功设置过期时间:" + time + " 秒");
+            return true;
+        } else {
+            long expire = getExpire(key);
+            System.out.println(key + "未拿到到锁,还有" + expire + "释放");
             return false;
         }
     }
@@ -610,59 +661,60 @@ public class RedisUtil {
 
 
     //===============================Geo=================================
+
     /**
-     * @Title: geoAdd
-     * @Description: TODO(添加geo)
-     * @param key key
-     * @param point 经纬度
+     * @param key    key
+     * @param point  经纬度
      * @param member 成员
      * @return Long 返回影响的行
+     * @Title: geoAdd
+     * @Description: TODO(添加geo)
      */
     public static Long geoAdd(String key, Point point, String member) {
         return stringRedisTemplate.opsForGeo().add(key, point, member);
     }
 
     /**
-     * @Title: geoRemove
-     * @Description: TODO(删除成员)
      * @param key 
      * @param members 成员
      * @return Long 返回影响的行
+     * @Title: geoRemove
+     * @Description: TODO(删除成员)
      */
     public static Long geoRemove(String key, String... members) {
         return stringRedisTemplate.opsForGeo().geoRemove(key, members);
     }
 
     /**
-     * @Title: geoPos
-     * @Description: TODO(查询地址的经纬度)
-     * @param key key
+     * @param key     key
      * @param members 成员
      * @return List<Point>
+     * @Title: geoPos
+     * @Description: TODO(查询地址的经纬度)
      */
     public static List<Point> geoPos(String key, String... members) {
         return stringRedisTemplate.opsForGeo().geoPos(key, members);
     }
 
     /**
-     * @Title: geoHash
-     * @Description: TODO(查询位置的geohash)
      * @param key
      * @param members
      * @return List<String>
+     * @Title: geoHash
+     * @Description: TODO(查询位置的geohash)
      */
     public static List<String> geoHash(String key, String... members) {
         return stringRedisTemplate.opsForGeo().geoHash(key, members);
     }
 
     /**
-     * @Title: geoDist
-     * @Description: TODO(查询2位置距离)
-     * @param key key
+     * @param key     key
      * @param member1 成员1
      * @param member2 成员2
-     * @param metric 单位
+     * @param metric  单位
      * @return Double 距离
+     * @Title: geoDist
+     * @Description: TODO(查询2位置距离)
      */
     public static Double geoDist(String key, String member1, String member2, Metric metric) {
         return stringRedisTemplate.opsForGeo().geoDist(key, member1, member2, metric).getValue();
@@ -742,17 +794,15 @@ public class RedisUtil {
 
 
     /**
+     * @return List<GeoRadiusDto>
      * @Title: geoIntersect
      * @Description: TODO(交集)
-     * @return List<GeoRadiusDto>
      */
 //    public static List<GeoRadiusDto> geoIntersect(List<GeoRadiusDto> list1,List<GeoRadiusDto> list2){
 //        return list1.retainAll(list2) == true ? list1 : null;
 //    }
-
-
     public boolean test1() {
-        redisTemplate.opsForValue().set("0",0);
+        redisTemplate.opsForValue().set("0", 0);
         redisTemplate.opsForList();
         redisTemplate.opsForHash();
         redisTemplate.opsForSet();

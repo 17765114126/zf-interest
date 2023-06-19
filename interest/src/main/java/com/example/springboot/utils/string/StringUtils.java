@@ -3,9 +3,10 @@ package com.example.springboot.utils.string;
 import com.example.springboot.utils.support.StrFormatter;
 import org.springframework.util.AntPathMatcher;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
+import javax.xml.bind.DatatypeConverter;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.*;
 
 /**
  * 字符串工具类
@@ -289,6 +290,43 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
             }
         }
         return false;
+    }
+
+
+    public static void main(String[] args) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("accessKey","COCKPIT");
+        params.put("nonce","f8e498d05e9741c887f70be43334424c");
+        params.put("timestamp","2023-04-09 12:11:00");
+        params.put("secretKey","soWyZ82Me06i8Gj0G2DN4D4R2l6lnDAn8m2ARcroJ4k1HYh3hSpx6KMWA7iXgQgD");
+        String[] array = params.keySet().toArray(new String[0]);
+        // 按参数名排序
+        Arrays.sort(array);
+        StringBuilder stringBuilder = new StringBuilder();
+        // 拼接字符串
+        for (int i = 0; i < array.length; i++) {
+            String key = array[i];
+            stringBuilder.append(key).append("=").append(params.get(key));
+            if (i != array.length - 1) {
+                stringBuilder.append("&");
+            }
+        }
+        String encode = encode(stringBuilder.toString());
+        System.out.println(encode);
+    }
+
+
+
+    public static String encode(String str) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(str.getBytes());
+            byte[] digest = md.digest();
+            return DatatypeConverter.printHexBinary(digest).toUpperCase();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return "";
     }
 
     /**

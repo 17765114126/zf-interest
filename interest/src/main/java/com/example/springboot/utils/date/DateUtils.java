@@ -1,5 +1,6 @@
 package com.example.springboot.utils.date;
 
+import cn.hutool.core.date.DateUtil;
 import com.example.springboot.model.enums.StringPool;
 import com.example.springboot.utils.Exceptions;
 import com.example.springboot.utils.string.StringUtilss;
@@ -190,6 +191,27 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
         // 计算差多少秒//输出结果
         // long sec = diff % nd % nh % nm / ns;
         return day + "天" + hour + "小时" + min + "分钟";
+    }
+
+    /**
+     * 夏令时时期生日更正
+     *
+     * @param date       时间
+     * @param hoursToAdd 添加的小时数
+     *
+     * CDT: 夏令时标志（一般在天亮早的夏季人为将时间调快一小时）
+     * 1986年至1991年，中华人民共和国在全国范围实行了六年夏令时
+     * 会导致这个是时间段内时间不对，统一加一小时
+     * @return 设置后的时间
+     */
+    public static Date settingDTC(String birthdate) {
+        Date parse = DateUtil.parse(birthdate);
+        if (birthdate.contains("CDT")){
+            Date date = DateUtils.plusHours(parse, 1);
+            return plusHours(date, 1);
+        }else {
+            return parse;
+        }
     }
 
     /**

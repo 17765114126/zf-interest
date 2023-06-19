@@ -1,6 +1,7 @@
 package com.example.springboot.controller.Redis;
 
 import com.alibaba.fastjson.JSON;
+import com.example.springboot.config.annotation.CacheLock;
 import com.example.springboot.model.Student;
 import com.example.springboot.model.entity.CmsUser;
 import com.example.springboot.service.cache.RedisCacheUserService;
@@ -52,5 +53,22 @@ public class RedisController {
             log.debug("错误==============" + e);
         }
         return Result.buildFail();
+    }
+
+
+    /**
+     * redis分布式锁测试
+     */
+    @CacheLock(lockedKey = "job", expireTime = 30)
+    public void job() {
+        try {
+            System.out.println("---------------------------------------------------------------------------------");
+            log.info("当前执行任务的线程号ID===>{}", Thread.currentThread().getId());
+            log.info("当前执行任务的线程号name===>{}", Thread.currentThread().getName());
+            System.out.println("---------------------------------------------------------------------------------");
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

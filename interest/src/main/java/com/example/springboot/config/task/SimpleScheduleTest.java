@@ -37,6 +37,7 @@ public class SimpleScheduleTest {
 
         ExecutorService fixedThreadPool = null;
         try {
+            //线程池
             fixedThreadPool = newFixedThreadPool(6);
             for (int i = 1; i <= 2; i++) {
                 fixedThreadPool.execute(new Runnable() {
@@ -59,15 +60,20 @@ public class SimpleScheduleTest {
         return Result.buildFail();
     }
 
+    @Scheduled(cron = "0/5 * * * * ?")
+    public void redisLock() {
+        redisController.job3();
+    }
 
     /**3.添加定时任务*/
     private static Integer i = 1;
-//    @Scheduled(cron = "0/5 * * * * ?")
-//    private void configureTasks() {
-//        System.err.println("执行定时任务"+(i++)+": " + LocalDateTime.now());
-//    }
+    @Scheduled(cron = "0/5 * * * * ?")
+    private void configureTasks() {
+        System.err.println("执行定时任务"+(i++)+": " + LocalDateTime.now());
+    }
 
 }
+
 
 
 //@Scheduled(cron = "0 0 * * * ?") //每一个小时执行一次

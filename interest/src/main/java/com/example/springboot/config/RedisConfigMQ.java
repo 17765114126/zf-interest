@@ -23,6 +23,7 @@ public class RedisConfigMQ {
                                             MessageListenerAdapter listenerAdapter2) {
         RedisMessageListenerContainer container = new RedisMessageListenerContainer();
         container.setConnectionFactory(connectionFactory);
+        //Topic
         container.addMessageListener(listenerAdapter, new PatternTopic(ACTIVITY_SEND_TOPIC));
 //        container.addMessageListener(listenerAdapter2, new PatternTopic(POLITICAL_BIRTHDAY_TOPIC));
         return container;

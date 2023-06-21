@@ -1,4 +1,4 @@
-package com.example.springboot;
+package com.example.springboot.config;
 
 import org.redisson.Redisson;
 import org.redisson.config.Config;

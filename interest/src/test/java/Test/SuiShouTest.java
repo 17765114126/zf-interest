@@ -17,6 +17,7 @@ import com.google.gson.Gson;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
+import org.springframework.web.bind.annotation.RequestBody;
 
 
 import javax.naming.*;
@@ -31,6 +32,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -281,6 +283,7 @@ public class SuiShouTest {
         String str1 = "[" + string.substring(0, string.length() - 1) + "]";
         System.out.println(str1);
     }
+
 
     @Test
     public void Test9() {

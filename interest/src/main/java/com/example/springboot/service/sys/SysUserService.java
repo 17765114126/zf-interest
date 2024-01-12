@@ -1,6 +1,7 @@
 package com.example.springboot.service.sys;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.springboot.config.Shiro.security.SecurityUtil;
 import com.example.springboot.mapper.*;
@@ -8,6 +9,7 @@ import com.example.springboot.model.sys.SysPermission;
 import com.example.springboot.model.sys.SysRole;
 import com.example.springboot.model.sys.SysUser;
 import com.example.springboot.model.entity.*;
+import com.example.springboot.utils.CopyUtil;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -38,7 +40,24 @@ public class SysUserService {
 
     public List<SysPermission> getPermissionList(){
         List<SysPermission> list = new ArrayList<>();
-        SysUser u = SecurityUtil.sysUser();
+//        SysUser u = SecurityUtil.sysUser();
+
+        CmsRole cmsRole = cmsRoleMapper.selectById(1L);
+        SysUser u = new SysUser();
+        List<SysRole> objects = new ArrayList<>();
+        SysRole sysRole = CopyUtil.copyObject(cmsRole, SysRole.class);
+        List<CmsRolePermission> cmsRolePermissions = cmsRolePermissionMapper.selectList(new LambdaQueryWrapper<CmsRolePermission>()
+                .eq(CmsRolePermission::getRoleId, cmsRole.getId()));
+        List<SysPermission> sysPermissionList = new ArrayList<>();
+        for (CmsRolePermission cmsRolePermission : cmsRolePermissions) {
+            CmsPermission cmsPermission = cmsPermissionMapper.selectById(cmsRolePermission.getPermissionId());
+            SysPermission sysPermission = CopyUtil.copyObject(cmsPermission, SysPermission.class);
+            sysPermissionList.add(sysPermission);
+        }
+        sysRole.setPermissions(sysPermissionList);
+        objects.add(sysRole);
+        u.setRoles(objects);
+
         if(CollectionUtils.isEmpty(u.getRoles())){
             return list;
         }

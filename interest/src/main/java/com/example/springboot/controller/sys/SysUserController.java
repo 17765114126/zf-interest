@@ -56,7 +56,9 @@ public class SysUserController {
                     }
                 }
             }else if(p.getType()==2){
-                CmsButton b = cmsButtonMapper.selectOne(new QueryWrapper<CmsButton>().lambda().eq(CmsButton::getPermissionId,p.getId()));
+                CmsButton b = cmsButtonMapper.selectOne(new QueryWrapper<CmsButton>().lambda()
+                        .eq(CmsButton::getPermissionId,p.getId())
+                );
                 if(!bmap.containsKey(b.getModelId())){
                     List<CmsButton> bl = new ArrayList<>();
                     bl.add(b);

@@ -1,5 +1,4 @@
 package ${package.Entity};
-
 #foreach($pkg in ${table.importPackages})
 import ${pkg};
 #end
@@ -7,7 +6,6 @@ import ${pkg};
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 #end
-import com.example.springboot.templates.NewBaseEntity;
 #if(${entityLombokModel})
 import lombok.Data;
 ##import lombok.EqualsAndHashCode;
@@ -15,7 +13,9 @@ import lombok.Data;
 ##import lombok.experimental.Accessors;
 #end
 #end
-
+import com.example.springboot.templates.PagingResult;
+##import com.example.springboot.model.form.Paging;
+##import com.buildClass.templates.entity.${entity};
 /**
  * @$!{table.comment}
  *
@@ -44,7 +44,8 @@ public class ${entity} extends ${superEntityClass}#if(${activeRecord})<${entity}
 #elseif(${activeRecord})
 public class ${entity} extends Model<${entity}> {
 #else
-public class ${entity} extends NewBaseEntity implements Serializable {
+##public class ${entity}Req  extends PagingResult<${entity}> {
+public class ${entity}Req {
 #end
 
 #if(${entitySerialVersionUID})
@@ -68,11 +69,12 @@ public class ${entity} extends NewBaseEntity implements Serializable {
 #if(${field.keyFlag})
 ## 主键
   #if(${field.keyIdentityFlag})
-  @TableId(value = "${field.annotationColumnName}", type = IdType.AUTO)
+##  @TableId(value = "${field.annotationColumnName}", type = IdType.AUTO)
+##  @TableId(value = "id", type = IdType.AUTO)
   #elseif(!$null.isNull(${idType}) && "$!idType" != "")
-  @TableId(value = "${field.annotationColumnName}", type = IdType.${idType})
+##  @TableId(value = "${field.annotationColumnName}", type = IdType.${idType})
   #elseif(${field.convert})
-  @TableId("${field.annotationColumnName}")
+##  @TableId("${field.annotationColumnName}")
   #end
 ## 普通字段
 #elseif(${field.fill})

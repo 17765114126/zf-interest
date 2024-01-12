@@ -2,14 +2,21 @@ package Test;
 
 import cn.afterturn.easypoi.excel.ExcelImportUtil;
 import cn.afterturn.easypoi.excel.entity.ImportParams;
+import cn.hutool.core.util.ObjectUtil;
 import com.example.springboot.utils.ID.SnowIdUtils;
+import com.example.springboot.utils.string.StringUtil;
+import com.example.springboot.utils.string.StringUtils;
+import com.example.springboot.utils.string.StringUtilss;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.entity.ContentType;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
+import java.security.SecureRandom;
+import java.time.LocalDate;
 import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * @ClassName excep
@@ -22,58 +29,75 @@ public class excep {
 
 
     public static void main(String[] args) throws IOException {
+
+//        String q = "8899880911B7";
+//        String[] split = q.split(",");
 //        查询导出sql
-//        SELECT bo.id as orderId,bo.biz_order_no,po.id as poId,bo.biz_type, po.account_id,po.biz_order_pay_id,po.out_pay_id ,po.pay_amt,po.sub_order_type,po.pay_way, pod.id as podId,pod.out_pay_id podOpId FROM biz_order bo
-//        LEFT JOIN zeekrlife_mp_pay.pay_order po on bo.id = po.biz_order_id
-//        LEFT JOIN zeekrlife_mp_pay.pay_order_details pod on po.id = pod.pay_order_id
-//        where bo.`biz_order_no` in('B0220411NKQYEI','B02205013XHZNB','B02204308YZLDJ','B0220429H5PT2S','B0220419WWJKJL','B0220428LNXBII','B0220429IHC8AP','B0220429B4JSI8','B0220428A4RHXQ','B0220419DIXHBA','B0220418DKFB1R')
-        List<ImportExcelDTO> prodDTO = getmportExcel("D:\\excel\\退定金.xlsx");
+        List<ImportExcelDTO> prodDTO = getmportExcel("D:\\opt\\幼儿.XLSX");
+        LocalDate of = LocalDate.of(2023, 3, 21);
         for (ImportExcelDTO importExcelDTO : prodDTO) {
             long payOrderRefundId = SnowIdUtils.uniqueLong();
-            String time = "2022-09-28 18:24:09";
-            String sql =
-                    "update zeekrlife_mp_order.biz_order \n" +
-                            "set \n" +
-                            "paid_amt = 0.00,\n" +
-                            "advance_payment = 0.00,\n" +
-                            "client_order_status = 5 ,\n" +
-                            "unsubscribe_status = 7,\n" +
-                            "refund_create_time = '" + time + "',\n" +
-                            "refund_time = '" + time + "'\n" +
-                            "where id = " + importExcelDTO.getId() + " AND biz_order_no = '" + importExcelDTO.getBizOrderNo() + "';\n" +
+            Random random = new SecureRandom();
+            Integer x = ThreadLocalRandom.current().nextInt(3, 8 + 1);
 
-                            "\n" +
-                            "INSERT INTO zeekrlife_mp_pay.pay_order_refund\n" +
-                            "(`id`, `account_id`, \n" +
-                            "`pay_order_id`, `biz_order_id`, `biz_order_pay_id`, \n" +
-                            "`out_refund_id`, \n" +
-                            "`org_out_pay_id`, \n" +
-                            "`sub_order_type`, `org_pay_amt`, `refund_amt`,\n" +
-                            " `refund_status`, `pay_way`, \n" +
-                            " `refund_create_time`, `refund_time`, `refund_reason`, `other_reason`, `refund_expire_time`, `fail_msg`, `extend_attr`, `deleted`, `created_at`, `created_by`, `updated_at`, `updated_by`, `biz_type`, `refund_integral`) \n" +
-                            "VALUES \n" +
-                            "(" + payOrderRefundId + ", " + importExcelDTO.getAccountId() + ",\n" +
-                            " " + importExcelDTO.getPoId() + ", " + importExcelDTO.getId() + ", " + importExcelDTO.getBizOrderPayId() + ", \n" +
-                            " '', \n" +
-                            " '" + importExcelDTO.getOutPayId() + "', \n" +
-                            " " + importExcelDTO.getSubOrderType() + ", " + importExcelDTO.getPayAmt() + ", " + importExcelDTO.getPayAmt() + ", \n" +
-                            " 3, " + importExcelDTO.getPayWay() + ", \n" +
-                            " '" + time + "', '" + time + "', '', '', NULL, '', '" + importExcelDTO.getBizOrderNo() + "', 0, now(), '', now(), '', '" + importExcelDTO.getBizType() + "', NULL);\n" +
+            Integer child_sex = random.nextInt(2);
 
-                            "\n" +
-                            "INSERT INTO zeekrlife_mp_pay.pay_order_refund_details \n" +
-                            "(`id`, `pay_order_refund_id`, `pay_order_details_id`, \n" +
-                            "`out_refund_id`,\n" +
-                            " `org_out_pay_id`, \n" +
-                            "`sub_order_type`, `org_pay_amt`, `refund_amt`, `refund_status`, `pay_way`, " +
-                            "`refund_create_time`, `refund_time`, `refund_reason`, `other_reason`, `refund_expire_time`, `fail_msg`, `extend_attr`, `deleted`, `created_at`, `created_by`, `updated_at`, `updated_by`, `biz_type`, `refund_integral`) \n" +
-                            "VALUES \n" +
-                            "(" + SnowIdUtils.uniqueLong() + ", " + payOrderRefundId + ", " + importExcelDTO.getPodId() + ", \n" +
-                            "'', \n" +
-                            "'" + importExcelDTO.getPodOpId() + "', " +
-                            "" + importExcelDTO.getSubOrderType() + ", " + importExcelDTO.getPayAmt() + ", " + importExcelDTO.getPayAmt() + ", 3, " + importExcelDTO.getPayWay() + ", " +
-                            "'" + time + "', '" + time + "', '', '', NULL, '', '" + importExcelDTO.getBizOrderNo() + "', 0,  now(), '',  now(), '', '" + importExcelDTO.getBizType() + "', NULL);";
-            System.out.println(sql);
+
+
+            String str = "INSERT INTO `future_community`.`wl_childcare_bespeak`" +
+                        "(`institution_id`, `bespeak_name`, `bespeak_mobile`, `child_name`, `child_sex`, `child_age`, `status`, `reserve_time_id`, `wl_time_period_id`, `create_user_uuid`, `create_time`, `last_update_user_uuid`, `last_update_time`, `del_flag`) \n" +
+                        "VALUES \n" +
+                        "('1663384218053922816', '"+importExcelDTO.getName()+"', '"+importExcelDTO.getPhone()+"', '"+importExcelDTO.getCName()+"', '"+child_sex+"', '"+x+"', '1', '"+payOrderRefundId+"', '1663384218116837376', 'a08d223d4ebe491c971e50325b8fc1a7', '2023-04-03 11:23:43', 'a08d223d4ebe491c971e50325b8fc1a7', '2023-04-03 11:23:43', '0');";
+                System.out.println(str);
+                String str1 = "INSERT INTO `future_community`.`wl_venues_reserve_time` \n" +
+                        "(`id`, `institution_id`, `AM_open`, `PM_open`, `type`, `open_data`, `create_user_uuid`, `create_time`, `last_update_user_uuid`, `last_update_time`, `del_flag`) \n" +
+                        "VALUES \n" +
+                        "('"+payOrderRefundId+"', '1645310176615964672', '1', '1', '1', '"+of+"', 'qwrwaedfzsd', '2023-04-10 14:18:09', 'qwrwaedfzsd', '2023-04-10 14:18:09', '0');";
+                System.out.println(str1);
+            of = of.plusDays(1);
+
+
+//            if (ObjectUtil.isNull(importExcelDTO.getCart())) {
+//                continue;
+//            }
+//            String sql = "UPDATE future_community.wl_student_or_elder " +
+//                    "SET student_card= '"+importExcelDTO.getCart().trim()+"', id_card = '"+importExcelDTO.getCartNum().trim()+"' " +
+//                    "WHERE type = 1 AND name = '"+importExcelDTO.getName().trim()+"';";
+
+//            for (String s : split) {
+//                if (importExcelDTO.getCartNum().trim().equals(s.trim())) {
+//                    String schoolId = "";
+//                    String schoolName = "";
+//                    if (ObjectUtil.isNull(importExcelDTO.getWorkplace())) {
+//                        schoolId = "1645682750290096128";
+//                        schoolName = "秋山小学";
+//                    } else {
+//                        schoolId = "1645682827133939712";
+//                        schoolName = "秋山中学";
+//                    }
+
+//                    String communityId = "";
+//                    String communityName = "";
+//                    if (importExcelDTO.getAddress().contains("兆丰欣苑") || importExcelDTO.getAddress().contains("兆丰新苑")
+//                            || importExcelDTO.getAddress().contains("兆丰兴苑")) {
+//                        communityId = "1645680911398170624";
+//                        communityName = "兆丰欣苑";
+//                    } else if (importExcelDTO.getAddress().contains("秋山明苑") || importExcelDTO.getAddress().contains("秋山名苑")
+//                            || importExcelDTO.getAddress().contains("秋山朋苑")) {
+//                        communityId = "1645707056902533120";
+//                        communityName = "秋山明苑";
+//                    } else if (importExcelDTO.getAddress().contains("秋北嘉苑") || importExcelDTO.getAddress().contains("秋北家苑")
+//                            || importExcelDTO.getAddress().contains("秋北佳苑")|| importExcelDTO.getAddress().contains("秋北嘉园")) {
+//                        communityId = "1645707206689517568";
+//                        communityName = "秋北嘉苑";
+//                    }
+//                    String sql = "INSERT INTO `future_community`.`wl_student_or_elder_quan` " +
+//                            "(`name`, `student_card`, `id_card`, `school_id`, `school_name`, `community_id`, `community_name`, `classes_school`) " +
+//                            "VALUES " +
+//                            "( '" + importExcelDTO.getName().trim() + "', '" + importExcelDTO.getCart().trim() + "', '" + importExcelDTO.getCartNum().trim() + "', '" + schoolId + "', '" + schoolName + "', '" + communityId + "', '" + communityName + "',  '" + importExcelDTO.getWorkplace() + "');";
+//                    System.out.println(sql);
+//                }
+//            }
         }
     }
 

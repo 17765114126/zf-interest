@@ -85,14 +85,14 @@ public class CmsUserServiceImpl extends ServiceImpl<CmsUserMapper, CmsUser> impl
                 // 按用户名查
                 .or(StringUtil.isNotEmpty(cmsUserReq.getQueryParam()))
                 .in(CollectionUtils.isNotEmpty(cmsUserIds), CmsUser::getId, cmsUserIds)
-                .eq(!CmsUserStatusEnum.ALL.getCode().equals(cmsUserReq.getStatus()), CmsUser::getStatus, cmsUserReq.getStatus())
+//                .eq(!CmsUserStatusEnum.ALL.getCode().equals(cmsUserReq.getStatus()), CmsUser::getStatus, cmsUserReq.getStatus())
                 .like(StringUtil.isNotEmpty(cmsUserReq.getQueryParam()), CmsUser::getUsername, cmsUserReq.getQueryParam())
                 .eq(CmsUser::getInvalid, 0)
 
                 // 按手机号查
                 .or(StringUtil.isNotEmpty(cmsUserReq.getQueryParam()))
                 .in(CollectionUtils.isNotEmpty(cmsUserIds), CmsUser::getId, cmsUserIds)
-                .eq(!CmsUserStatusEnum.ALL.getCode().equals(cmsUserReq.getStatus()), CmsUser::getStatus, cmsUserReq.getStatus())
+//                .eq(!CmsUserStatusEnum.ALL.getCode().equals(cmsUserReq.getStatus()), CmsUser::getStatus, cmsUserReq.getStatus())
                 .like(StringUtil.isNotEmpty(cmsUserReq.getQueryParam()), CmsUser::getMobile, cmsUserReq.getQueryParam())
                 .eq(CmsUser::getInvalid, 0);
 

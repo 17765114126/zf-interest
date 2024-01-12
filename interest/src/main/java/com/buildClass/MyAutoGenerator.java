@@ -1,18 +1,15 @@
-package com.buildClass.work;
+package com.buildClass;
 
+import com.baomidou.mybatisplus.core.toolkit.StringPool;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.InjectionConfig;
-import com.baomidou.mybatisplus.generator.config.ConstVal;
 import com.baomidou.mybatisplus.generator.config.FileOutConfig;
 import com.baomidou.mybatisplus.generator.config.builder.ConfigBuilder;
 import com.baomidou.mybatisplus.generator.config.po.TableField;
 import com.baomidou.mybatisplus.generator.config.po.TableInfo;
 import com.baomidou.mybatisplus.generator.config.rules.DbColumnType;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * @ClassName MyAutoGenerator
@@ -52,31 +49,43 @@ public class MyAutoGenerator extends AutoGenerator {
             // TODO 后续需要对自动代码生成进行相关拓展，可在此进行操作
         });
 
-        // 自定义配置模版， 如果你想添加一个新的类，可以在资源文件目录中的templates文件夹下
-        // 添加自定义的模版文件
+        // 自定义配置模版， 如果你想添加一个新的类，可以在资源文件目录中的templates文件夹下添加自定义的模版文件
         config.setInjectionConfig(getInjectionConfig(config));
-
         return allTableInfoList;
     }
 
     public InjectionConfig getInjectionConfig(ConfigBuilder config) {
+
+        String projectPath = System.getProperty("user.dir");
+
         InjectionConfig injectionConfig = new InjectionConfig() {
             @Override
             public void initMap() {
-
+                //自定义生成模板参数
+//                Map<String, Object> map = new HashMap<>();
+////                map.put("abc", this.getConfig().getGlobalConfig().getAuthor() + "-mp");
+//                //模板中获取值：${cfg.req}
+//                map.put("req", "com.buildClass.templates");//req生成地址
+//                map.put("vo", "com.buildClass.templates");//vo生成地址
+//                this.setMap(map);
             }
         };
 
-        List<FileOutConfig> list = new ArrayList<>();
-        FileOutConfig fileOutConfig = new FileOutConfig(null) {
+        List<FileOutConfig> forList = new ArrayList<>();
+        forList.add(new FileOutConfig("templates/entityReq.java.vm") {
             @Override
             public String outputFile(TableInfo tableInfo) {
-                String outputFile = String.format((config.getPathInfo().get(ConstVal.SERVICE_IMPL_PATH) + File.separator + tableInfo.getServiceImplName() + ConstVal.JAVA_SUFFIX), tableInfo.getServiceImplName());
-                return outputFile;
+//                return String.format((config.getPathInfo().get(ConstVal.SERVICE_IMPL_PATH) + File.separator + tableInfo.getServiceImplName() + ConstVal.JAVA_SUFFIX), tableInfo.getServiceImplName());
+            return projectPath +"\\interest\\src\\main\\java\\com\\example\\springboot\\templates\\entity\\" + tableInfo.getEntityName() + "Req" + StringPool.DOT_JAVA;
             }
-        };
-        list.add(fileOutConfig);
-        injectionConfig.setFileOutConfigList(list);
+        });
+        forList.add(new FileOutConfig("templates/entityResp.java.vm") {
+            @Override
+            public String outputFile(TableInfo tableInfo) {
+                return projectPath +"\\interest\\src\\main\\java\\com\\example\\springboot\\templates\\entity\\" + tableInfo.getEntityName() + "Resp" + StringPool.DOT_JAVA;
+            }
+        });
+        injectionConfig.setFileOutConfigList(forList);
         return injectionConfig;
     }
 }

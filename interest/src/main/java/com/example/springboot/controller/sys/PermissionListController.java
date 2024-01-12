@@ -27,8 +27,6 @@ import java.util.List;
 @Slf4j
 @RequestMapping(value = "/permissionList", method = RequestMethod.POST)
 public class PermissionListController {
-
-
     @Autowired
     private PermissionListService permissionListService;
 
@@ -54,7 +52,7 @@ public class PermissionListController {
         }
     }
 
-    @RequestMapping(value = "/listByRole", method = RequestMethod.POST)
+    @RequestMapping(value = "/listByRole", method = RequestMethod.GET)
     public Object permissionListByRole(Long roleId) {
         if (StringUtil.hasBlank(roleId)) {
             return Result.buildFail("参数缺失!");

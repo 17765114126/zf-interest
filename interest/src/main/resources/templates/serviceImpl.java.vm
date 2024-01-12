@@ -4,14 +4,17 @@ import ${package.Entity}.${entity};
 import ${package.Mapper}.${table.mapperName};
 import ${package.Service}.${table.serviceName};
 import ${superServiceImplClassPackage};
+import ${package.Entity}.${entity}Req;
+import ${package.Entity}.${entity}Resp;
+import com.example.springboot.utils.CopyUtil;
 import org.springframework.stereotype.Service;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-##import com.example.springboot.model.form.Result;
-##import com.example.springboot.model.form.Paging;
-##import com.example.springboot.model.form.PageUtil;
+import com.example.springboot.model.form.Result;
+import com.example.springboot.model.form.Paging;
+import com.example.springboot.model.form.PageUtil;
 
 /**
  * @$!{table.comment}
@@ -28,50 +31,44 @@ open class $!{table.serviceImplName} : $!{superServiceImplClass}<$!{table.mapper
 public class $!{table.serviceImplName} extends $!{superServiceImplClass}<$!{table.mapperName}, $!{entity}> implements ${table.serviceName} {
 
     @Override
-    public Result getPage($!{entity} req) {
+    public Page<$!{entity}Resp> getPage($!{entity}Req req) {
         Paging paging = new Paging();
 
         IPage<$!{entity}> ipage = page(paging.toPage(), new LambdaQueryWrapper<$!{entity}>()
-                .eq($!{entity}::getInvalid, 0)
-                .orderByDesc($!{entity}::getCreateTime));
+                .eq($!{entity}::getDelFlag, 0)
+                .orderByDesc($!{entity}::getCreatedTime));
 
         Page<$!{entity}> page = PageUtil.toPage(ipage);
-        return Result.buildSuccess(PageUtil.convert(page, e -> {
-//      VO vo = CopyUtil.copyObject(byId, VO.class);
-            return e;
-        }));
+        return PageUtil.convert(page, e -> {
+                $!{entity}Resp resp = CopyUtil.copyObject(e, $!{entity}Resp.class);
+            return resp;
+        });
     }
 
     @Override
-    public Result addInfo($!{entity} req) {
+    public Boolean addInfo($!{entity}Req req) {
         //主表复制元素
-//      VO vo = CopyUtil.copyObject(byId, VO.class);
-        boolean flag;
+        $!{entity} entity = CopyUtil.copyObject(req, $!{entity}.class);
+        Boolean flag;
         if (req.getId() != null) {
-            flag = updateById(req);
+            flag = updateById(entity);
         } else {
-            flag = save(req);
+            flag = save(entity);
         }
-        if (flag) {
-            return Result.buildSuccess();
-        }
-        return Result.buildFail();
+        return flag;
     }
 
     @Override
-    public Result getInfo(Integer id) {
-        return Result.buildSuccess(getById(id));
+    public $!{entity}Resp getInfo(Integer id) {
+        return CopyUtil.copyObject(getById(id), $!{entity}Resp.class);
     }
 
     @Override
-    public Result deleteInfos(String ids) {
-        if (update(new UpdateWrapper<$!{entity}>().lambda()
-                .set($!{entity}::getInvalid, 1)
+    public Boolean deleteInfos(String ids) {
+        return update(new UpdateWrapper<$!{entity}>().lambda()
+                .set($!{entity}::getDelFlag, 1)
                 .inSql($!{entity}::getId, ids)
-        )) {
-            return Result.buildSuccess();
-        }
-        return Result.buildFail();
+        );
     }
 
 }

@@ -2,8 +2,10 @@ package ${package.Service};
 
 import ${package.Entity}.${entity};
 import ${superServiceClassPackage};
-##import com.example.springboot.model.form.Result;
-
+import com.example.springboot.model.form.Result;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import ${package.Entity}.${entity}Req;
+import ${package.Entity}.${entity}Resp;
 /**
  * @$!{table.comment}
  *
@@ -15,12 +17,12 @@ interface ${table.serviceName} : ${superServiceClass}<${entity}>
 #else
 public interface ${table.serviceName} extends ${superServiceClass}<${entity}> {
 
-    Result getPage($!{entity} req);
+    Page<$!{entity}Resp> getPage($!{entity}Req req);
 
-    Result addInfo($!{entity} req);
+    Boolean addInfo($!{entity}Req req);
 
-    Result getInfo(Integer id);
+    $!{entity}Resp getInfo(Integer id);
 
-    Result deleteInfos(String ids);
+    Boolean deleteInfos(String ids);
 }
 #end

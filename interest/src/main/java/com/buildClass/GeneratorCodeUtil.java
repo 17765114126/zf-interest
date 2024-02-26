@@ -19,21 +19,6 @@ import java.io.IOException;
  * 自动生成pojo，mapper, service, controller
  */
 public class GeneratorCodeUtil {
-    /**
-     * 请自定义自己的db url
-     */
-    private static final String DB_URL = "jdbc:mysql://192.168.0.130:3306/rcfe_system?useSSL=false&useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&serverTimezone=GMT%2B8";
-
-    /**
-     * 请自定义自己的username
-     */
-    private static final String USERNAME = "root";
-
-    /**
-     * 请自定义自己的password
-     */
-    private static final String PASSWORD = "123qwer.";
-
 //    private static final String DB_URL = "jdbc:mysql://localhost:3306/welibrary?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8";
 //    private static final String DB_URL = "jdbc:mysql://rm-bp14f94yt54bl7l54o.mysql.rds.aliyuncs.com:3306/db_new_mall_template?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8";
 //    private static final String DB_URL = "jdbc:mysql://localhost:3306/zhaofu?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8";
@@ -50,6 +35,20 @@ public class GeneratorCodeUtil {
 //    private static final String PASSWORD = "wUuKOKAuNK!9%5w1$";
 //    private static final String PASSWORD = "Zeekrlife#dev";
 
+    /**
+     * 请自定义自己的db url
+     */
+    private static final String DB_URL = "jdbc:mysql://192.168.0.130:3306/rcfe_system?useSSL=false&useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&serverTimezone=GMT%2B8";
+
+    /**
+     * 请自定义自己的username
+     */
+    private static final String USERNAME = "root";
+
+    /**
+     * 请自定义自己的password
+     */
+    private static final String PASSWORD = "123qwer.";
 
     private static final String DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
 
@@ -59,84 +58,21 @@ public class GeneratorCodeUtil {
     private static final String PACKAGE_NAME = "com.example.springboot.templates";
 
     /**
+     * 生成文件的输出目录
+     * */
+    private static final String OUT_PUT_DIR = "/interest/src/main/java/";
+
+    /**
      * 请自定义自己的模块名（可以理解为项目名称）
      */
     private static final String MODULE_NAME = System.getProperty("user.dir");
 
     public static void main(String[] args) throws IOException {
         System.out.println("--------------------开始自动生成相关的类----------------------");
-        System.out.println("args = " + new File("").getAbsolutePath() + "/interest/src/main/java/");
+        System.out.println("args = " + new File("").getAbsolutePath() + OUT_PUT_DIR);
         generateByTables(MODULE_NAME,
-                "appointment_check_in",
-                "appointment_visit",
-                "appointment_visitors",
-                "appointment_visitors_follow",
-                "auth_manager",
-                "contract_agreement",
-                "contract_side_agreement",
-                "elder_check_in_evaluation_result",
-                "elder_check_out_handle",
-                "elder_check_out_request",
-                "elder_evaluation_plan_rel",
-                "elder_evaluation_result",
-                "elder_family_members",
-                "elder_health",
-                "elder_info",
-                "elder_leave",
-                "elder_serve_execute_plan",
-                "elder_serve_execute_plan_result",
-                "elder_serve_project",
-                "elder_serve_project_option",
-                "elder_stay_info",
-                "elder_stay_preferential_policy",
-                "elder_stay_service_items",
-                "evaluation_assess",
-                "evaluation_issue",
-                "evaluation_option",
-                "evaluation_plan",
-                "evaluation_plan_table",
-                "evaluation_table",
-                "finance_account",
-                "finance_amount_receivable",
-                "finance_arrears_records",
-                "finance_payment_records",
-                "finance_regular_items",
-                "info_activity",
-                "info_news",
-                "info_notice",
-                "org_bed",
-                "org_building",
-                "org_config",
-                "org_contract",
-                "org_department",
-                "org_floor",
-                "org_info",
-                "org_quarters",
-                "org_room",
-                "org_staff",
-                "serve_area",
-                "serve_area_building",
-                "serve_area_floor",
-                "serve_area_room",
-                "serve_bag",
-                "serve_bag_project_among",
-                "serve_bag_project_among_day",
-                "serve_bag_project_among_hour",
-                "serve_meal_fee_level",
-                "serve_nurse_level",
-                "serve_person",
-                "serve_person_certificate",
-                "serve_person_train",
-                "serve_person_train_among",
-                "serve_project",
-                "serve_project_option",
-                "serve_rebate_policy",
-                "sys_dictionary",
-                "sys_dictionary_type",
-                "sys_operate_log",
-                "sys_user",
-                "user_wechat");
-
+                "auth_button","auth_manager","auth_manager_role","auth_model",
+                "auth_permission","auth_role","auth_role_permission");
         System.out.println("--------------------------生成成功------------------------");
     }
 
@@ -212,7 +148,7 @@ public class GeneratorCodeUtil {
                 .setControllerMappingHyphenStyle(true)
                 .setLogicDeleteFieldName("del_flag")
                 // entity忽略生成字段
-                .setSuperEntityColumns("del_flag", "last_updated_time", "last_updated_by_id", "created_time", "created_by_id")
+//                .setSuperEntityColumns("del_flag", "last_updated_time", "last_updated_by_id", "created_time", "created_by_id")
                 //表名命名策略(驼峰)
                 .setNaming(NamingStrategy.underline_to_camel)
                 //字段名命名策略(驼峰)
@@ -268,7 +204,7 @@ public class GeneratorCodeUtil {
         globalConfig.setOpen(false)
                 // new File("module").getAbsolutePath()得到当前模块根目录路径
                 //生成文件的输出目录
-                .setOutputDir(new File(module).getAbsolutePath() + "/interest/src/main/java")
+                .setOutputDir(new File(module).getAbsolutePath() + OUT_PUT_DIR)
                 //是否覆盖已有文件
                 .setFileOverride(true)
                 .setBaseResultMap(true)

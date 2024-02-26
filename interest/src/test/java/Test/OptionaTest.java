@@ -1,4 +1,4 @@
-package study.java8特性;
+package Test;
 
 import com.alibaba.fastjson.JSON;
 import com.example.springboot.model.Student;

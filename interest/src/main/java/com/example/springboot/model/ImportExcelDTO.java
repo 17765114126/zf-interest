@@ -1,4 +1,4 @@
-package Test;
+package com.example.springboot.model;
 
 import cn.afterturn.easypoi.excel.annotation.Excel;
 import lombok.Data;

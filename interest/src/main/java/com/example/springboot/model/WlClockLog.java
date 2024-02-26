@@ -1,4 +1,4 @@
-package Test;
+package com.example.springboot.model;
 import lombok.Data;
 
 import java.time.LocalDateTime;

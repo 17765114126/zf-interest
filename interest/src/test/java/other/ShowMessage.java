@@ -1,4 +1,4 @@
-package Swing.JOptionPane;
+package other;
 
 import javax.swing.*;
 
@@ -8,7 +8,7 @@ import javax.swing.*;
  * @Date 2021/6/8
  * @Version V1.0
  **/
-public class showMessage {
+public class ShowMessage {
     public static void main(String[] args) {
         JOptionPane.showMessageDialog(null, "普通提示框！", "哈哈",JOptionPane.INFORMATION_MESSAGE);
 

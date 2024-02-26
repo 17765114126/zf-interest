@@ -49,13 +49,10 @@ public class $!{table.serviceImplName} extends $!{superServiceImplClass}<$!{tabl
     public Boolean addInfo($!{entity}Req req) {
         //主表复制元素
         $!{entity} entity = CopyUtil.copyObject(req, $!{entity}.class);
-        Boolean flag;
         if (req.getId() != null) {
-            flag = updateById(entity);
-        } else {
-            flag = save(entity);
+            return updateById(entity);
         }
-        return flag;
+        return save(entity);
     }
 
     @Override

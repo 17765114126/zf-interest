@@ -1,40 +1,21 @@
 package Test;
 
-import cn.hutool.json.JSONArray;
-import cn.hutool.json.JSONObject;
-import cn.hutool.json.JSONUtil;
-import com.alibaba.fastjson.JSON;
-import com.example.springboot.model.User;
-import com.example.springboot.utils.CollectionUtil;
-import com.example.springboot.utils.ID.SnowIdUtils;
-import com.example.springboot.utils.date.DateUtil;
+import com.example.springboot.model.WlClockLog;
 import com.example.springboot.utils.number.MathUtil;
-import com.example.springboot.utils.string.StringUtil;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.ImmutableSortedSet;
-import com.google.gson.Gson;
-import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
-import org.springframework.web.bind.annotation.RequestBody;
 
-
-import javax.naming.*;
-import java.io.File;
 import java.math.BigDecimal;
-import java.text.Collator;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.concurrent.ThreadLocalRandom;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 /**
@@ -121,18 +102,6 @@ public class SuiShouTest {
         return map;
     }
 
-
-    @Test
-    public void Test3() {
-        int q = 2;
-        int a = 2;
-        String z = "12";
-        int w = 542;
-        if (q == 2 && a == 2 && (z == null || z != null && (w == 28 || w == 42))) {
-            System.out.println("已发货");
-        }
-    }
-
     @Test
     public void Test4() {
         BigDecimal q = new BigDecimal(1.55);
@@ -163,8 +132,6 @@ public class SuiShouTest {
     @Test
     public void Test6() {
         //BigDecimal本身提供了加减乘除的方法
-        //
-
         //BigDecima类型相加
         BigDecimal e = BigDecimal.valueOf(0);
         BigDecimal ex = BigDecimal.valueOf(0.01);
@@ -201,10 +168,9 @@ public class SuiShouTest {
         Float z = 6.718888F;
         DecimalFormat df = new DecimalFormat("#.00");
         System.out.println(df.format(z - 2));
-
     }
 
-    public static void main(String[] args) {
+    public void Test3() {
         BigDecimal rate = new BigDecimal(100);
 
         BigDecimal ExecutoryPay = new BigDecimal("291500.00");
@@ -217,15 +183,12 @@ public class SuiShouTest {
         boolean b = nonPayAmount.compareTo(nonPayAmount1) == 0;
         System.out.println(b);
 
-
         BigDecimal subtract = ExecutoryPay.subtract(AdvancePayment).multiply(rate);
 
         System.out.println(subtract);
         if (!subtract.equals(nonPayAmount)) {
             System.out.println("---------sdvv-------");
-
         }
-
 
         nonPayAmount = nonPayAmount.divide(rate).add(AdvancePayment);
         //发飞书消息
@@ -233,7 +196,6 @@ public class SuiShouTest {
 
             System.out.println("----------------");
         }
-
 //        String rPWH3KF85BdDZQTn = signResult("rPWH3KF85BdDZQTn");
 //        System.out.println(rPWH3KF85BdDZQTn);
     }
@@ -259,103 +221,6 @@ public class SuiShouTest {
         System.out.println(ssd);
     }
 
-
-    @Test
-    public void test8() {
-        String str = "1234567.txt";
-        //返回此字符串中第一次出现 指定子字符串的索引。
-        if (str.indexOf(".tx") != -1) {
-            System.out.println("包含该字符串");
-        } else {
-            System.out.println("不包含该字符串");
-        }
-
-        //替换字符
-        String expressNumber = "  1213    3134  12  ";
-        System.out.println(expressNumber.replaceAll(" ", ""));
-
-        //字符串处理
-        String[] split = "16666666666,17765114126".split(",");
-        String string = "";
-        for (String s : split) {
-            string += "\"" + s + "\"" + ",";
-        }
-        String str1 = "[" + string.substring(0, string.length() - 1) + "]";
-        System.out.println(str1);
-    }
-
-
-    @Test
-    public void Test9() {
-        Long a = 456456L;
-        Long b = 456456L;
-        int i1 = a.hashCode();
-        int i2 = b.hashCode();
-        System.out.println("hashCode:" + i1 + "-------" + i2);
-        System.out.println(a != b);// =：对比内存中的地址是否相同
-        System.out.println(!a.equals(b));// equals：对比字符串是否相同
-        System.out.println("--------------------------");
-
-        String str = "[\"16666666666\",\"17765114126\"]";
-        System.out.println(str.hashCode());
-
-        String[] split = new String[]{"17765114126", "18203655200"};
-        String[] sp = new String[split.length];
-        for (int i = 0; i < split.length; i++) {
-            sp[i] = split[i] + "1";
-            System.out.println(sp[i]);
-        }
-
-        System.out.println("--------------------------");
-
-        String str1 = "123456789,";
-        if (StringUtils.isNotBlank(str1) && str1.substring(str1.length() - 1).equals(",")) {
-            System.out.println(str1.substring(0, str1.length() - 1));
-        }
-        Integer i = 1;
-        System.out.println(i.toString().equals("1"));
-    }
-
-    @Test
-    public void Test10() {
-        System.out.println(StringUtils.isAnyEmpty("", "bar"));
-        System.out.println(StringUtils.isAnyBlank(" ", "bar"));
-
-        System.out.println(StringUtils.isEmpty(" "));
-        System.out.println(StringUtils.isEmpty("\n"));
-
-        System.out.println(StringUtils.isWhitespace("\n"));
-        System.out.println(StringUtils.isWhitespace(" "));
-
-        String productIds = "1,2,3,4,5";
-        String[] split = productIds.split(",", 3);
-        System.out.println(JSON.toJSONString(split));
-        System.out.println(JSON.toJSONString(StringUtils.split(productIds, ",", 2)));
-        System.out.println(JSON.toJSONString(StringUtils.split("a:b:c", ':')));
-    }
-
-
-    /**
-     * 判断是否数字与字母
-     */
-    @Test
-    public void Test11() {
-        HashMap<String, String> map = new HashMap<>();
-        System.out.println(StringUtil.isBlank(map.get("ds")));
-
-        String expressNumber = "。";
-        if (!isChinese(expressNumber)) {//非数字
-            System.out.println("1111111111111");
-        }
-    }
-
-    public boolean isChinese(String str) {
-        //判断是否数字与字母
-        String regex = "^[a-z0-9A-Z]+$";
-        Matcher m = Pattern.compile(regex).matcher(str);
-        return m.matches();
-    }
-
     @Test
     public void Test12() {
         BigDecimal bigDecimal = new BigDecimal(5.00);
@@ -371,20 +236,14 @@ public class SuiShouTest {
         int i = bigDecimal.compareTo(b);
         boolean equals = bigDecimal.equals(BigDecimal.ZERO);
 
-
         BigDecimal rate = new BigDecimal(100);
         System.out.println(b.divide(rate).add(bigDecimal));
         System.out.println(MathUtil.isIntegerValue(b));
-
-
     }
-
 
     @Test
     public void Test13() throws InterruptedException {
-        System.out.println("213");
 //        Thread.sleep(3000);
-
         for (int i = 1; i < 10; i++) {
             for (int j = 1; j < i; j++) {
                 System.out.print(j + "*" + i + "=" + j * i + "\t");
@@ -401,138 +260,10 @@ public class SuiShouTest {
 //                }
 //            }
 //        }
-
-    }
-
-
-    @Test
-    public void Test14() {
-
-
-
-//        String Str = new String("Welcome to Yiibai.com");
-
-//        System.out.println(StringUtil.startsWithIgnoreCase(Str, "select"));
-//        System.out.println(StringUtil.containsIgnoreCase(Str, "delect"));
-        //字符串是否包含字符
-//        System.out.println(!StringUtil.containsIgnoreCase(Str, "{0}"));
-//        System.out.print("Return Value :");
-//        System.out.println(Str.startsWith("Welcome"));
-//
-//        System.out.print("Return Value :");
-//        System.out.println(Str.startsWith("Tutorials"));
-//
-//        System.out.print("Return Value :");
-//        System.out.println(Str.startsWith("Yiibai", 11));
-
-
-        User user = new User();
-        user.setId(1L);
-        user.setTest5("张1");
-        user.setDate(DateUtil.getDateNoTime("2021-09-18 11:15:35"));
-
-        User user1 = new User();
-        user1.setTest5("阿2");
-        user1.setId(4L);
-        user1.setDate(DateUtil.getDate());
-
-        User user2 = new User();
-        user2.setTest5("阿3");
-        user2.setId(3L);
-        user2.setDate(DateUtil.getDateNoTime("2021-09-22 15:56:41"));
-
-
-        User user3 = new User();
-        user3.setTest5("丁4");
-        user3.setId(4L);
-        user3.setDate(DateUtil.getDateNoTime("2021-09-22 15:57:41"));
-
-        List<User> arrayList = new ArrayList();
-
-
-        arrayList.add(user);
-        arrayList.add(user1);
-        arrayList.add(user2);
-        arrayList.add(user3);
-
-        // 首字母排序
-        arrayList.sort((o1, o2) -> {
-            Comparator<Object> com = Collator.getInstance(Locale.CHINA);
-            if (o1.getId() == o2.getId()){
-                return -1;
-            }
-            return com.compare(o1.getTest5(), o2.getTest5());
-        });
-        System.out.println("---------------------------"+JSON.toJSONString(arrayList));
-        Long countPayAmt = arrayList.stream().filter(e -> e.getId() > 1).map(User::getId).reduce(0L, (a, b) -> a + b);
-
-
-        System.out.println(countPayAmt);
-
-        System.out.println("-------------------------------------------------------");
-
-//        arrayList.add(1,user3);
-
-        System.out.println(JSON.toJSONString(arrayList));
-
-
-        Comparator<User> reversed = Comparator.comparing(User::getTest6).reversed();
-        //按时间排序
-        List<User> collect = arrayList.stream().sorted(Comparator.comparing(User::getDate).reversed()).collect(Collectors.toList());
-        //过滤
-        List<User> collect1 = arrayList.stream().filter(s -> s.getId() == 1L).collect(Collectors.toList());
-        System.out.println(JSON.toJSONString(collect1));
-        //相加
-        Long reduce = arrayList.stream().map(User::getId).reduce(0L, (a, b) -> a + b);
-
-        //根据日分组
-        //, LinkedHashMap::new, Collectors.toList() 默认hashmap是无序的，传入LinkedHashMap有序
-//        Map<String, List<WlClockLogResp>> collect = wlClockLogResps.stream()
-//                .collect(Collectors.groupingBy(p -> p.getCreateTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")), LinkedHashMap::new, Collectors.toList()));
-
-        //根据周分组
-//        Map<WlClockLogResp, List<WlClockLogResp>> collect = wlClockLogResps.stream()
-//                .collect(Collectors.groupingBy(p -> p.getCreateTime().getDayOfWeek()));
-
-
-        //先筛选（filter），然后根据字段CreateTime按日分组（groupingBy）且返回日期最早（collectingAndThen）的数据
-//        Map<String, WlClockLogDTO> collect = list.stream()
-//                .filter(e -> e.getCreateTime() != null && e.getPointType() == 1)
-//                .collect(Collectors.groupingBy(p -> p.getCreateTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),
-//                        Collectors.collectingAndThen(Collectors.reducing((c1, c2) -> c1.getCreateTime().isAfter(c2.getCreateTime()) ? c1 : c2), Optional::get)));
-        //map转List
-//        List<LocalDateTime> averageDateList = collect.values()
-//                .stream().map(WlClockLogDTO::getCreateTime)
-//                .collect(Collectors.toList());
-
-
-
-        System.out.println("相加" + reduce);
-
-        //判断集合是否为空
-        boolean notEmpty = CollectionUtils.isNotEmpty(arrayList);
-        System.out.println(notEmpty);
-
-        List list = new ArrayList<>();
-
-        Map map = new HashMap<>();
-        map.put("id", "1");
-        map.put("name", "2");
-
-        list.add(map);
-
-        Map map1 = new HashMap<>();
-
-        map1.put("id", 3L);
-        map1.put("name", "acs");
-        list.add(map1);
-        System.out.println(JSON.toJSONString(list));
-
     }
 
     @Test
-    public void Test132() {
-
+    public void Test15() {
         List<WlClockLog> wlClockLogs = new ArrayList<>();
         WlClockLog wlClockLog = new WlClockLog();
         wlClockLog.setCreateTime(LocalDateTime.now());
@@ -567,67 +298,7 @@ public class SuiShouTest {
     }
 
     @Test
-    public void Test15() {
-        String sql = "select id from order WHERE id = 2";
-        String[] names = sql.split("[whereWHERE]");
-
-        System.out.println(names[names.length - 1]);
-    }
-
-    @Test
-    public void Test16() {
-        String trim = " AS1221acs".trim();
-        System.out.println(trim);
-        System.out.println(trim.toUpperCase());
-
-        if (Arrays.asList(7, 8, 9).contains(9)) {
-            System.out.println("---------------------");
-        }
-
-        String str = null;
-        if (Objects.isNull(str) && !"000".equals("000")) {
-            System.out.println("-------cdscscsd");
-        }
-
-    }
-
-
-    @Test
-    public void Test17() {
-        ArrayList<Object> objects = new ArrayList<>();
-        objects.add("123");
-        System.out.println(objects.isEmpty());
-
-
-        if (DateUtil.getDateNoTime("2021-06-16 00:00:00").compareTo(cn.hutool.core.date.DateUtil.parseDate("2022-01-01 00:00:00")) < 0) {
-//            return ResultBean.success(null);
-            System.out.println("111-------------");
-        } else {
-            //日期赋值
-            System.out.println("222-------------");
-//            date = bizOrder.getPayDepositTime();
-        }
-
-
-        System.out.println(formatNumber(new BigDecimal("60.00")));
-    }
-
-    public Integer formatNumber(BigDecimal bigDecimal) {
-//        String priceStr = CURRENCY_FORMAT.format(bigDecimal).substring(1);
-        String priceStr = String.valueOf(bigDecimal);
-        if (StringUtils.isBlank(priceStr)) {
-            return 0;
-        }
-        int i = priceStr.indexOf(".");
-        String substring = priceStr.substring(0, i);
-        Integer integer = Integer.valueOf(substring);
-        return integer;
-    }
-
-
-    @Test
-    public void Test18() {
-
+    public void Test19() {
         Map<String, Object> paramMap = new HashMap<>();
 
         String payOrderId = String.valueOf(paramMap.get("attach"));
@@ -639,7 +310,6 @@ public class SuiShouTest {
 
         BigDecimal multiply = q.multiply(w);
         System.out.println(multiply);
-
 
         BigDecimal nonPayAmount = new BigDecimal(0);
         //成功支付金额
@@ -655,7 +325,6 @@ public class SuiShouTest {
         if (!new BigDecimal(0.03).equals(new BigDecimal(0)) && !new BigDecimal(0.02).equals(new BigDecimal(0.02))) {
             System.out.println("=================as1");
         }
-
 
         //前提为a、b均不能为null
         if (nonPayAmount.compareTo(LoanAmt) == -1) {
@@ -678,10 +347,8 @@ public class SuiShouTest {
             System.out.println("a小于等于b");
         }
 
-
         //判断BigDecimal类型是否为0
         System.out.println(LoanAmt.compareTo(nonPayAmount) == 0);
-
 
         if (nonPayAmount.compareTo(new BigDecimal(0.00)) == 0) {
             System.out.println("---------ssss-----");
@@ -695,16 +362,6 @@ public class SuiShouTest {
         if (longs.contains(1L)) {
             System.out.println("--------------");
         }
-
-    }
-
-    @Test
-    public void Test19() {
-        long snowID = SnowIdUtils.uniqueLong();
-        System.out.println(snowID);
-
-        long snowID1 = SnowIdUtils.uniqueLong();
-        System.out.println(snowID1);
     }
 
 
@@ -730,31 +387,22 @@ public class SuiShouTest {
         //截取集合部分元素
         ImmutableList<String> imInfolist = ImmutableList.copyOf(list.subList(2, 8));
         System.out.println("imInfolist：" + imInfolist);
-
-
     }
 
-
     @Test
-    public void Test20() {
-
-
+    public void Test21() {
         boolean isWe = Objects.equals(7, 1)
                 || Objects.equals(7, 2);
         //不为WE版的，若国补价格不同抛出
-
         BigDecimal bigDecimal = new BigDecimal("0");
         BigDecimal bigDecimal1 = new BigDecimal("0.00");
         if (!isWe && !(new BigDecimal("0").compareTo(bigDecimal1) == 0)) {
             System.out.println("------------------------");
-
         }
-
 
         if (Arrays.asList(new BigDecimal("12600"), new BigDecimal("0"), new BigDecimal("8820")).contains(new BigDecimal("34"))) {
 //            System.out.println("------------------------");
         }
-
 
         List<Integer> objects = new ArrayList<>();
         objects.add(1);
@@ -779,33 +427,19 @@ public class SuiShouTest {
     }
 
     @Test
-    public void Test21() {
-//        String[] split = "Z001A002,Z001A003".split(",");
-////        List<String> strings = Arrays.asList(split);
-////        boolean qd = strings.contains("Z001A002");
-////        System.out.println(qd);
-        boolean equals = "2".equals(null);
-        System.out.println(equals);
-//        if (new Date().compareTo(cn.hutool.core.date.DateUtil.parse("2022-09-01 00:00:00")) >= 0) {
-//            System.out.println("____________________________");
-//        }
-    }
-
-    @Test
-    public void Test22() {
-
+    public void Test23() {
         List<String> list = new ArrayList<String>();
         list.add("AAA");
         list.add("BBB");
         list.add("BBB");
         list.add("CCC");
-//若直接操作，会报ConcurrentModificationException异常（并发修改异常）
+        //若直接操作，会报ConcurrentModificationException异常（并发修改异常）
 //        for (String str : list) {
-//            if("BBB".equals(str)){
+//            if ("BBB".equals(str)) {
 //                list.remove(str);
 //            }
 //        }
-//需要添加到CopyOnWriteArrayList在处理
+        //需要添加到CopyOnWriteArrayList在处理
         List<String> newList = new CopyOnWriteArrayList<String>();
         newList.addAll(list);
         for (String str : newList) {
@@ -814,24 +448,5 @@ public class SuiShouTest {
             }
         }
         System.out.println();
-    }
-
-    @Test
-    public void Test23() {
-            long payOrderRefundId = SnowIdUtils.uniqueLong();
-        for (int i = 0; i < 47; i++) {
-            String str = "INSERT INTO `future_community`.`wl_childcare_bespeak`" +
-                    "(`institution_id`, `bespeak_name`, `bespeak_mobile`, `child_name`, `child_sex`, `child_age`, `status`, `reserve_time_id`, `wl_time_period_id`, `create_user_uuid`, `create_time`, `last_update_user_uuid`, `last_update_time`, `del_flag`) \n" +
-                    "VALUES \n" +
-                    "('1663384218053922816', '预约人姓名', '15268518665', '幼儿姓名', '1', '3', '1', '"+payOrderRefundId+"', '1663384218116837376', 'a08d223d4ebe491c971e50325b8fc1a7', '2023-04-03 11:23:43', 'a08d223d4ebe491c971e50325b8fc1a7', '2023-04-03 11:23:43', '0');";
-            System.out.println(str);
-            String str1 = "INSERT INTO `future_community`.`wl_venues_reserve_time` \n" +
-                    "(`id`, `institution_id`, `AM_open`, `PM_open`, `type`, `open_data`, `create_user_uuid`, `create_time`, `last_update_user_uuid`, `last_update_time`, `del_flag`) \n" +
-                    "VALUES \n" +
-                    "('"+payOrderRefundId+"', '1645310176615964672', '1', '1', '3', '2023-03-21', 'qwrwaedfzsd', '2023-04-10 14:18:09', 'qwrwaedfzsd', '2023-04-10 14:18:09', '0');";
-            System.out.println(str1);
-        }
-
-
     }
 }

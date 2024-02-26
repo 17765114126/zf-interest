@@ -1,10 +1,13 @@
 package Test;
 
 import com.example.springboot.utils.date.DateUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
+import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -151,4 +154,35 @@ public class DateTest {
         System.out.println(new Date());
         System.out.println(DateUtil.getTimeToStr(new Date()));
     }
+
+    @Test
+    public void Test18() {
+        ArrayList<Object> objects = new ArrayList<>();
+        objects.add("123");
+        System.out.println(objects.isEmpty());
+
+        if (DateUtil.getDateNoTime("2021-06-16 00:00:00").compareTo(cn.hutool.core.date.DateUtil.parseDate("2022-01-01 00:00:00")) < 0) {
+//            return ResultBean.success(null);
+            System.out.println("111-------------");
+        } else {
+            //日期赋值
+            System.out.println("222-------------");
+//            date = bizOrder.getPayDepositTime();
+        }
+
+        System.out.println(formatNumber(new BigDecimal("60.00")));
+    }
+
+    public Integer formatNumber(BigDecimal bigDecimal) {
+//        String priceStr = CURRENCY_FORMAT.format(bigDecimal).substring(1);
+        String priceStr = String.valueOf(bigDecimal);
+        if (StringUtils.isBlank(priceStr)) {
+            return 0;
+        }
+        int i = priceStr.indexOf(".");
+        String substring = priceStr.substring(0, i);
+        Integer integer = Integer.valueOf(substring);
+        return integer;
+    }
+
 }

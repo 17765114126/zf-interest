@@ -1,0 +1,117 @@
+package ${package.Controller};
+
+##import com.example.application.model.form.Result;
+##import com.example.application.utils.Assert;
+##import com.example.application.model.enums.ResultCodeEnum;
+##import org.springframework.web.bind.annotation.*;
+#if(${swagger2})
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+#end
+import org.springframework.web.bind.annotation.*;
+import ${package.Service}.${table.serviceName};
+import ${package.Entity}.${entity}Req;
+import ${package.Entity}.${entity}Resp;
+
+import javax.annotation.Resource;
+#if(${restControllerStyle})
+#else
+import org.springframework.stereotype.Controller;
+#end
+#if(${superControllerClassPackage})
+import ${superControllerClassPackage};
+#end
+
+/**
+ * @ClassName ${table.controllerName}
+ * @version 1.0
+ * @author ${author}
+ * @since ${date}
+ * @$!{table.comment}
+ *
+ */
+#if(${swagger2})
+@Api(tags = { "${table.comment}"})
+##@Api(tags = { "${table.comment}"},description = "描述")
+#end
+#if(${restControllerStyle})
+@RestController
+#else
+@Controller
+#end
+@RequestMapping("#if(${package.ModuleName})/${package.ModuleName}#end/#if(${controllerMappingHyphenStyle})${controllerMappingHyphen}#else${table.entityPath}#end")
+#if(${kotlin})
+class ${table.controllerName}#if(${superControllerClass}) : ${superControllerClass}()#end
+
+#else
+    #if(${superControllerClass})
+    public class ${table.controllerName} extends ${superControllerClass} {
+    #else
+    public class ${table.controllerName} {
+    #end
+
+    @Resource
+    private ${table.serviceName} service;
+
+    /**
+     *@Description: 列表
+     * @param req
+     */
+    #if(${swagger2})
+    @ApiOperation(value = "列表", notes = "列表")
+    #end
+    @PostMapping("/list")
+    public BaseResult<Page<$!{entity}Resp>> list(@RequestBody $!{entity}Req req){
+        return BaseResultResponseUtil.success(service.getPage(req));
+    }
+
+    /**
+     *@Description: 新增
+     * @param req
+     */
+    #if(${swagger2})
+    @ApiOperation(value = "新增", notes = "新增")
+    #end
+    @PostMapping("/save")
+    public BaseResult<Boolean> save(@RequestBody $!{entity}Req req){
+        return BaseResultResponseUtil.success(service.addInfo(req));
+    }
+
+    /**
+     *@Description: 修改
+     * @param req
+     */
+    #if(${swagger2})
+    @ApiOperation(value = "修改", notes = "修改")
+    #end
+    @PostMapping("/update")
+    public BaseResult<Boolean> update(@RequestBody $!{entity}Req req){
+        return BaseResultResponseUtil.success(service.addInfo(req));
+    }
+
+    /**
+     *@Description: 详情
+     * @param id
+     */
+    #if(${swagger2})
+    @ApiOperation(value = "详情", notes = "详情")
+    #end
+    @GetMapping("/info")
+    public BaseResult<$!{entity}Resp> getById(Integer id){
+        return BaseResultResponseUtil.success(service.getInfo(id));
+    }
+
+    /**
+     *@Description: 批量删除
+     * @param ids
+     */
+    #if(${swagger2})
+    @ApiOperation(value = "删除", notes = "删除")
+    #end
+    @GetMapping("/deleteIds")
+    public BaseResult<Boolean> deleteInfos(String ids) {
+        return BaseResultResponseUtil.success(service.deleteInfos(ids));
+    }
+}
+
+#end

@@ -1,8 +1,8 @@
 package Test;
 
 import com.alibaba.fastjson.JSON;
-import com.example.springboot.model.User;
-import com.example.springboot.utils.date.DateUtil;
+import com.example.application.model.User;
+import com.example.application.utils.date.DateUtil;
 import org.junit.Test;
 
 import java.text.Collator;

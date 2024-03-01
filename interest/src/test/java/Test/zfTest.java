@@ -1,12 +1,11 @@
 package Test;
 
 import com.alibaba.fastjson.JSON;
-import com.example.springboot.config.Shiro.security.SpringUtils;
-import com.example.springboot.model.Student;
-import com.example.springboot.utils.ID.SnowIdUtils;
-import com.example.springboot.utils.sign.AESEncryptUtil;
-import com.example.springboot.utils.HttpClientUtil;
-import com.example.springboot.utils.sign.Md5Util;
+import com.example.application.config.Shiro.security.SpringUtils;
+import com.example.application.model.Student;
+import com.example.application.utils.sign.AESEncryptUtil;
+import com.example.application.utils.HttpClientUtil;
+import com.example.application.utils.sign.Md5Util;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.junit.Test;
 

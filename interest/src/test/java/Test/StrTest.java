@@ -2,11 +2,11 @@ package Test;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.example.springboot.model.Person;
-import com.example.springboot.model.constant.RandomType;
-import com.example.springboot.utils.ID.SnowIdUtils;
-import com.example.springboot.utils.string.StringUtil;
-import com.example.springboot.utils.string.StringUtilss;
+import com.example.application.model.Person;
+import com.example.application.model.constant.RandomType;
+import com.example.application.utils.ID.SnowIdUtils;
+import com.example.application.utils.string.StringUtil;
+import com.example.application.utils.string.StringUtilss;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;

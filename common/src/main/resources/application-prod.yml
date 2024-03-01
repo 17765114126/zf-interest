@@ -1,0 +1,41 @@
+spring:
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  datasource:
+    # 未来社区
+    wl-community:
+      driverClassName: com.mysql.cj.jdbc.Driver
+      #基本属性
+      jdbcUrl: jdbc:mysql://127.0.0.1:3306/future_community?useSSL=false&useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&serverTimezone=GMT%2B8
+      username: root
+      password: 123qwer.
+    # 我德清
+    wo-de-qing:
+      #name: atg_system
+      #type: com.alibaba.druid.pool.DruidDataSource
+      driverClassName: com.mysql.cj.jdbc.Driver
+      #基本属性
+      jdbcUrl: jdbc:mysql://127.0.0.1:3306/atg_system_test?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&serverTimezone=GMT%2B8&useSSL=false
+      username: root
+      password: 123qwer.
+
+  redis:
+    host: 127.0.0.1
+    database: 0
+    port: 6379
+    timeout: 20000
+    password: 123qwer.
+    lettuce:
+      pool:
+        max-active: 100
+        min-idle: 0
+        max-idle: 5
+        max-wait: 100000
+  servlet:
+    multipart:
+      max-request-size: 10MB
+      max-file-size: 100MB
+mybatis-plus:
+  mapper-locations: classpath:com/example/application/mapper/xml/*.xml
+  type-aliases-package: com.example.application

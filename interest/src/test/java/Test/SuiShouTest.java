@@ -1,7 +1,7 @@
 package Test;
 
-import com.example.springboot.model.WlClockLog;
-import com.example.springboot.utils.number.MathUtil;
+import com.example.application.model.WlClockLog;
+import com.example.application.utils.number.MathUtil;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.ImmutableSortedSet;
@@ -46,7 +46,7 @@ public class SuiShouTest {
     }
 
     @Test
-    public void tese1() {
+    public void test1() {
         float payMoney = 100;
         Integer num = 2;
 

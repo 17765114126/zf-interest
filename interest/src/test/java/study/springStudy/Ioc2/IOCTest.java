@@ -1,12 +1,11 @@
 package study.springStudy.Ioc2;
 
-import com.example.springboot.model.Student;
+import com.example.application.model.Student;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import study.springStudy.IOC理论推导.UserDaoMySqlImpl;
 import study.springStudy.IOC理论推导.UserDaoOracleImpl;
-import study.springStudy.IOC理论推导.UserService;
 import study.springStudy.IOC理论推导.UserServiceImpl;
 
 /**

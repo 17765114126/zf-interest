@@ -1,6 +1,6 @@
 package study.数组集合.Map;
 
-import com.example.springboot.model.Student;
+import com.example.application.model.Student;
 import org.junit.Test;
 
 import java.util.*;

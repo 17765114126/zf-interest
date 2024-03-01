@@ -1,6 +1,6 @@
 package study.java8特性;
 
-import com.example.springboot.model.Student;
+import com.example.application.model.Student;
 
 import java.util.*;
 import java.util.function.Predicate;

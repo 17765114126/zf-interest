@@ -1,0 +1,64 @@
+package ${package.ServiceImpl};
+
+import ${package.Entity}.${entity};
+import ${package.Mapper}.${table.mapperName};
+import ${package.Service}.${table.serviceName};
+import ${superServiceImplClassPackage};
+import ${package.Entity}.${entity}Req;
+import ${package.Entity}.${entity}Resp;
+import org.springframework.stereotype.Service;
+
+/**
+ * @$!{table.comment}
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+@Service
+#if(${kotlin})
+open class $!{table.serviceImplName} : $!{superServiceImplClass}<$!{table.mapperName}, $!{entity}>(), $!{table.serviceName} {
+
+}
+#else
+public class $!{table.serviceImplName} extends $!{superServiceImplClass}<$!{table.mapperName}, $!{entity}> implements ${table.serviceName} {
+
+    @Override
+    public Page<$!{entity}Resp> getPage($!{entity}Req req) {
+        Paging paging = new Paging();
+
+        IPage<$!{entity}> ipage = page(paging.toPage(), new LambdaQueryWrapper<$!{entity}>()
+                .eq($!{entity}::getDelFlag, 0)
+                .orderByDesc($!{entity}::getCreatedTime));
+
+        Page<$!{entity}> page = PageUtil.toPage(ipage);
+        return PageUtil.convert(page, e -> {
+                $!{entity}Resp resp = CopyUtil.copyObject(e, $!{entity}Resp.class);
+            return resp;
+        });
+    }
+
+    @Override
+    public Boolean addInfo($!{entity}Req req) {
+        //主表复制元素
+        $!{entity} entity = CopyUtil.copyObject(req, $!{entity}.class);
+        if (req.getId() != null) {
+            return updateById(entity);
+        }
+        return save(entity);
+    }
+
+    @Override
+    public $!{entity}Resp getInfo(Integer id) {
+        return CopyUtil.copyObject(getById(id), $!{entity}Resp.class);
+    }
+
+    @Override
+    public Boolean deleteInfos(String ids) {
+        return update(new UpdateWrapper<$!{entity}>().lambda()
+                .set($!{entity}::getDelFlag, 1)
+                .inSql($!{entity}::getId, ids)
+        );
+    }
+
+}
+#end

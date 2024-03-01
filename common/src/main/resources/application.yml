@@ -1,0 +1,67 @@
+#server:
+#  port: 8998
+#  servlet:
+#    context-path: /interest
+
+spring:
+  application:
+    name: admin-application
+  #环境 dev(开发环境)、test(测试环境)、prod(生产环境)
+  profiles:
+    active: test
+  #配置文件传输
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 0
+      #单个数据的大小
+      max-file-size: 10MB
+      #总数据的大小
+      max-request-size: 100MB
+  # 模板引擎
+  thymeleaf:
+    mode: HTML
+    encoding: utf-8
+    # 禁用缓存
+    cache: false
+  # 资源信息
+  messages:
+    # 国际化资源文件路径
+    basename: static/i18n/messages
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+      #  mvc:
+      #    view:
+      #      prefix: /WEB-INF/
+      #      suffix: .jsp
+
+# log config
+#logging:
+#  config: classpath:logback.xml
+
+
+
+  # 发送邮件配置
+  #  spring.mail.host = smtp.163.com
+  #  spring.mail.port =
+  #  spring.mail.username = 17765114126@163.com
+  #  spring.mail.password = YXIDYBPHLBGNCNQP
+  #  spring.mail.default-encoding = UTF-8
+  #  spring.mail.properties.mail.smtp.auth = true
+  #  spring.mail.properties.mail.smtp.starttls.enable = true
+  #  spring.mail.properties.mail.smtp.starttls.required = true
+  #  spring.mail.properties.mail.smtp.ssl.enable = true
+  mail:
+    host: smtp.163.com
+    username: 17765114126@163.com #自己的邮箱账号
+    password: YXIDYBPHLBGNCNQP  #这个不是登录密码而是163授权登录的密码
+    default-encoding: UTF-8
+    properties:
+      smtp:
+        auth: true
+        starttls:
+          enable: true
+          required: true
+        ssl:
+          enable: true

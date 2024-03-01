@@ -1,6 +1,6 @@
 package Test;
 
-import com.example.springboot.utils.date.DateUtil;
+import com.example.application.utils.date.DateUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 

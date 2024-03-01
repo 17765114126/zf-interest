@@ -16,13 +16,13 @@
     <bean id="userService" class="study.springStudy.AOP.UserServiceImpl"/>
 
     <!-- Definition for student bean -->
-    <bean id="student" class="com.example.springboot.model.Student">
+    <bean id="student" class="com.example.application.model.Student">
         <property name="name" value="Zara"/>
         <property name="age" value="11"/>
     </bean>
 
     <!-- Definition for logging aspect -->
-    <bean id="logging" class="com.example.springboot.config.Aop.Logging"/>
+    <bean id="logging" class="com.example.application.config.Aop.Logging"/>
 
     <!--
     singleton 作用域：
@@ -31,7 +31,7 @@
 
     默认作用域是始终是 singleton，但是当仅仅需要 bean 的一个实例时，你可以在 bean 的配置文件中设置作用域的属性为 singleton，如下所示：
     -->
-    <bean id="helloWorld" class="com.example.springboot.config.IocOrDI.Ioc.HelloWorld"
+    <bean id="helloWorld" class="com.example.application.config.IocOrDI.Ioc.HelloWorld"
           scope="singleton" init-method="init" destroy-method="destroy">
         <property name="message" value="Hello World!"/>
     </bean>
@@ -60,7 +60,7 @@
 
     <!-- Definition for studentJDBCTemplate bean -->
     <bean id="studentJDBCTemplate"
-          class="com.example.springboot.config.Transaction.StudentJDBCTemplate">
+          class="com.example.application.config.Transaction.StudentJDBCTemplate">
         <property name="dataSource" ref="dataSource"/>
         <property name="transactionManager" ref="transactionManager"/>
     </bean>
@@ -75,7 +75,7 @@
 
     <aop:config>
         <aop:pointcut id="createOperation"
-                      expression="execution(* com.example.springboot.config.Transaction.StudentJDBCTemplate.create(..))"/>
+                      expression="execution(* com.example.application.config.Transaction.StudentJDBCTemplate.create(..))"/>
         <aop:advisor advice-ref="txAdvice" pointcut-ref="createOperation"/>
     </aop:config>
 

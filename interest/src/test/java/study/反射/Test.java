@@ -1,6 +1,6 @@
 package study.反射;
 
-import com.example.springboot.model.entity.SmsLog;
+import com.example.application.model.entity.SmsLog;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;

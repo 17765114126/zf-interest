@@ -2,8 +2,8 @@ package Test;
 
 import cn.afterturn.easypoi.excel.ExcelImportUtil;
 import cn.afterturn.easypoi.excel.entity.ImportParams;
-import com.example.springboot.model.ImportExcelDTO;
-import com.example.springboot.utils.ID.SnowIdUtils;
+import com.example.application.model.ImportExcelDTO;
+import com.example.application.utils.ID.SnowIdUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.entity.ContentType;
 import org.springframework.mock.web.MockMultipartFile;

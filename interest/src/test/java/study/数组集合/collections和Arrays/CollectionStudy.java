@@ -1,6 +1,6 @@
 package study.数组集合.collections和Arrays;
 
-import com.example.springboot.model.Student;
+import com.example.application.model.Student;
 import java.util.*;
 /**
  * @ClassName CollectionStudy

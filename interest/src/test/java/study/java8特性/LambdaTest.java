@@ -1,6 +1,6 @@
 package study.java8特性;
 
-import com.example.springboot.model.Student;
+import com.example.application.model.Student;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.junit4.SpringRunner;

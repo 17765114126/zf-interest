@@ -1,0 +1,26 @@
+server:
+  port: 8079
+spring:
+  datasource:
+    name: rcfe_system
+    #基本属性
+    url: jdbc:mysql://localhost:3306/zhaofu?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8
+    userName: root
+    password: 123
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+  redis:
+    host: 192.168.0.130
+    database: 0
+    port: 6379
+    timeout: 20000
+    password: 123qwer.
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml
+  global-config:
+    db-config.table-prefix: tbl_
+  config.db-config:
+    id-type: auto
+  configuration.log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+swagger2:
+  enable: true

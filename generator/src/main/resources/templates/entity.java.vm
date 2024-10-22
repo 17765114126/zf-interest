@@ -67,7 +67,7 @@ public class ${entity} extends NewBaseEntity implements Serializable {
 #if(${field.keyFlag})
 ## 主键
   #if(${field.keyIdentityFlag})
-  @TableId(value = "${field.annotationColumnName}", type = IdType.AUTO)
+  @TableId(value = "${field.annotationColumnName}", type = IdType.ID_WORKER)
   #elseif(!$null.isNull(${idType}) && "$!idType" != "")
   @TableId(value = "${field.annotationColumnName}", type = IdType.${idType})
   #elseif(${field.convert})

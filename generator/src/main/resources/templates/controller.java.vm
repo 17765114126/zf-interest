@@ -23,11 +23,11 @@ import ${superControllerClassPackage};
 #end
 
 /**
+ * $!{table.comment}
  * @ClassName ${table.controllerName}
  * @version 1.0
  * @author ${author}
  * @since ${date}
- * @$!{table.comment}
  *
  */
 #if(${swagger2})
@@ -54,7 +54,7 @@ class ${table.controllerName}#if(${superControllerClass}) : ${superControllerCla
     private ${table.serviceName} service;
 
     /**
-     *@Description: 列表
+     * 列表
      * @param req
      */
     #if(${swagger2})
@@ -66,7 +66,7 @@ class ${table.controllerName}#if(${superControllerClass}) : ${superControllerCla
     }
 
     /**
-     *@Description: 新增
+     * 新增
      * @param req
      */
     #if(${swagger2})
@@ -78,7 +78,7 @@ class ${table.controllerName}#if(${superControllerClass}) : ${superControllerCla
     }
 
     /**
-     *@Description: 修改
+     * 修改
      * @param req
      */
     #if(${swagger2})
@@ -90,7 +90,7 @@ class ${table.controllerName}#if(${superControllerClass}) : ${superControllerCla
     }
 
     /**
-     *@Description: 详情
+     * 详情
      * @param id
      */
     #if(${swagger2})
@@ -102,7 +102,7 @@ class ${table.controllerName}#if(${superControllerClass}) : ${superControllerCla
     }
 
     /**
-     *@Description: 批量删除
+     * 批量删除
      * @param ids
      */
     #if(${swagger2})

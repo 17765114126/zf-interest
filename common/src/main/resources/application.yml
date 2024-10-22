@@ -36,12 +36,6 @@ spring:
       #      prefix: /WEB-INF/
       #      suffix: .jsp
 
-# log config
-#logging:
-#  config: classpath:logback.xml
-
-
-
   # 发送邮件配置
   #  spring.mail.host = smtp.163.com
   #  spring.mail.port =
@@ -65,3 +59,7 @@ spring:
           required: true
         ssl:
           enable: true
+
+# log config
+#logging:
+#  config: classpath:logback.xml

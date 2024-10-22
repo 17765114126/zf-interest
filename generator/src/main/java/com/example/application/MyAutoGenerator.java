@@ -33,11 +33,21 @@ public class MyAutoGenerator extends AutoGenerator {
                 // 将字段名称的首字母小写
                 // field.setPropertyName(StringUtils.firstCharToLower(propertyName));
 
-                // 如果存在LocalDateTime类型时，将其修改为Date类型
-                if ("LocalDateTime".equals(field.getPropertyType())) {
-                    field.setColumnType(DbColumnType.DATE);
-                    importPackages.remove("java.time.LocalDateTime");
-                    importPackages.add("java.util.Date");
+                // 如果存在datetime类型时，将其修改为LocalDateTime类型
+                if ("datetime".equals(field.getType())) {
+                    field.setColumnType(DbColumnType.LOCAL_DATE_TIME);
+                    importPackages.remove("java.util.Date");
+                    importPackages.add("java.time.LocalDateTime");
+                }
+                // 如果存在date类型时，将其修改为LocalDate类型
+                if ("date".equals(field.getType())) {
+                    field.setColumnType(DbColumnType.LOCAL_DATE);
+                    importPackages.remove("java.util.Date");
+                    importPackages.add("java.time.LocalDate");
+                }
+                // 如果存在tinyint类型时，将其修改为Integer类型
+                if (field.getType().contains("tinyint")) {
+                    field.setColumnType(DbColumnType.INTEGER);
                 }
             });
 

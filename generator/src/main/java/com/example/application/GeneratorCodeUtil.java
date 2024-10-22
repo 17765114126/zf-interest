@@ -35,21 +35,6 @@ public class GeneratorCodeUtil {
 //    private static final String PASSWORD = "wUuKOKAuNK!9%5w1$";
 //    private static final String PASSWORD = "Zeekrlife#dev";
 
-    /**
-     * 请自定义自己的db url
-     */
-    private static final String DB_URL = "jdbc:mysql://192.168.0.130:3306/rcfe_system?useSSL=false&useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&serverTimezone=GMT%2B8";
-
-    /**
-     * 请自定义自己的username
-     */
-    private static final String USERNAME = "root";
-
-    /**
-     * 请自定义自己的password
-     */
-    private static final String PASSWORD = "123qwer.";
-
     private static final String DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
 
     /**
@@ -67,12 +52,26 @@ public class GeneratorCodeUtil {
      */
     private static final String MODULE_NAME = System.getProperty("user.dir");
 
+    /**
+     * 请自定义自己的db url
+     */
+    private static final String DB_URL = "jdbc:mysql://192.168.0.130:3306/server_home?useSSL=false&useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&serverTimezone=GMT%2B8";
+
+    /**
+     * 请自定义自己的username
+     */
+    private static final String USERNAME = "root";
+
+    /**
+     * 请自定义自己的password
+     */
+    private static final String PASSWORD = "123qwer.";
+
     public static void main(String[] args) throws IOException {
         System.out.println("--------------------开始自动生成相关的类----------------------");
         System.out.println("args = " + new File("").getAbsolutePath() + OUT_PUT_DIR);
         generateByTables(MODULE_NAME,
-                "auth_button","auth_manager","auth_manager_role","auth_model",
-                "auth_permission","auth_role","auth_role_permission");
+                "coupon_present_log");
         System.out.println("--------------------------生成成功------------------------");
     }
 
@@ -149,6 +148,8 @@ public class GeneratorCodeUtil {
                 .setLogicDeleteFieldName("del_flag")
                 // entity忽略生成字段
 //                .setSuperEntityColumns("del_flag", "last_updated_time", "last_updated_by_id", "created_time", "created_by_id")
+//                .setSuperEntityColumns("del_flag", "last_update_time", "last_update_user_uuid", "create_time", "create_user_uuid")
+
                 //表名命名策略(驼峰)
                 .setNaming(NamingStrategy.underline_to_camel)
                 //字段名命名策略(驼峰)
@@ -211,7 +212,7 @@ public class GeneratorCodeUtil {
                 .setBaseColumnList(true)
                 .setActiveRecord(false)
                 .setAuthor("zf")
-                .setSwagger2(true) //默认false
+                .setSwagger2(false) //默认false
                 // 去Service的I前缀
                 .setServiceName("%sService")
                 .setDateType(DateType.ONLY_DATE);

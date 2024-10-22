@@ -7,6 +7,7 @@ import ${superServiceImplClassPackage};
 import ${package.Entity}.${entity}Req;
 import ${package.Entity}.${entity}Resp;
 import org.springframework.stereotype.Service;
+import cn.hutool.core.util.ObjectUtil;
 
 /**
  * @$!{table.comment}
@@ -24,14 +25,11 @@ public class $!{table.serviceImplName} extends $!{superServiceImplClass}<$!{tabl
 
     @Override
     public Page<$!{entity}Resp> getPage($!{entity}Req req) {
-        Paging paging = new Paging();
-
-        IPage<$!{entity}> ipage = page(paging.toPage(), new LambdaQueryWrapper<$!{entity}>()
+        IPage<$!{entity}> ipage = page(req.toPage(), new LambdaQueryWrapper<$!{entity}>()
                 .eq($!{entity}::getDelFlag, 0)
-                .orderByDesc($!{entity}::getCreatedTime));
+                .orderByDesc($!{entity}::getCreateTime));
 
-        Page<$!{entity}> page = PageUtil.toPage(ipage);
-        return PageUtil.convert(page, e -> {
+        return PageUtil.convert(PageUtil.toPage(ipage), e -> {
                 $!{entity}Resp resp = CopyUtil.copyObject(e, $!{entity}Resp.class);
             return resp;
         });
@@ -41,7 +39,7 @@ public class $!{table.serviceImplName} extends $!{superServiceImplClass}<$!{tabl
     public Boolean addInfo($!{entity}Req req) {
         //主表复制元素
         $!{entity} entity = CopyUtil.copyObject(req, $!{entity}.class);
-        if (req.getId() != null) {
+        if (ObjectUtil.isNotNull(req.getId())) {
             return updateById(entity);
         }
         return save(entity);

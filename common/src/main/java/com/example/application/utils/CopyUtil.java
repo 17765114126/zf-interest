@@ -66,8 +66,9 @@ public class CopyUtil {
             logger.error("复制对象时目标对象为null!");
             return null;
         }
-        BeanCopier bc = getBeanCopierInstance(srcObj.getClass(), targetObj.getClass(), converter);
-        bc.copy(srcObj, targetObj, converter);
+//        BeanCopier bc = getBeanCopierInstance(srcObj.getClass(), targetObj.getClass(), converter);
+//        bc.copy(srcObj, targetObj, converter);
+        BeanUtils.copyProperties(srcObj, targetObj);
         return targetObj;
     }
 

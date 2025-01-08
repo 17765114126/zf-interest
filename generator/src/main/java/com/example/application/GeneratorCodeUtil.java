@@ -50,8 +50,8 @@ public class GeneratorCodeUtil {
     /**
      * 请自定义自己的模块名（可以理解为项目名称）
      */
-    private static final String MODULE_NAME = System.getProperty("user.dir");
-
+//    private static final String MODULE_NAME = System.getProperty("user.dir");
+    private static final String MODULE_NAME = "admin-application";
     /**
      * 请自定义自己的db url
      */
